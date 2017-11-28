@@ -1,11 +1,14 @@
 <?php 
 
+require_once 'Model/ProjetGateway.php';
+require_once '../notation/connect.php';
+
 class ProjetService {
 	
-	private $projetService = NULL;
+	private $projetGateway = NULL;
 
 	public function __construct() {
-		$this->projetService = new ProjetService();
+		$this->projetGateway = new ProjetGateway();
 	}
 
 	public function getAllProjets($enseignantId){
@@ -15,11 +18,12 @@ class ProjetService {
 		} catch(Exception $e) {
 			throw $e;
 		}
+		return;
 	}
 
-	public function createNewProjet($description, $enseignantId){
+	public function createNewProjet($titre, $description, $enseignantId){
 		try {
-			$res = $this->projetGateway->InsertProjet($description, $enseignantId);
+			$res = $this->projetGateway->Insert($titre, $description, $enseignantId);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;
