@@ -34,10 +34,9 @@ class ProjetController {
         include 'View/projet.php';
     }
     
-    public function InsertProjet($description, $enseignantId) {
+    public function InsertProjet($titre, $description, $enseignantId) {
         $projet = $this->projetService->InsertProjet($description, $enseignantId);
-        
-        include 'Views/projet.php';
+        include 'Views/projet-form.php';
     }
 }
 

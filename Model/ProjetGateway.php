@@ -9,16 +9,18 @@ class ProjetGateway {
         $stmt->execute(array(':enseignantId'=>$enseignantId));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        return $result['description'];	
+        return $result;	
 	}
 
-	public function Insert($description, $enseignantId) {
+	public function Insert($titre, $description, $enseignantId) {
         include '../notation/connect.php';
         
         $description = isset($_POST['description'])?$_POST['description']:NULL;
+        $titre = isset($_POST['titre'])?$_POST['titre']:NULL;
         
-        $stmt = $conn->prepare('INSERT INTO projet (description, enseignantId) VALUES (:DESCRIPTION, :ENSEIGNANTID)');
-        $stmt->execute(array(":DESCRIPTION"=>$description,
+        $stmt = $conn->prepare('INSERT INTO projet (titre, description, enseignantId) VALUES (:TITRE, :DESCRIPTION, :ENSEIGNANTID)');
+        $stmt->execute(array(":TITRE"=>$titre,
+        					":DESCRIPTION"=>$description,
                             ":ENSEIGNANTID"=>$enseignantId));
 
     }
