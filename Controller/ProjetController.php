@@ -26,7 +26,7 @@ class ProjetController {
                 $this->showError("Page not found", "Page for operation ".$op." was not found!");
             }
         } catch ( Exception $e ) {
-            throw $e;
+            $this->showError("Application error", $e->getMessage());
         }
     }
 
@@ -45,6 +45,8 @@ class ProjetController {
         $description = '';
         $enseignantId='';
 
+        $errors= array();
+
         if(isset($_POST['form-submitted'])) {
             $titre = isset($_POST['titre']) ? $_POST['titre'] : NULL;
             $description = isset($_POST['description']) ? $_POST['description'] : NULL;
@@ -52,13 +54,11 @@ class ProjetController {
             
             try {
                 $this->projetService->createNewProjet($titre, $description, $enseignantId);
-                //$this->redirect('index.php?page=projet&op=list');
+                $this->redirect('index.php');
                 return;
             } catch (ValidationException $e) {
                 $errors = $e->getErrors();
             }
-        
-
         }
 
         include 'View/projet-form.php';

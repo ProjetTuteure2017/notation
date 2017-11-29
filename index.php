@@ -16,5 +16,7 @@
 	$projetController = new ProjetController();
 	$projetController->HandleRequest();
 ?>
+
+<h2>added</h2>
 </body>
 </html>

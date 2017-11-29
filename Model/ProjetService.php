@@ -1,6 +1,7 @@
 <?php 
 
 require_once 'Model/ProjetGateway.php';
+require_once 'Model/ValidationException.php';
 require_once '../notation/connect.php';
 
 class ProjetService {

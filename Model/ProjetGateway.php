@@ -20,9 +20,7 @@ class ProjetGateway {
         $enseignantId = isset($_POST['enseignantId']) ? $_POST['enseignantId'] : '';
         
         $stmt = $conn->prepare("INSERT INTO projet (titre, description, enseignantId) VALUES (:TITRE, :DESCRIPTION, :ENSEIGNANTID)");
-        $stmt->execute(array(":TITRE"=>$titre,
-        					":DESCRIPTION"=>$description,
-                            ":ENSEIGNANTID"=>$enseignantId));
+        $stmt->execute(array("TITRE"=>$titre,"DESCRIPTION"=>$description,"ENSEIGNANTID"=>$enseignantId));
 
     }
 }
