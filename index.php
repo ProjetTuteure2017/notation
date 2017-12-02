@@ -8,6 +8,7 @@
 	<meta name="author" content="">
 
 	<link href="Public/css/bootstrap.min.css" rel="stylesheet">
+	<link href="Public/css/style.css" rel="stylesheet">
 </head>
 <body>
 <?php
@@ -17,6 +18,5 @@
 	$projetController->HandleRequest();
 ?>
 
-<h2>added</h2>
 </body>
 </html>

@@ -16,21 +16,49 @@
             print '</ul>';
         }
         ?>
-        <form method="POST" action="">
-            <label for="titre">titre:</label><br/>
-            <input type="text" name="titre" value="<?php print htmlentities($titre) ?>"/>
-            <br/>
-            
-            <label for="description">description:</label><br/>
-            <input type="text" name="description" value="<?php print htmlentities($description) ?>"/>
-            <br/>
-            <label for="enseignantId">Enseignant:</label><br/>
-            <input type="text" name="enseignantId" value="<?php print htmlentities($enseignantId) ?>" />
-           
-            <br/>
-            <input type="hidden" name="form-submitted" value="1" />
-            <input type="submit" value="Submit" />
-        </form>
-        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="panel panel-compte">
+                        <div class="panel-heading">
+                            <h5>Ajout projet</h5>
+                            <hr>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <form method="POST" action="" style="display : block;">
+                                        <div class="form-group">
+
+                                            <label for="titre">Titre:</label><br/>
+                                            <input type="text" name="titre" value="<?php print htmlentities($titre) ?>"/>
+                                        </div>
+                                        <div class="form-group">
+                                        
+                                            <label for="description">Description:</label><br/>
+                                            <input type="text" name="description" value="<?php print htmlentities($description) ?>"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="enseignantId">Enseignant:</label><br/>
+                                            <input type="text" name="enseignantId" value="<?php print htmlentities($enseignantId) ?>" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" name="form-submitted" value="1" />
+                                            <input type="submit" value="Valider" />
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </body>
 </html>

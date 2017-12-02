@@ -16,7 +16,8 @@ class ProjetController {
     }
 
 	public function HandleRequest() {
-        $op = isset($_GET['op'])?$_GET['op']:NULL;
+        //$op = isset($_GET['op'])?$_GET['op']:NULL;
+        $op = filter_input(INPUT_GET, 'op', FILTER_SANITIZE_URL);
         try {
             if ( !$op || $op == 'list' ) {
                 $this->ListProjets();
@@ -32,9 +33,10 @@ class ProjetController {
 
     public function ListProjets() {
         $title = 'Liste des projets';
-        $ensignantId = isset($_GET['ensignantId']) ? $_GET['ensignantId'] : NULL;
-
-        $projets = $this->projetService->getAllProjets($ensignantId);
+        //$enseignantId = isset($_GET['enseignantId']) ? $_GET['enseignantId'] : NULL;
+        //$enseignantId= filter_input(INPUT_GET, 'enseignantId', FILTER_SANITIZE_URL);
+        $enseignantId = 1;
+        $projets = $this->projetService->getAllProjets($enseignantId);
         include 'View/projets.php';
     }
     
