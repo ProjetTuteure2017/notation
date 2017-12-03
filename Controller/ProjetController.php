@@ -33,10 +33,32 @@ class ProjetController {
 
     public function ListProjets() {
         $title = 'Liste des projets';
-        //$enseignantId = isset($_GET['enseignantId']) ? $_GET['enseignantId'] : NULL;
-        //$enseignantId= filter_input(INPUT_GET, 'enseignantId', FILTER_SANITIZE_URL);
-        $enseignantId = 1;
+
+        $id = '';
+        $titre = '';
+        $description = '';
+        $enseignantId= filter_input(INPUT_GET, 'enseignantId', FILTER_SANITIZE_URL);
+
+        $errors= array();
+
+        if(isset($_POST['form-submitted'])) {
+
+            $id= isset($_POST['id']) ? $_POST['id'] : NULL;
+            $titre = isset($_POST['titre']) ? $_POST['titre'] : NULL;
+            $description = isset($_POST['description']) ? $_POST['description'] : NULL;
+
+            try {
+                $this->projetService->modifierProjet($id, $titre, $description);
+                header("Refresh:0");
+                //$this->redirect('index.php');
+                return;
+            } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+            }
+        }
+
         $projets = $this->projetService->getAllProjets($enseignantId);
+
         include 'View/projets.php';
     }
     
@@ -66,6 +88,33 @@ class ProjetController {
         include 'View/projet-form.php';
     }
 
+    public function ModifierProjet()
+    {
+        $id = '';
+        $titre = '';
+        $description = '';
+
+        $errors= array();
+
+        if(isset($_POST['form-submitted'])) {
+
+            $id= isset($_POST['id']) ? $_POST['id'] : NULL;
+            $titre = isset($_POST['titre']) ? $_POST['titre'] : NULL;
+            $description = isset($_POST['description']) ? $_POST['description'] : NULL;
+
+            try {
+                $this->projetService->modifierProjet($id, $titre, $description);
+                header("Refresh:0");
+                //$this->redirect('index.php');
+                return;
+            } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+            }
+        }
+
+        include 'View/projets.php';
+
+    }
 }
 
 ?>

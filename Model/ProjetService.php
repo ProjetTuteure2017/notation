@@ -31,5 +31,15 @@ class ProjetService {
 		}
 	}
 
+	public function modifierProjet($id, $titre, $description)
+	{
+		try{
+			$res = $this->projetGateway->Modifier($id, $titre, $description);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
 
 }
