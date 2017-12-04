@@ -11,7 +11,6 @@
 		error_log($e->getMessage());
 		die("A database error was encountered");
 	}
-/*something*/
 
 
 ?>
