@@ -8,7 +8,7 @@ class ProjetController {
  	private $projetService = NULL;
     
     public function __construct() {
-        $this->projetService = new projetService();
+        $this->projetService = new ProjetService();
     }
     
     public function redirect($location) {
@@ -56,7 +56,7 @@ class ProjetController {
             $enseignantId = isset($_POST['enseignantId']) ? $_POST['enseignantId'] : NULL;
             
             try {
-                $this->projetService->ajouterNouveauProjet($titre, $description, $enseignantId);
+                $this->projetService->ajouterProjet($titre, $description, $enseignantId);
                 $this->redirect('index.php');
                 return;
             } catch (ValidationException $e) {

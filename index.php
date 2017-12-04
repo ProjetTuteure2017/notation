@@ -14,10 +14,37 @@
 </head>
 <body>
 <?php
-	require_once 'Controller/ProjetController.php';
+	
+	function __autoload($class_name) {
+        require_once("Controller/".$class_name . '.php');
+	}
 
-	$projetController = new ProjetController();
-	$projetController->HandleRequest();
+	$page = isset($_GET['page']) ? $_GET['page'] : NULL;
+
+	if(!isset($_GET['page'])){
+?>
+<h2>Bienvenue</h2>
+
+<?php
+
+	}
+	else {
+		switch ($_GET['page']) {
+			case 'projet':
+				$projetController = new ProjetController();
+				$projetController->HandleRequest();
+				break;
+
+			case 'grille':
+				$grilleController = new GrilleController();
+				$grilleController->HandleRequest();
+				break;
+		
+			default:
+				break;
+		}
+	}
+
 ?>
 
 </body>

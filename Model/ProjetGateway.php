@@ -5,7 +5,7 @@ class ProjetGateway {
 	public function SelectAll($enseignantId) {
 		include '../notation/connect.php';
 
-        $stmt = $conn->prepare("SELECT * from projet where enseignantId= :ENSEIGNANTID");
+        $stmt = $conn->prepare("SELECT * FROM projet WHERE enseignantId= :ENSEIGNANTID");
         $stmt->execute(array('ENSEIGNANTID'=>$enseignantId));
         $result = $stmt->fetchAll();
         
