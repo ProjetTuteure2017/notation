@@ -1,3 +1,7 @@
+<!-- 
+** Quand c plus d'un projet, Quand click sur "Modifier" affiche que pour le premier (JQ)
+**
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,22 +24,22 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th scope="col"></th>
 						<th scope="col">Titre</th>
 						<th scope="col">Description</th>
 						<th scope="col">Enseignant</th>
 						<th scope="col">Grille</th>
+						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php 
 						foreach ($projets as $projet) : ?>
 					<tr>
-						<td><button id="btnModifier" type="button" class="btn btn-sm btn-info disabled">Modifier</button></td>
 						<td><?php print htmlentities($projet['titre']); ?></td>
 						<td><?php print htmlentities($projet['description']); ?></td>
 						<td><?php print htmlentities($projet['enseignantId']); ?></td>
 						<td>+</td>
+						<td><button id="btnModifier" type="button" class="btn btn-sm btn-info disabled">Modifier</button></td>
 					</tr>
 					<tr id="modifier" class="hidden">
 						<td colspan="3">

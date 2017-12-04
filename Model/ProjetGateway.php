@@ -12,7 +12,7 @@ class ProjetGateway {
         return $result;	
 	}
 
-	public function Insert($titre, $description, $enseignantId) {
+	public function Ajouter($titre, $description, $enseignantId) {
         include '../notation/connect.php';
         
         $titre = isset($_POST['titre']) ? $_POST['titre'] : '';

@@ -22,9 +22,9 @@ class ProjetService {
 		return;
 	}
 
-	public function createNewProjet($titre, $description, $enseignantId){
+	public function ajouterNouveauProjet($titre, $description, $enseignantId){
 		try {
-			$res = $this->projetGateway->Insert($titre, $description, $enseignantId);
+			$res = $this->projetGateway->Ajouter($titre, $description, $enseignantId);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;

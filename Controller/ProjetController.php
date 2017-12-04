@@ -16,13 +16,12 @@ class ProjetController {
     }
 
 	public function HandleRequest() {
-        //$op = isset($_GET['op'])?$_GET['op']:NULL;
         $op = filter_input(INPUT_GET, 'op', FILTER_SANITIZE_URL);
         try {
             if ( !$op || $op == 'list' ) {
-                $this->ListProjets();
+                $this->ListeProjets();
             } else if($op == 'new') {
-            	$this->InsertProjet();
+            	$this->AjouterProjet();
             } else {
                 $this->showError("Page not found", "Page for operation ".$op." was not found!");
             }
@@ -31,38 +30,18 @@ class ProjetController {
         }
     }
 
-    public function ListProjets() {
+    public function ListeProjets() {
         $title = 'Liste des projets';
 
-        $id = '';
-        $titre = '';
-        $description = '';
         $enseignantId= filter_input(INPUT_GET, 'enseignantId', FILTER_SANITIZE_URL);
 
-        $errors= array();
-
-        if(isset($_POST['form-submitted'])) {
-
-            $id= isset($_POST['id']) ? $_POST['id'] : NULL;
-            $titre = isset($_POST['titre']) ? $_POST['titre'] : NULL;
-            $description = isset($_POST['description']) ? $_POST['description'] : NULL;
-
-            try {
-                $this->projetService->modifierProjet($id, $titre, $description);
-                header("Refresh:0");
-                //$this->redirect('index.php');
-                return;
-            } catch (ValidationException $e) {
-                $errors = $e->getErrors();
-            }
-        }
-
         $projets = $this->projetService->getAllProjets($enseignantId);
+        $this->ModifierProjet();
 
         include 'View/projets.php';
     }
     
-    public function InsertProjet() {
+    public function AjouterProjet() {
         $title = 'Ajouter Projet';
 
         $titre = '';
@@ -77,7 +56,7 @@ class ProjetController {
             $enseignantId = isset($_POST['enseignantId']) ? $_POST['enseignantId'] : NULL;
             
             try {
-                $this->projetService->createNewProjet($titre, $description, $enseignantId);
+                $this->projetService->ajouterNouveauProjet($titre, $description, $enseignantId);
                 $this->redirect('index.php');
                 return;
             } catch (ValidationException $e) {
@@ -112,7 +91,7 @@ class ProjetController {
             }
         }
 
-        include 'View/projets.php';
+        //include 'View/projets.php';
 
     }
 }
