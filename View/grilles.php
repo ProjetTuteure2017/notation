@@ -1,20 +1,11 @@
-<!-- 
-** Quand c plus d'un projet, Quand click sur "Modifier" affiche que pour le premier (JQ)
-**
--->
 <!DOCTYPE html>
 <html>
 <head>
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
-	<script>
-		$(document).ready(function(){
-		    $('#btnModifier').click(function(){
-		        $('#modifier').show();
-		    });
-		});
-	</script>	
+	<script src="Public/js/myscripts.js"></script>	
+		
 </head>
 
 <body>
@@ -39,10 +30,10 @@
 						<td><?php print htmlentities($grille['titre']); ?></td>
 						<td><?php print htmlentities($grille['note']); ?></td>
 						<td><?php print htmlentities($grille['coef']); ?></td>
-						<td><button id="btnModifier" type="button" class="btn btn-sm btn-info disabled">Modifier</button></td>
+						<td><button id="btnModifier" type="button" onClick="showHide('modifier<?php print htmlentities($grille['id'])?>')" class="btn btn-sm btn-info disabled">Modifier</button></td>
 					</tr>
-					<tr id="modifier" class="hidden">
-						<td colspan="3">
+					<tr id="modifier<?php print htmlentities($grille['id'])?>" class="closed">
+						<td colspan="5">
 							<div>
 		                        <form method="POST" action="" style="display : inline;">
 		                        	<input class="hidden" type="text" name="id" value="<?php print htmlentities($grille['id']); ?>"/>
@@ -55,7 +46,7 @@
 		                            <label for="coef">ProjetId:</label>
 		                            <input type="text" name="projetId" value="<?php print htmlentities($grille['projetId']); ?>"/>
 		                            <input type="hidden" name="form-submitted" value="1" />
-		                            <input type="submit" value="Modifier" />
+		                            <input type="submit" value="Valider" />
 		                        </form>
 
 							</div>

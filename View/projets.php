@@ -8,13 +8,7 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
-	<script>
-		$(document).ready(function(){
-		    $('#btnModifier').click(function(){
-		        $('#modifier').show();
-		    });
-		});
-	</script>	
+	<script src="Public/js/myscripts.js"></script>	
 </head>
 
 <body>
@@ -39,10 +33,10 @@
 						<td><?php print htmlentities($projet['description']); ?></td>
 						<td><?php print htmlentities($projet['enseignantId']); ?></td>
 						<td>+</td>
-						<td><button id="btnModifier" type="button" class="btn btn-sm btn-info disabled">Modifier</button></td>
+						<td><button id="btnModifier" onClick="showHide('modifier<?php print htmlentities($projet['id'])?>')" type="button" class="btn btn-sm btn-info disabled">Modifier</button></td>
 					</tr>
-					<tr id="modifier" class="hidden">
-						<td colspan="3">
+					<tr id="modifier<?php print htmlentities($projet['id'])?>" class="closed">
+						<td colspan="4">
 							<div>
 		                        <form method="POST" action="" style="display : inline;">
 		                        	<input class="hidden" type="text" name="id" value="<?php print htmlentities($projet['id']); ?>"/>
@@ -51,9 +45,8 @@
 		                            <label for="description">Description:</label>
 		                            <input type="text" name="description" value="<?php print htmlentities($projet['description']) ?>"/>
 		                            <input type="hidden" name="form-submitted" value="1" />
-		                            <input type="submit" value="Modifier" />
+		                            <input type="submit" value="Valider" />
 		                        </form>
-
 							</div>
 						</td>
 					</tr>

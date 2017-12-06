@@ -18,3 +18,9 @@ footer p
 	display : none;
 }
 
+.closed {
+	display: none;
+}
+.opened {
+	visibility: visible;
+}
