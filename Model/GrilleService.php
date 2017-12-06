@@ -35,6 +35,16 @@ class GrilleService
 		}
 	}
 
+	public function modifierGrille($id, $titre, $note, $coef, $projetId)
+	{
+		try {
+			$res=$this->grilleGateway->Modifier($id, $titre, $note, $coef, $projetId);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
 
 }
 

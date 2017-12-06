@@ -27,6 +27,21 @@ class GrilleGateway
 
 	}
 
+	public function Modifier($id, $titre, $note, $coef, $projetId)
+	{
+		include '../notation/connect.php';
+
+		$id = isset($_POST['id']) ? $_POST['id'] : '';
+		$titre = isset($_POST['titre']) ? $_POST['titre'] : '';
+		$note = isset($_POST['note']) ? $_POST['note'] : '';
+		$coef = isset($_POST['coef']) ? $_POST['coef'] : '';
+		$projetId = isset($_POST['projetId']) ? $_POST['projetId'] : '';
+
+		$stmt = $conn->prepare("UPDATE grille SET titre=:TITRE, note=:NOTE, coef=:COEF, projetId=:PROJETID WHERE id=:ID");
+		$stmt->execute(array("TITRE"=>$titre, "NOTE"=>$note, "COEF"=>$coef, "PROJETID"=>$projetId, "ID"=>$id));
+
+	}
+
 
 	
 	

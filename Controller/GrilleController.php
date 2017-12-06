@@ -39,6 +39,7 @@ class GrilleController
 		//$projetId = isset($_POST['projetId']) ? $_POST['projetId'] : NULL;
 		$projetId = 1;
 		$grilles = $this->grilleService->getAllGrilles($projetId);
+		$this->ModifierGrille();
 
 		include 'View/grilles.php';
 	}
@@ -71,6 +72,35 @@ class GrilleController
 		include 'View/grille-form.php';
 
 	}
+
+	public function ModifierGrille()
+	{
+		$id = '';
+		$titre = '';
+		$note = '';
+		$coef = '';
+		$projetId = '';
+
+		$errors = array();
+
+		if (isset($_POST['form-submitted'])) {
+			$id = isset($_POST['id']) ? $_POST['id'] : NULL;
+			$titre = isset($_POST['titre']) ? $_POST['titre'] : NULL;
+			$note = isset($_POST['note']) ? $_POST['note'] : NULL;
+			$coef = isset($_POST['coef']) ? $_POST['coef'] : NULL;
+			$projetId = isset($_POST['projetId']) ? $_POST['projetId'] : NULL;
+
+			try {
+                $this->grilleService->modifierGrille($id, $titre, $note, $coef, $projetId);
+                header("Refresh:0");
+                return;
+            } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+            }
+		}
+	}
+
+
 }
 
 ?>

@@ -84,7 +84,6 @@ class ProjetController {
             try {
                 $this->projetService->modifierProjet($id, $titre, $description);
                 header("Refresh:0");
-                //$this->redirect('index.php');
                 return;
             } catch (ValidationException $e) {
                 $errors = $e->getErrors();
