@@ -1,2 +1,2 @@
 # notation
-projet tuteuré notation des notes
+projet tuteuré notation des projets
