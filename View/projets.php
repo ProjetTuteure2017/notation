@@ -13,6 +13,9 @@
 
 <body>
 	<div class="container">
+		<div class="col-md-4 col-lg-4">
+			<a href="index.php?page=projet&op=new">Ajouter projet</a>
+		</div>
 		<div class="col-md-12">
 
 			<table class="table table-striped">
@@ -32,7 +35,7 @@
 						<td><?php print htmlentities($projet['titre']); ?></td>
 						<td><?php print htmlentities($projet['description']); ?></td>
 						<td><?php print htmlentities($projet['enseignantId']); ?></td>
-						<td>+</td>
+						<td><?php echo '<a href="index.php?page=grille&op=new&projetId='.htmlentities($projet['id']).'">Ajouter grille</a>';?></td>
 						<td><button id="btnModifier" onClick="showHide('modifier<?php print htmlentities($projet['id'])?>')" type="button" class="btn btn-sm btn-info disabled">Modifier</button></td>
 					</tr>
 					<tr id="modifier<?php print htmlentities($projet['id'])?>" class="closed">

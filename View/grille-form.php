@@ -44,10 +44,6 @@
                                             <input type="text" name="coef" value="<?php print htmlentities($coef) ?>" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="projetId">ProjetId:</label><br/>
-                                            <input type="text" name="projetId" value="<?php print htmlentities($projetId) ?>" />
-                                        </div>
-                                        <div class="form-group">
                                             <input type="hidden" name="form-submitted" value="1" />
                                             <input type="submit" value="Valider" />
                                         </div>

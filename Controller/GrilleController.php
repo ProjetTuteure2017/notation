@@ -36,8 +36,7 @@ class GrilleController
 	public function ListeGrilles() {
 		$title = 'Liste des grilles';
 
-		//$projetId = isset($_POST['projetId']) ? $_POST['projetId'] : NULL;
-		$projetId = 1;
+		$projetId = isset($_GET['projetId']) ? $_GET['projetId'] : NULL;
 		$grilles = $this->grilleService->getAllGrilles($projetId);
 		$this->ModifierGrille();
 
@@ -58,7 +57,7 @@ class GrilleController
 			$titre = isset($_POST['titre']) ? $_POST['titre'] : NULL;
 			$note = isset($_POST['note']) ? $_POST['note'] : NULL;
 			$coef = isset($_POST['coef']) ? $_POST['coef'] : NULL;
-			$projetId = isset($_POST['projetId']) ? $_POST['projetId'] : NULL;
+			$projetId = isset($_GET['projetId']) ? $_GET['projetId'] : NULL;
 
 			try {
 				$this->grilleService->ajouterGrille($titre, $note, $coef, $projetId);

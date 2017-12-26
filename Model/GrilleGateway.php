@@ -20,7 +20,7 @@ class GrilleGateway
 		$titre = isset($_POST['titre']) ? $_POST['titre'] : '';
 		$note = isset($_POST['note']) ? $_POST['note'] : '';
 		$coef = isset($_POST['coef']) ? $_POST['coef'] : '';
-		$projetId = isset($_POST['projetId']) ? $_POST['projetId'] : '';
+		$projetId = isset($_GET['projetId']) ? $_GET['projetId'] : '';
 
 		$stmt = $conn->prepare("INSERT INTO grille (titre, note, coef, projetId) VALUES (:TITRE, :NOTE, :COEF, :PROJETID)");
 		$stmt->execute(array("TITRE" =>$titre ,"NOTE" => $note,"COEF" =>$coef, "PROJETID"=>$projetId));
