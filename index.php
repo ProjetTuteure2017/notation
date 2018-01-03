@@ -29,6 +29,14 @@
 	}
 	else {
 		switch ($_GET['page']) {
+			case 'index':
+				$pagesController = new PagesController();
+				$pagesController->HandleRequest();
+				break;
+			case 'enseignant':
+				/*$enseignantController = new EnseignantController();
+				$enseignantController->HandleRequest();*/
+				break;
 			case 'projet':
 				$projetController = new ProjetController();
 				$projetController->HandleRequest();
@@ -56,6 +64,9 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
 					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="index.php?page=index">Login</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="index.php?page=projet">Projets</a>

@@ -3,9 +3,6 @@
 require_once 'Model/GrilleService.php';
 require_once '../notation/connect.php';
 
-/**
-* 
-*/
 class GrilleController
 {
 	private $grilleService = NULL;

@@ -1,6 +1,6 @@
 <?php
 
-class EnseignantGateway {
+class PagesGateway {
 
 	public function Login($nom, $motDePasse)
 	{
@@ -11,14 +11,14 @@ class EnseignantGateway {
 			$motDePasse = isset($_POST['motDePasse']) ? $_POST['motDePasse'] : '';
 
 			$query = $conn->prepare("SELECT * FROM personne WHERE nom=:NOM");
-
 			$query->execute(array("NOM"=>$nom));
+			
 			$num = $query->rowCount();
 
 			$checkMDP = $nom;
 			if($num > 0)
 			{
-				if($motDePasse==$checkMDP))
+				if($motDePasse==$checkMDP)
 				{
 					$_SESSION['nom'] = $nom;
 					print 'element exist';
