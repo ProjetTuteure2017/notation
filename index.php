@@ -36,6 +36,7 @@
 		    <ul class="nav navbar-nav">
 		        <li><a href="index.php">Accueil</a></li>
 		    	<li><a href="index.php?page=projet">Projets</a></li>
+		    	<li><a href="index.php?page=grille">Grilles</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
 				<?php 

@@ -18,7 +18,7 @@
         ?>
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-xs-12">
+                <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2 col-sm-12">
                     <?php     
                         if(!isset($_SESSION['nom']))
                         {
@@ -34,33 +34,29 @@
                         $enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 
                     ?>
+                </div>
+                <div class="col-md-offset-3 col-md-6 col-xs-12">
                     <div class="panel panel-compte">
                         <div class="panel-heading">
-                            <h5>Ajout projet</h5>
+                            <h5>Ajouter un projet</h5>
                             <hr>
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-lg-12">
 
-                                    <form method="POST" action="" style="display : block;">
+                                    <form role="form" method="POST" action="" style="display : block;">
                                         <div class="form-group">
-
-                                            <label for="titre">Titre:</label><br/>
-                                            <input type="text" name="titre" value="<?php print htmlentities($titre) ?>"/>
+                                            <input type="text" class="form-control" name="titre" value="<?php print htmlentities($titre) ?>" placeholder="Titre">
                                         </div>
                                         <div class="form-group">
-                                        
-                                            <label for="description">Description:</label><br/>
-                                            <input type="text" name="description" value="<?php print htmlentities($description) ?>"/>
+                                            <input type="text" class="form-control" name="description" value="<?php print htmlentities($description) ?>" placeholder="Description" >
                                         </div>
                                         <div class="form-group">
-                                            <label for="enseignantId">Enseignant:</label><br/>
-                                            <input type="text" name="enseignantId" value="<?php print htmlentities($enseignantId) ?>" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="hidden" name="form-submitted" value="1" />
-                                            <input type="submit" value="Valider" />
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <input type="hidden" name="form-submitted" value="1" />
+                                                    <input type="submit" value="Valider" tabindex="4" class="form-control btn"/>
                                         </div>
                                     </form>
 

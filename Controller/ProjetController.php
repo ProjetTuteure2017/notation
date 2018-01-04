@@ -57,7 +57,7 @@ class ProjetController {
             
             try {
                 $this->projetService->ajouterProjet($titre, $description, $enseignantId);
-                $this->redirect('index.php');
+                $this->redirect('index.php?page=projet');
                 return;
             } catch (ValidationException $e) {
                 $errors = $e->getErrors();
@@ -89,8 +89,6 @@ class ProjetController {
                 $errors = $e->getErrors();
             }
         }
-
-        //include 'View/projets.php';
 
     }
 }

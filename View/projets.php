@@ -49,7 +49,7 @@
 						<td><?php print htmlentities($projet['description']); ?></td>
 						<td><?php print htmlentities($projet['enseignantId']); ?></td>
 						<td><?php echo '<a href="index.php?page=grille&op=new&projetId='.htmlentities($projet['id']).'">Ajouter grille</a>';?></td>
-						<td><button id="btnModifier" onClick="showHide('modifier<?php print htmlentities($projet['id'])?>')" type="button" class="btn btn-sm btn-info disabled">Modifier</button></td>
+						<td><button id="btnModifier" onClick="showHide('modifier<?php print htmlentities($projet['id'])?>')" type="button" class="btn btn-sm btn-info">Modifier</button></td>
 					</tr>
 					<tr id="modifier<?php print htmlentities($projet['id'])?>" class="closed">
 						<td colspan="4">

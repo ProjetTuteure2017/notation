@@ -26,6 +26,11 @@
 				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 
             ?>
+        </div>
+		<div class="col-md-4 col-lg-4">
+			<a href="index.php?page=grille&op=new">Ajouter grille</a>
+		</div>
+		<div class="col-md-12">	
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -44,7 +49,7 @@
 						<td><?php print htmlentities($grille['titre']); ?></td>
 						<td><?php print htmlentities($grille['note']); ?></td>
 						<td><?php print htmlentities($grille['coef']); ?></td>
-						<td><button id="btnModifier" type="button" onClick="showHide('modifier<?php print htmlentities($grille['id'])?>')" class="btn btn-sm btn-info disabled">Modifier</button></td>
+						<td><button id="btnModifier" type="button" onClick="showHide('modifier<?php print htmlentities($grille['id'])?>')" class="btn btn-sm btn-info">Modifier</button></td>
 					</tr>
 					<tr id="modifier<?php print htmlentities($grille['id'])?>" class="closed">
 						<td colspan="5">
