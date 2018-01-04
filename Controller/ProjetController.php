@@ -33,7 +33,7 @@ class ProjetController {
     public function ListeProjets() {
         $title = 'Liste des projets';
 
-        $enseignantId= filter_input(INPUT_GET, 'enseignantId', FILTER_SANITIZE_URL);
+        $enseignantId = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
 
         $projets = $this->projetService->getAllProjets($enseignantId);
         $this->ModifierProjet();
@@ -53,7 +53,7 @@ class ProjetController {
         if(isset($_POST['form-submitted'])) {
             $titre = isset($_POST['titre']) ? $_POST['titre'] : NULL;
             $description = isset($_POST['description']) ? $_POST['description'] : NULL;
-            $enseignantId = isset($_POST['enseignantId']) ? $_POST['enseignantId'] : NULL;
+            $enseignantId = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
             
             try {
                 $this->projetService->ajouterProjet($titre, $description, $enseignantId);

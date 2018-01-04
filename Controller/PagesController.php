@@ -1,16 +1,16 @@
 <?php
 
-require_once 'Model/PagesService.php';
+require_once 'Model/enseignantService.php';
 require_once '../notation/connect.php';
 
 class PagesController
 {
 
-	private $pagesService = NULL;
+	private $enseignantService = NULL;
 
 	function __construct()
 	{
-		$this->pagesService = new PagesService();
+		$this->enseignantService = new enseignantService();
 	}
 
 	public function redirect($location) {
@@ -20,7 +20,7 @@ class PagesController
 	public function HandleRequest() {
 		$op = filter_input(INPUT_GET, 'op', FILTER_SANITIZE_URL);
 		try {
-		    if ( !$op || $op == 'login' ) {
+		    if (!$op || $op == 'login') {
 		        $this->Login();
 		    } else if($op == 'logout') {
 		    	$this->Logout();
@@ -55,19 +55,19 @@ class PagesController
             $motDePasse = isset($_POST['motDePasse']) ? $_POST['motDePasse'] :NULL;
 
             try {
-            	$enseignantExist = $this->pagesService->EnseignantLoginExist($nom, $motDePasse);
+            	$enseignantExist = $this->enseignantService->EnseignantLoginExist($nom, $motDePasse);
 
             	if($enseignantExist == 1) 
             	{
 
-            		$enseignantLogged = $this->pagesService->EnseignantLogin($nom, $motDePasse);
+            		$enseignantLogged = $this->enseignantService->EnseignantLogin($nom, $motDePasse);
             		if(isset($enseignantLogged))
             		{
             			/* Test if responsable logged*/
-            			$responsableLogged = $this->pagesService->ResponsableLogin($nom, $motDePasse);
+            			$responsableLogged = $this->enseignantService->ResponsableLogin($nom, $motDePasse);
             			if($responsableLogged == 1)
             			{
-            				$this->Redirect('index.php?page=enseignant&op=resp');
+            				$this->Redirect('index.php?page=enseignant&op=resp&');
             			} else
             			{
             				$this->Redirect('index.php?page=enseignant&op=ens');

@@ -1,6 +1,6 @@
 <?php
 
-class PagesGateway {
+class EnseignantGateway {
 
 	public function Login($nom, $motDePasse)
 	{

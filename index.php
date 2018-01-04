@@ -12,48 +12,6 @@
 	<script src="Public/js/jquery-3.2.1.min.js"></script>
     <script src="Public/js/bootstrap.min.js"></script>
 
-
-<?php
-	
-	function __autoload($class_name) {
-        require_once("Controller/".$class_name . '.php');
-	}
-
-	$page = isset($_GET['page']) ? $_GET['page'] : NULL;
-
-	if(!isset($_GET['page'])){
-?>
-
-<?php
-
-	}
-	else {
-		switch ($_GET['page']) {
-			case 'index':
-				$pagesController = new PagesController();
-				$pagesController->HandleRequest();
-				break;
-			case 'enseignant':
-				/*$enseignantController = new EnseignantController();
-				$enseignantController->HandleRequest();*/
-				break;
-			case 'projet':
-				$projetController = new ProjetController();
-				$projetController->HandleRequest();
-				break;
-
-			case 'grille':
-				$grilleController = new GrilleController();
-				$grilleController->HandleRequest();
-				break;
-		
-			default:
-				break;
-		}
-	}
-
-?>
-
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">Navbar</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +24,7 @@
 					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="index.php?page=index">Login</a>
+					<a class="nav-link" href="index.php?op=login">Login</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="index.php?page=projet">Projets</a>
@@ -77,4 +35,68 @@
 			</ul>
 		</div>
 	</nav>
+
+<?php
+	session_start();
+
+	$page = isset($_GET['page']) ? $_GET['page'] : NULL;
+	$op = isset($_GET['op']) ? $_GET['op'] : NULL;
+	$idSession = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
+	
+	function __autoload($class_name) {
+        require_once("Controller/".$class_name . '.php');
+	}
+
+	if(!isset($_GET['page'])){
+		$pagesController = new PagesController();
+		$pagesController->HandleRequest();
+	}
+	else {
+		switch ($_GET['page']) {
+			case 'responsable':
+				$enseignantController = new EnseignantController();
+				$enseignantController->HandleRequest();
+				break;
+			case 'enseignant':
+				$enseignantController = new EnseignantController();
+				$enseignantController->HandleRequest();
+				break;
+			case 'projet':
+				$projetController = new ProjetController();
+				$projetController->HandleRequest();
+				break;
+
+			case 'grille':
+				$grilleController = new GrilleController();
+				$grilleController->HandleRequest();
+				break;
+		
+			default:
+				$pagesController = new PagesController();
+				$pagesController->HandleRequest();
+		}
+	}
+
+?>
+
+<script>
+      var $nav = $('.navbar');
+      
+      $(document).scroll(function() {
+        if($(this).scrollTop() > 100){
+          $nav.css({
+            'margin-top':'0px'
+          });
+         
+        }else{
+          $nav.css({
+            'margin-top' :'75px'
+          });
+        }
+      });
+      var $logo = $('.navbar-brand');
+        $(document).scroll(function() {
+            $logo.css({display: $(this).scrollTop() > 100? "block":"none"});
+        });
+</script>
 </head>

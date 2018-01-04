@@ -1,20 +1,20 @@
 <?php
 
-require_once 'Model/PagesGateway.php';
+require_once 'Model/EnseignantGateway.php';
 require_once 'Model/ValidationException.php';
 require_once '../notation/connect.php';
 
-class PagesService {
+class EnseignantService {
 
-	private $pagesGateway = NULL;
+	private $enseignantGateway = NULL;
 
 	function __construct()	{
-		$this->pagesGateway = new PagesGateway();
+		$this->enseignantGateway = new EnseignantGateway();
 	}
 
 	public function EnseignantLoginExist($nom, $motDePasse) {
 		try {
-			$result = $this->pagesGateway->Login($nom, $motDePasse);
+			$result = $this->enseignantGateway->Login($nom, $motDePasse);
 			return $result;
 		} catch (Exception $e) {
 			throw $e;
@@ -24,8 +24,8 @@ class PagesService {
 	public function EnseignantLogin($nom, $motDePasse) {
 
 		try {
-			$this->pagesGateway->Login($nom, $motDePasse);
-			$result = $this->pagesGateway->IsLogged();
+			$this->enseignantGateway->Login($nom, $motDePasse);
+			$result = $this->enseignantGateway->IsLogged();
 			return $result;
 		} catch (Exception $e) {
 			throw $e;
@@ -35,8 +35,8 @@ class PagesService {
 	public function ResponsableLogin($nom, $motDePasse) {
 		
 		try {
-			$this->pagesGateway->Login($nom, $motDePasse);
-			$result = $this->pagesGateway->IsResponsable();
+			$this->enseignantGateway->Login($nom, $motDePasse);
+			$result = $this->enseignantGateway->IsResponsable();
 			return $result;
 
 		} catch (Exception $e) {
@@ -47,7 +47,7 @@ class PagesService {
 	public function IsResponsableSession() {
 
 		try {
-			$result = $this->pagesGateway->IsResponsable();
+			$result = $this->enseignantGateway->IsResponsable();
 			return $result;
 		} catch (Exception $e) {
 			throw $e;

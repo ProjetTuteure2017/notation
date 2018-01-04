@@ -25,18 +25,6 @@
   <div class="container">
     <div class="row">
       <div class="col-md-offset-3 col-md-6 col-xs-12">
-        <?php     
-          if(isset($_SESSION['nom']))
-          {
-          print '<div class="alert alert-dismissible alert-info">';
-          print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-          print '<h4>Vous etes deja connecter!</h4>';
-          print '</div>';
-
-          exit();
-          }
-
-        ?>
         <div class="panel panel-compte">
           <div class="panel-heading">
             <h5>Login</h5>
