@@ -18,7 +18,7 @@ class GrilleController
 	public function HandleRequest() {
 		$op = filter_input(INPUT_GET, 'op', FILTER_SANITIZE_URL);
 		try {
-		    if ( !$op || $op == 'list' ) {
+		    if (!$op || $op == 'list' ) {
 		        $this->ListeGrilles();
 		    } else if($op == 'new') {
 		    	$this->AjouterGrille();

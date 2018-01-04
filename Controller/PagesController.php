@@ -20,7 +20,9 @@ class PagesController
 	public function HandleRequest() {
 		$op = filter_input(INPUT_GET, 'op', FILTER_SANITIZE_URL);
 		try {
-		    if (!$op || $op == 'login') {
+		    if (!$op || $op == 'home') {
+                $this->Home();
+            } else if ($op == 'login'){
 		        $this->Login();
 		    } else if($op == 'logout') {
 		    	$this->Logout();
@@ -32,6 +34,12 @@ class PagesController
 		}
 	}
 
+    public function Home()
+    {
+        $title = 'Accueil';
+        include 'View/accueil.php';
+    }
+    
 	public function Logout()
     {
         $title = 'Deconnecter';
@@ -67,18 +75,18 @@ class PagesController
             			$responsableLogged = $this->enseignantService->ResponsableLogin($nom, $motDePasse);
             			if($responsableLogged == 1)
             			{
-            				$this->Redirect('index.php?page=enseignant&op=resp&');
+            				$this->Redirect('index.php?page=enseignant&op=resp');
             			} else
             			{
-            				$this->Redirect('index.php?page=enseignant&op=ens');
+            				$this->Redirect('index.php?page=enseignant');
             			}
             		} else
             		{
-            			$this->Redirect('index.php?page=index&op=home');
+            			$this->Redirect('index.php');
             		}
             	} else 
             	{
-                    $this->Redirect('index.php?page=index&op=login');
+                    $this->Redirect('index.php?op=login');
             	}
             } catch (ValidationException $e) {
             	

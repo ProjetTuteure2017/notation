@@ -12,30 +12,6 @@
 	<script src="Public/js/jquery-3.2.1.min.js"></script>
     <script src="Public/js/bootstrap.min.js"></script>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">Navbar</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarColor03">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="index.php?op=login">Login</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="index.php?page=projet">Projets</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="index.php?page=grille">Grilles</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-
 <?php
 	session_start();
 
@@ -43,6 +19,43 @@
 	$op = isset($_GET['op']) ? $_GET['op'] : NULL;
 	$idSession = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
 	
+	?>
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+		  	<a class="navbar-brand" href="index.php"><img style="width:50px; margin-top: -15px; height: 50px;" src="Public/img/Logo.png"></a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    <ul class="nav navbar-nav">
+		        <li><a href="index.php">Accueil</a></li>
+		    	<li><a href="index.php?page=projet">Projets</a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+				<?php 
+					if(empty($_SESSION['nom']))
+					{
+						print '<li><a class="nav-link" href="index.php?op=login">Se Connecter</a></li>';
+					}
+					else 
+					{
+						print '<li><a class="nav-link" href="index.php?op=logout">Se D&eacuteconnecter</a></li>';
+
+					}
+				?>
+			</ul>
+		</div>
+	</div>
+</nav>
+		
+			
+	<?php
 	function __autoload($class_name) {
         require_once("Controller/".$class_name . '.php');
 	}
