@@ -27,10 +27,28 @@
 
             ?>
         </div>
-		<div class="col-md-4 col-lg-4">
-			<a href="index.php?page=grille&op=new">Ajouter grille</a>
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<h4>S&eacute;l&eacute;ctionnez le projet pour afficher les gilles associ&acute;es</h4>
+			<form method="post" action="">
+			<select id="selectProjet" name="selectProjet">
+				<option selected="selected">Veuillez selectioner un projet....</option>
+				<?php 
+					foreach ($projets as $projet) : 
+						print '<option value="'.$projet['id'].'">';
+						print htmlentities($projet['titre']);
+					endforeach; 
+				?>
+			</select>
+			<input type="submit" value="S&eacute;l&eacute;ctionner"/>
+			</form>
 		</div>
-		<div class="col-md-12">	
+		<div class="col-sm-4 col-md-4 col-lg-4">
+			<?php 
+				//$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
+				print '<a href="index.php?page=grille&op=new&projetId='.$projetId.'">Ajouter grille</a>';
+			?>
+		</div>
+		<div class="col-sm-12 col-md-12 col-lg-12">	
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -43,6 +61,7 @@
 				</thead>
 				<tbody>
 					<?php 
+
 						foreach ($grilles as $grille) : ?>
 					<tr>
 						<td><?php print htmlentities($grille['id']); ?></td>

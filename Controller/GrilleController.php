@@ -1,14 +1,17 @@
 <?php
 
 require_once 'Model/GrilleService.php';
+require_once 'Model/ProjetService.php';
 require_once '../notation/connect.php';
 
 class GrilleController
 {
 	private $grilleService = NULL;
+	private $projetService = NULL;
 	function __construct()
 	{
 		$this->grilleService = new GrilleService();
+		$this->projetService = new ProjetService();
 	}
 
 	public function redirect($location) {
@@ -33,11 +36,18 @@ class GrilleController
 	public function ListeGrilles() {
 		$title = 'Liste des grilles';
 
-		$projetId = isset($_GET['projetId']) ? $_GET['projetId'] : NULL;
+		$projets = $this->ListeProjets();
+		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
 		$grilles = $this->grilleService->getAllGrilles($projetId);
+
 		$this->ModifierGrille();
 
 		include 'View/grilles.php';
+	}
+	public function ListeProjets() {
+		$enseignantId = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
+		$projets = $this->projetService->getAllProjets($enseignantId);
+		return $projets;
 	}
 
 	public function AjouterGrille() {
@@ -83,7 +93,7 @@ class GrilleController
 			$id = isset($_POST['id']) ? $_POST['id'] : NULL;
 			$titre = isset($_POST['titre']) ? $_POST['titre'] : NULL;
 			$note = isset($_POST['note']) ? $_POST['note'] : NULL;
-			$coef = isset($_POST['coef']) ? $_POST['coef'] : NULL;
+			$coef = isset($_POST['coef']) ? $_POST['coef'] : NULL;     
 			$projetId = isset($_POST['projetId']) ? $_POST['projetId'] : NULL;
 
 			try {
