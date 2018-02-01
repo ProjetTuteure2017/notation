@@ -43,8 +43,8 @@ class GroupeController
 		$title = 'Liste des groupes';
 
 		$projets = $this->ListeProjets();
-		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
-
+		//$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
+		$projetId = 2;
 		$groupes = $this->groupeService->getAllGroupes($projetId);
 
 		include 'View/groupes.php';

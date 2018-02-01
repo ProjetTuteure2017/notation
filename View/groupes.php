@@ -26,8 +26,13 @@
       $enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
         ?>
       </div>
-<div class="col-lg-12">
 
+<div class="col-lg-12">
+<!--Col span : retourne count of Grille, 2 titre for projetId : 2-->
+<?php foreach($groupes as $groupe) : 
+        print($groupe['titre']);
+      endforeach;
+?>
   <table class="table">
     <thead>
       <tr>
@@ -37,7 +42,7 @@
       </tr>
       <tr>
       	<th></th>
-		<th>Demo</th>
+		    <th>Demo</th>
       	<th>Presentation</th>      	
 
       	<th></th>

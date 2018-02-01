@@ -84,6 +84,10 @@
 				$grilleController = new GrilleController();
 				$grilleController->HandleRequest();
 				break;
+			case 'groupe':
+				$groupeController = new GroupeController();
+				$groupeController->HandleRequest();
+				break;
 		
 			default:
 				$pagesController = new PagesController();
