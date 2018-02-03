@@ -26,25 +26,38 @@
       $enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
         ?>
       </div>
+      <div class="col-sm-12 col-md-12 col-lg-12">
+      <h4>S&eacute;l&eacute;ctionnez le projet pour afficher les gilles associ&acute;es</h4>
+      <form method="post" action="">
+      <select id="selectProjet" name="selectProjet">
+        <option selected="selected">Veuillez selectioner un projet....</option>
+        <?php 
+          foreach ($projets as $projet) : 
+            print '<option value="'.$projet['id'].'">';
+            print htmlentities($projet['titre']);
+          endforeach; 
+        ?>
+      </select>
+      <input type="submit" value="S&eacute;l&eacute;ctionner"/>
+      </form>
+    </div>
 
 <div class="col-lg-12">
-<!--Col span : retourne count of Grille, 2 titre for projetId : 2-->
-<?php foreach($groupes as $groupe) : 
-        print($groupe['titre']);
-      endforeach;
-?>
   <table class="table">
     <thead>
       <tr>
         <th>Groupes</th>
-        <th colspan="2">Grilles</th>
+        <th colspan="<?php print count($grilles);?>">Grilles</th>
         <th>Note groupe</th>
       </tr>
       <tr>
       	<th></th>
-		    <th>Demo</th>
-      	<th>Presentation</th>      	
+        <?php 
+          foreach($grilles as $grille) :
+            print '<th>'.$grille['titre'].'</th>';
+          endforeach;
 
+        ?>
       	<th></th>
 
       </tr>
