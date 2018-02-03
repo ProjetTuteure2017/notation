@@ -63,6 +63,16 @@
       </tr>
     </thead>
     <tbody>
+      <?php 
+        foreach ($groupes as $groupe): 
+          echo $groupe['nomGroupe'];
+          $json = json_decode($groupe['etudiant'], true);
+          for ($i=0; $i < count($json); $i++) { 
+            echo $json[$i]['nom'];
+          }
+          echo nl2br("\n");
+        endforeach;
+      ?>
       <tr>
         <td>Groupe 1</td>
         <td>14</td>

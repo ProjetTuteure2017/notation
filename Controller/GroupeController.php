@@ -55,10 +55,13 @@ class GroupeController
 
 		$projets = $this->ListeProjets();
 		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
+
+		//Etudiant du projet selectionné
 		$groupes = $this->groupeService->getAllGroupes($projetId);
 
 		//Grilles of selected project
 		$grilles = $this->ListeGrilles();
+
 		include 'View/groupes.php';
 	}
 

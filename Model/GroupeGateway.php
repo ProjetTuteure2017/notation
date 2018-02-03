@@ -8,17 +8,17 @@ class GroupeGateway
 	{
 		include '../notation/connect.php';
 
-		$stmt = $conn->prepare("SELECT g.nomGroupe, g.etudiant, g.noteGroupe, gr.titre, gr.note
-		FROM groupe g 
-		INNER join grille gr on g.projetId = gr.projetId 
-		where g.projetId = :PROJETID 
-		Order by g.nomGroupe");
+		$stmt = $conn->prepare("SELECT nomGroupe, etudiant, noteGroupe
+								FROM groupe 
+								WHERE projetId = :PROJETID 
+								ORDER BY nomGroupe");
 
 		$stmt->execute(array("PROJETID"=>$projetId));
 		$result = $stmt->fetchAll();
 
 		return $result;
 	}
+
 	
 	/** select g.noteGroupe, e.noteFinale, e.percentage, p.nom 
 FROM etudiant e 
