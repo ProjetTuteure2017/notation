@@ -8,7 +8,7 @@ class GroupeGateway
 	{
 		include '../notation/connect.php';
 
-		$stmt = $conn->prepare("SELECT nomGroupe, etudiant, noteGroupe
+		$stmt = $conn->prepare("SELECT id, nomGroupe, etudiant, noteGroupe
 								FROM groupe 
 								WHERE projetId = :PROJETID 
 								ORDER BY nomGroupe");
@@ -17,6 +17,20 @@ class GroupeGateway
 		$result = $stmt->fetchAll();
 
 		return $result;
+	}
+
+	public function SelectNoteGrille($groupeId, $grilleId)
+	{
+		include '../notation/connect.php';
+
+		$stmt = $conn->prepare("SELECT DISTINCT(ng.note) FROM noteGrille ng
+								INNER JOIN groupe gr on ng.groupeId = gr.id
+								WHERE gr.id = :IDGROUPE
+								AND ng.grilleId = :GRILLEID");
+		$stmt->execute(array("IDGROUPE"=>$groupeId, "GRILLEID"=>$grilleId));
+		$result = $stmt->fetch();
+
+		return $result['note'];
 	}
 
 	

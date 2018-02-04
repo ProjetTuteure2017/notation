@@ -25,6 +25,17 @@ class GroupeService
 		return;
 	}
 
+	public function getNoteGrille($groupeId, $grilleId)
+	{
+		try {
+			$res = $this->groupeGateway->SelectNoteGrille($groupeId, $grilleId);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+		return;
+	}
+
 }
 
 ?>

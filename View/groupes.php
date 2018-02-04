@@ -47,14 +47,16 @@
     <thead>
       <tr>
         <th>Groupes</th>
+        <th>Nom etudiants</th>
         <th colspan="<?php print count($grilles);?>">Grilles</th>
         <th>Note groupe</th>
       </tr>
       <tr>
+        <th></th>
       	<th></th>
         <?php 
           foreach($grilles as $grille) :
-            print '<th>'.$grille['titre'].'</th>';
+            print '<th>'.$grille['titre'].$grille['id'].'</th>';
           endforeach;
 
         ?>
@@ -65,19 +67,25 @@
     <tbody>
       <?php 
         foreach ($groupes as $groupe): 
-          echo $groupe['nomGroupe'];
+          print '<tr>';
+          print '<td>'.$groupe['nomGroupe'].'</td>';
           $json = json_decode($groupe['etudiant'], true);
+          print '<td>';
           for ($i=0; $i < count($json); $i++) { 
-            echo $json[$i]['nom'];
+            print $json[$i]['nom']. '; ';
           }
-          echo nl2br("\n");
+          print '</td>';
+
+          for ($i=0; $i < count($grilles); $i++) { 
+            print '<td>';
+            print $this->groupeService->getNoteGrille(htmlentities($groupe['id']), $grilles[$i]['id']); 
+            print '</td>';
+            
+          }
+          print '<td>'.$groupe['noteGroupe'].'</td>';
+          print '</tr>';
         endforeach;
       ?>
-      <tr>
-        <td>Groupe 1</td>
-        <td>14</td>
-        <td>15</td>
-        <td>16</td>
       </tr>   
     </tbody>
   </table>
