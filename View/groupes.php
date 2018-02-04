@@ -26,24 +26,31 @@
       $enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
         ?>
       </div>
-      <div class="col-sm-12 col-md-12 col-lg-12">
-      <h4>S&eacute;l&eacute;ctionnez le projet pour afficher les gilles associ&acute;es</h4>
+      <div class="col-sm-12 col-md-8 col-lg-8">
+      <h4>S&eacute;l&eacute;ctionnez le projet pour afficher les gilles associ&eacute;es</h4>
       <form method="post" action="">
-      <select id="selectProjet" name="selectProjet">
-        <option selected="selected">Veuillez selectioner un projet....</option>
-        <?php 
-          foreach ($projets as $projet) : 
-            print '<option value="'.$projet['id'].'">';
-            print htmlentities($projet['titre']);
-          endforeach; 
-        ?>
-      </select>
-      <input type="submit" value="S&eacute;l&eacute;ctionner"/>
+        <div class="input-group">
+          <select class="custom-select" id="selectProjet" name="selectProjet">
+            <option selected="selected">Veuillez selectioner un projet....</option>
+            <?php 
+              foreach ($projets as $projet) : 
+                print '<option value="'.$projet['id'].'">';
+                print htmlentities($projet['titre']);
+              endforeach; 
+            ?>
+          </select>
+          <div class="input-group-append">
+            <button type="button submit" class="btn btn-outline-primary">S&eacute;l&eacute;ctionner</button>
+          </div>
+        </div>
       </form>
+      <script type="text/javascript">
+        document.getElementById('selectProjet').value = "<?php echo $_POST['selectProjet'];?>";
+      </script>
     </div>
 
 <div class="col-lg-12">
-  <table class="table">
+  <table class="table table-responsive">
     <thead>
       <tr>
         <th>Groupes</th>
@@ -56,7 +63,7 @@
       	<th></th>
         <?php 
           foreach($grilles as $grille) :
-            print '<th>'.$grille['titre'].$grille['id'].'</th>';
+            print '<th>'.$grille['titre'].'</th>';
           endforeach;
 
         ?>
@@ -77,9 +84,15 @@
           print '</td>';
 
           for ($i=0; $i < count($grilles); $i++) { 
-            print '<td>';
-            print $this->groupeService->getNoteGrille(htmlentities($groupe['id']), $grilles[$i]['id']); 
-            print '</td>';
+            $noteGrille = $this->groupeService->getNoteGrille(htmlentities($groupe['id']), $grilles[$i]['id']);
+            if($noteGrille>10)
+            {
+              print '<td class="table-success">'.$noteGrille.'</td>';
+            }
+            else if ($noteGrille < 10)
+            {
+              print '<td class="table-danger">'.$noteGrille.'</td>';
+            }
             
           }
           print '<td>'.$groupe['noteGroupe'].'</td>';

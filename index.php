@@ -9,6 +9,7 @@
 
 	<link href="Public/css/bootstrap.min.css" rel="stylesheet">
 	<link href="Public/css/style.css" rel="stylesheet">
+	<link href="Public/css/style-nav.css" rel="stylesheet">
 	<script src="Public/js/jquery-3.2.1.min.js"></script>
     <script src="Public/js/bootstrap.min.js"></script>
 
@@ -20,34 +21,28 @@
 	$idSession = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
 	
 	?>
-<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
 
-		  	<a class="navbar-brand" href="index.php"><img style="width:50px; margin-top: -15px; height: 50px;" src="Public/img/Logo.png"></a>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		    <ul class="nav navbar-nav">
-		        <li><a href="index.php">Accueil</a></li>
-		    	<li><a href="index.php?page=projet">Projets</a></li>
-		    	<li><a href="index.php?page=grille">Grilles</a></li>
-		    	<li><a href="index.php?page=groupe">Groupes</a></li>
+<nav class="navbar navbar-expand-md  fixed-top navbar-light bg-faded">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a class="navbar-brand" href="#">Hidden brand</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+		        <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
+		    	<li class="nav-item"><a class="nav-link" href="index.php?page=projet">Projets</a></li>
+		    	<li class="nav-item"><a class="nav-link" href="index.php?page=grille">Grilles</a></li>
+		    	<li class="nav-item"><a class="nav-link" href="index.php?page=groupe">Groupes</a></li>
 		    </ul>
-		    <ul class="nav navbar-nav navbar-right">
+		    <ul class="navbar-nav ml-auto">
 				<?php 
 					if(empty($_SESSION['nom']))
 					{
-						print '<li><a class="nav-link" href="index.php?op=login">Se Connecter</a></li>';
+						print '<li class="nav-item"><a class="nav-link" href="index.php?op=login">Se Connecter</a></li>';
 					}
 					else 
 					{
-						print '<li><a class="nav-link" href="index.php?op=logout">Se D&eacuteconnecter</a></li>';
+						print '<li class="nav-item"><a class="nav-link" href="index.php?op=logout">Se D&eacuteconnecter</a></li>';
 
 					}
 				?>
@@ -55,6 +50,7 @@
 		</div>
 	</div>
 </nav>
+</div>
 		
 			
 	<?php
@@ -97,25 +93,4 @@
 	}
 
 ?>
-
-<script>
-      var $nav = $('.navbar');
-      
-      $(document).scroll(function() {
-        if($(this).scrollTop() > 100){
-          $nav.css({
-            'margin-top':'0px'
-          });
-         
-        }else{
-          $nav.css({
-            'margin-top' :'75px'
-          });
-        }
-      });
-      var $logo = $('.navbar-brand');
-        $(document).scroll(function() {
-            $logo.css({display: $(this).scrollTop() > 100? "block":"none"});
-        });
-</script>
 </head>
