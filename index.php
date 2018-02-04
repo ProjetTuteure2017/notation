@@ -27,7 +27,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">Hidden brand</a>
+    <a class="navbar-brand" href="#">Notation</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 		        <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
 		    	<li class="nav-item"><a class="nav-link" href="index.php?page=projet">Projets</a></li>
