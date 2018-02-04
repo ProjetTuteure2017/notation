@@ -49,8 +49,8 @@
       </script>
     </div>
 
-<div class="col-lg-12">
-  <table class="table table-responsive">
+<div class="col-md-12">
+  <table class="table table-responsive table-bordered">
     <thead>
       <tr>
         <th>Groupes</th>
@@ -79,7 +79,7 @@
           $json = json_decode($groupe['etudiant'], true);
           print '<td>';
           for ($i=0; $i < count($json); $i++) { 
-            print $json[$i]['nom']. '; ';
+            print $json[$i]['nom'].'<br/>';
           }
           print '</td>';
 
@@ -87,19 +87,35 @@
             $noteGrille = $this->groupeService->getNoteGrille(htmlentities($groupe['id']), $grilles[$i]['id']);
             if($noteGrille>10)
             {
-              print '<td class="table-success">'.$noteGrille.'</td>';
+              print '<td class="bg-success">'.$noteGrille.'</td>';
             }
-            else if ($noteGrille < 10)
+            else if ($noteGrille < 10 && isset($noteGrille))
             {
-              print '<td class="table-danger">'.$noteGrille.'</td>';
+              print '<td class="bg-warning">'.$noteGrille.'</td>';
+            }
+            else if(!isset($noteGrille))
+            {
+              print '<td class="bg-danger">'.$noteGrille.'</td>';
             }
             
           }
-          print '<td>'.$groupe['noteGroupe'].'</td>';
+
+          $noteGroupe = $groupe['noteGroupe'];
+          if($noteGroupe>10)
+            {
+              print '<td class="bg-success">'.$noteGroupe.'</td>';
+            }
+            else if ($noteGroupe < 10 && isset($noteGroupe))
+            {
+              print '<td class="bg-warning">'.$noteGroupe.'</td>';
+            }
+            else if(!isset($noteGroupe))
+            {
+              print '<td class="bg-danger">'.$noteGroupe.'</td>';
+            }
           print '</tr>';
         endforeach;
       ?>
-      </tr>   
     </tbody>
   </table>
 </div>
