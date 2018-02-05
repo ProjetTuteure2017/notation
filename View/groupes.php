@@ -31,7 +31,7 @@
       <form method="post" action="">
         <div class="input-group">
           <select class="custom-select" id="selectProjet" name="selectProjet">
-            <option selected="selected">Veuillez selectioner un projet....</option>
+            <option value="-1" selected="selected">Veuillez selectioner un projet....</option>
             <?php 
               foreach ($projets as $projet) : 
                 print '<option value="'.$projet['id'].'">';
@@ -45,7 +45,7 @@
         </div>
       </form>
       <script type="text/javascript">
-        document.getElementById('selectProjet').value = "<?php echo $_POST['selectProjet'];?>";
+        document.getElementById('selectProjet').value = "<?php echo isset($_POST['selectProjet']) ? $_POST['selectProjet'] : "-1";?>";
       </script>
     </div>
 

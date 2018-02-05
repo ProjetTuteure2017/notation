@@ -23,11 +23,7 @@ var textfield = $("input[name=nom]");
                     "opacity":"1"
                     }).val("");
                     });
-                    
-                    //show avatar
-                    $(".avatar").css({
-                        "background-image": "url('https://picsum.photos/200/300/?random')"
-                    });
+
                 } else {
                     //remove success mesage replaced with error message
                     $("#output").removeClass('alert alert-success');
@@ -37,17 +33,3 @@ var textfield = $("input[name=nom]");
 
             });
 });
-
-$("#motDePasse").on("keyup",function(){
-    if($(this).val())
-        $(".glyphicons-eye-open").show();
-    else
-        $(".glyphicons-eye-open").hide();
-    });
-$(".glyphicons-eye-open").mousedown(function(){
-                $("#motDePasse").attr('type','text');
-            }).mouseup(function(){
-            	$("#motDePasse").attr('type','password');
-            }).mouseout(function(){
-            	$("#motDePasse").attr('type','password');
-            });
