@@ -36,41 +36,43 @@
                     ?>
                 </div>
 
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div id="mydiv">
-                    <div class="panel panel-compte">
-                        <div class="panel-heading">
-                            <h5>Ajouter une grille</h5>
-                            <hr>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    
-                                    <form role="form" method="POST" action="" style="display : block;">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="titre" value="<?php print htmlentities($titre) ?>" placeholder="Titre">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="note_sur" value="<?php print htmlentities($note_sur) ?>" placeholder="Not&eacute; sur">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="coef" value="<?php print htmlentities($coef) ?>" placeholder="Coef">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="hidden" name="form-submitted" value="1" />
-                                                    <input type="submit" value="Valider" tabindex="4" class="form-control btn btn-primary"/>
-                                        </div>
-                                    </form>
+                        <div class="panel panel-compte">
+                            <div class="panel-heading">
+                                <h5>Ajouter une grille</h5>
+                                <hr>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        
+                                        <form role="form" method="POST" action="" style="display : block;">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="titre" value="<?php print htmlentities($titre) ?>" placeholder="Titre">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="note_sur" value="<?php print htmlentities($note_sur) ?>" placeholder="Not&eacute; sur">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="coef" value="<?php print htmlentities($coef) ?>" placeholder="Coef">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="hidden" name="form-submitted" value="1" />
+                                                        <input type="submit" value="Valider" tabindex="4" class="form-control btn btn-primary"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
+                                    </div>
                                 </div>
                             </div>
+
+
                         </div>
-
-
-                    </div>
                     </div>
 
                 </div>

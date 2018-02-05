@@ -7,16 +7,13 @@
   </title>
 
   <link href="Public/css/style-authentification.css" rel="stylesheet">
-  <script type="text/javascript">
-    $(".input").focus(function() {
-      $(this).parent().addClass("focus");
-    })
-   </script>
+  <script src="Public/js/script-authentification.js"></script>
+  
 </head>
 
 <body>
  
-   <?php
+      <?php
         if ( $errors ) {
             print '<ul class="errors">';
             foreach ( $errors as $field => $error ) {
@@ -24,46 +21,28 @@
             }
             print '</ul>';
         }
-        ?>
+      ?>
 
   <div class="container">
-    <div class="row">
-      <div class="col-md-offset-3 col-md-6 col-xs-12">
-        <div class="panel panel-compte">
-          <div class="panel-heading">
-            <h5>Login</h5>
-            <hr>
-          </div>
+    <div class="login-container">
+      <div id="output"></div>
+      <div class="avatar"></div>
 
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-lg-12">
-
-                <form role="form" method="POST" action="" style="display: block;">
-                  <div class="form-group">
-                      <input type="text" class="form-control" name="nom" value="<?php print htmlentities($nom) ?>" placeholder="Enter nom">
-                  </div>
-                  <div class="form-group">
-                      <input type="password" class="form-control" name="motDePasse" value="<?php print htmlentities($motDePasse) ?>" placeholder="Enter Mot de passe">
-                  </div>
-                  <div class="form-group">        
-                    <div class="row">
-                      <div class="col-sm-6 col-sm-offset-3">
-                        <input type="hidden" name="form-submitted" value="1" />
-                        <input type="submit" value="Submit" tabindex="4" class="form-control btn btn-authen"/>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-
+      <div class="form-box">
+        <form role="form" method="POST" action="">
+              <input type="text" name="nom" value="<?php print htmlentities($nom) ?>" placeholder="Nom">
+              <div class="password">
+                <input type="password" id="motDePasse" name="motDePasse" value="<?php print htmlentities($motDePasse) ?>" placeholder="Mot de passe">
+                <span class="glyphicons glyphicons-eye-open"></span>
               </div>
-            </div>
-          </div>
-
-        </div>
+              <input type="hidden" name="form-submitted" value="1" />
+              <input type="submit" value="Se connecter" tabindex="4" class="form-control btn btn-primary"/>
+        </form>
       </div>
+
     </div>
   </div>
+
 
 </body>
 </html>

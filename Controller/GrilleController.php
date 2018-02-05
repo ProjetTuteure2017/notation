@@ -54,7 +54,7 @@ class GrilleController
 		$title = 'Ajouter grille';
 
 		$titre = '';
-		$note = '';
+		$note_sur = '';
 		$coef = '';
 		$projetId = '';
 
