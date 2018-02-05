@@ -7,7 +7,11 @@
   </title>
 
   <link href="Public/css/style-authentification.css" rel="stylesheet">
-
+  <script type="text/javascript">
+    $(".input").focus(function() {
+      $(this).parent().addClass("focus");
+    })
+   </script>
 </head>
 
 <body>
