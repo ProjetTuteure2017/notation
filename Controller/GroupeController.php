@@ -30,6 +30,8 @@ class GroupeController
 		        $this->ListeGroupes();
 		    } else if($op == 'groupe') {
 		    	$this->ListeNoteEtudiant();
+		    } else if($op == 'etudiant') {
+		    	$this->ListeEtudiants();
 		    } else {
 		        $this->showError("Page not found", "Page for operation ".$op." was not found!");
 		    }
@@ -65,6 +67,18 @@ class GroupeController
 		$grilles = $this->ListeGrilles();
 
 		include 'View/groupes.php';
+	}
+
+	public function ListeEtudiants() {
+		$title = 'Liste des &eacute;tudiants';
+
+		$projets = $this->ListeProjets();
+		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
+
+		//Etudiant du projet selectionné
+		$groupes = $this->groupeService->getAllGroupes($projetId);
+
+		include 'View/etudiants.php';
 	}
 
 	public function ListeNoteEtudiant() {

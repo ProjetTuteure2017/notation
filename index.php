@@ -33,6 +33,8 @@
 		    	<li class="nav-item"><a class="nav-link" href="index.php?page=projet">Projets</a></li>
 		    	<li class="nav-item"><a class="nav-link" href="index.php?page=grille">Grilles</a></li>
 		    	<li class="nav-item"><a class="nav-link" href="index.php?page=groupe">Groupes</a></li>
+		    	<li class="nav-item"><a class="nav-link" href="index.php?page=groupe&op=etudiant">&Eacute;tudiants</a></li>
+		    	<li class="nav-item"><a class="nav-link" href="index.php?page=competence">Comp&eacute;tences</a></li>
 		    </ul>
 		    <ul class="navbar-nav ml-auto">
 				<?php 
@@ -84,6 +86,10 @@
 			case 'groupe':
 				$groupeController = new GroupeController();
 				$groupeController->HandleRequest();
+				break;
+			case 'competence':
+				$competenceController = new CompetenceController();
+				$competenceController->HandleRequest();
 				break;
 		
 			default:
