@@ -69,7 +69,6 @@
 				</thead>
 				<tbody>
 					<?php 
-
 						foreach ($grilles as $grille) : ?>
 					<tr>
 						<td><?php print htmlentities($grille['id']); ?></td>

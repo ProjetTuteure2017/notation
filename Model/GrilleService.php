@@ -25,20 +25,20 @@ class GrilleService
 		return;
 	}
 
-	public function ajouterGrille($titre, $note, $coef, $projetId)
+	public function ajouterGrille($titre, $note_sur, $coef, $projetId)
 	{
 		try {
-			$res=$this->grilleGateway->Ajouter($titre, $note, $coef, $projetId);
+			$res=$this->grilleGateway->Ajouter($titre, $note_sur, $coef, $projetId);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;
 		}
 	}
 
-	public function modifierGrille($id, $titre, $note, $coef, $projetId)
+	public function modifierGrille($id, $titre, $note_sur, $coef, $projetId)
 	{
 		try {
-			$res=$this->grilleGateway->Modifier($id, $titre, $note, $coef, $projetId);
+			$res=$this->grilleGateway->Modifier($id, $titre, $note_sur, $coef, $projetId);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;

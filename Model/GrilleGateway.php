@@ -13,32 +13,32 @@ class GrilleGateway
 		return $result;
 	}
 
-	public function Ajouter($titre, $note, $coef, $projetId)
+	public function Ajouter($titre, $note_sur, $coef, $projetId)
 	{
 		include '../notation/connect.php';
 
 		$titre = isset($_POST['titre']) ? $_POST['titre'] : '';
-		$note = isset($_POST['note']) ? $_POST['note'] : '';
+		$note_sur = isset($_POST['note_sur']) ? $_POST['note_sur'] : '';
 		$coef = isset($_POST['coef']) ? $_POST['coef'] : '';
 		$projetId = isset($_GET['projetId']) ? $_GET['projetId'] : '';
 
-		$stmt = $conn->prepare("INSERT INTO grille (titre, note, coef, projetId) VALUES (:TITRE, :NOTE, :COEF, :PROJETID)");
-		$stmt->execute(array("TITRE" =>$titre ,"NOTE" => $note,"COEF" =>$coef, "PROJETID"=>$projetId));
+		$stmt = $conn->prepare("INSERT INTO grille (titre, note_sur, coef, projetId) VALUES (:TITRE, :NOTESUR, :COEF, :PROJETID)");
+		$stmt->execute(array("TITRE" =>$titre ,"NOTESUR" => $note_sur,"COEF" =>$coef, "PROJETID"=>$projetId));
 
 	}
 
-	public function Modifier($id, $titre, $note, $coef, $projetId)
+	public function Modifier($id, $titre, $note_sur, $coef, $projetId)
 	{
 		include '../notation/connect.php';
 
 		$id = isset($_POST['id']) ? $_POST['id'] : '';
 		$titre = isset($_POST['titre']) ? $_POST['titre'] : '';
-		$note = isset($_POST['note']) ? $_POST['note'] : '';
+		$note_sur = isset($_POST['note_sur']) ? $_POST['note_sur'] : '';
 		$coef = isset($_POST['coef']) ? $_POST['coef'] : '';
 		$projetId = isset($_POST['projetId']) ? $_POST['projetId'] : '';
 
-		$stmt = $conn->prepare("UPDATE grille SET titre=:TITRE, note=:NOTE, coef=:COEF, projetId=:PROJETID WHERE id=:ID");
-		$stmt->execute(array("TITRE"=>$titre, "NOTE"=>$note, "COEF"=>$coef, "PROJETID"=>$projetId, "ID"=>$id));
+		$stmt = $conn->prepare("UPDATE grille SET titre=:TITRE, note_sur=:NOTESUR, coef=:COEF, projetId=:PROJETID WHERE id=:ID");
+		$stmt->execute(array("TITRE"=>$titre, "NOTESUR"=>$note_sur, "COEF"=>$coef, "PROJETID"=>$projetId, "ID"=>$id));
 
 	}
 
