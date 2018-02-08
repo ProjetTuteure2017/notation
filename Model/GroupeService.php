@@ -36,6 +36,15 @@ class GroupeService
 		return;
 	}
 
+	public function getNoteGroupe($idGroupe)
+	{
+		try {
+			$res = $this->groupeGateway->SelectNoteGroupe($idGroupe);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
 }
 
 ?>

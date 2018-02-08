@@ -4,7 +4,6 @@
   <title>
     <?php print htmlentities($title); ?>
   </title>
-  <script src="Public/js/myscripts.js"></script>  
 </head>
 
 <body>

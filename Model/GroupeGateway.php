@@ -33,18 +33,19 @@ class GroupeGateway
 		return $result['note'];
 	}
 
-	public function SelectNoteEtudiant($idGroupe)
+	public function SelectNoteGroupe($idGroupe)
 	{
 		include '../notation/connect.php';
 
 		$stmt = $conn->prepare("SELECT id, nomGroupe, etudiant, noteGroupe
 								FROM groupe 
 								WHERE id = :IDGROUPE");
-		$stmt->execute(array("GROUPEID"=>$groupeId));
-		$result = $stmt->fetchAll();
+		$stmt->execute(array("IDGROUPE"=>$idGroupe));
+		$result = $stmt->fetch();
 
 		return $result;
 	}
+
 	public function AjouterNoteEtudiant($idGroupe, $nomEtudiant)
 	{
 		include '../notation/connect.php';

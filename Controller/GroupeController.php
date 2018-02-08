@@ -28,6 +28,8 @@ class GroupeController
 		try {
 		    if (!$op || $op == 'list' ) {
 		        $this->ListeGroupes();
+		    } else if($op == 'groupe') {
+		    	$this->ListeNoteEtudiant();
 		    } else {
 		        $this->showError("Page not found", "Page for operation ".$op." was not found!");
 		    }
@@ -63,6 +65,15 @@ class GroupeController
 		$grilles = $this->ListeGrilles();
 
 		include 'View/groupes.php';
+	}
+
+	public function ListeNoteEtudiant() {
+		$title = 'Notes des &eacute;tudiants';
+
+		$idGroupe = isset($_GET['idgroupe']) ? $_GET['idgroupe'] : NULL;
+		$groupe = $this->groupeService->getNoteGroupe($idGroupe);
+
+		include 'View/groupe-note.php';
 	}
 
 }
