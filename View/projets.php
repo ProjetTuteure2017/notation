@@ -54,14 +54,23 @@
 					<tr id="modifier<?php print htmlentities($projet['id'])?>" class="closed">
 						<td colspan="4">
 							<div>
-		                        <form method="POST" action="" style="display : inline;">
+		                        <form method="POST" action="">
 		                        	<input class="hidden" type="text" name="id" value="<?php print htmlentities($projet['id']); ?>"/>
-		                            <label for="titre">Titre:</label>
-		                            <input type="text" name="titre" value="<?php print htmlentities($projet['titre']); ?>"/>
-		                            <label for="description">Description:</label>
-		                            <input type="text" name="description" value="<?php print htmlentities($projet['description']) ?>"/>
-		                            <input type="hidden" name="form-submitted" value="1" />
-		                            <input type="submit" value="Valider" />
+		                        	
+		                        	<div class="form-groupe">
+		                        		<label for="titre">Titre :</label><br/>
+			                            <input type="text" name="titre" id="titre" value="<?php print htmlentities($projet['titre']); ?>"/>
+			                        </div>
+			                        <div class="form-groupe">
+			                        	<label for="description">Description :</label><br/>
+		                            	<input type="text" name="description" id="description" value="<?php print htmlentities($projet['description']) ?>"/>
+		                            </div>
+		                            <div class="form-groupe">
+		                            	<div class="row">
+		                            		<input type="hidden" name="form-submitted" value="1" />
+		                            		<input type="submit" value="Valider" class="btn" />
+		                            	</div>
+		                        	</div>
 		                        </form>
 							</div>
 						</td>
