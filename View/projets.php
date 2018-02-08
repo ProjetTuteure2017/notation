@@ -58,11 +58,11 @@
 		                        	<input class="hidden" type="text" name="id" value="<?php print htmlentities($projet['id']); ?>"/>
 		                        	
 		                        	<div class="form-groupe">
-		                        		<label for="titre">Titre :</label><br/>
+		                        		<label for="titre">Titre :</label>
 			                            <input type="text" name="titre" id="titre" value="<?php print htmlentities($projet['titre']); ?>"/>
 			                        </div>
 			                        <div class="form-groupe">
-			                        	<label for="description">Description :</label><br/>
+			                        	<label for="description">Description :</label>
 		                            	<input type="text" name="description" id="description" value="<?php print htmlentities($projet['description']) ?>"/>
 		                            </div>
 		                            <div class="form-groupe">

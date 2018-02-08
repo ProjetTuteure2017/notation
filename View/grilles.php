@@ -82,16 +82,28 @@
 							<div>
 		                        <form method="POST" action="" style="display : inline;">
 		                        	<input class="hidden" type="text" name="id" value="<?php print htmlentities($grille['id']); ?>"/>
-		                            <label for="titre">Titre:</label>
-		                            <input type="text" name="titre" value="<?php print htmlentities($grille['titre']); ?>"/>
-		                            <label for="note">Not&eacute; sur:</label>
-		                            <input type="text" name="note_sur" value="<?php print htmlentities($grille['note_sur']) ?>"/>
-		                            <label for="coef">Coef:</label>
-		                            <input type="text" name="coef" value="<?php print htmlentities($grille['coef']) ?>"/>
-		                            <label for="coef">ProjetId:</label>
-		                            <input type="text" name="projetId" value="<?php print htmlentities($grille['projetId']); ?>"/>
-		                            <input type="hidden" name="form-submitted" value="1" />
-		                            <input type="submit" value="Valider" />
+		                        	<div class="form-groupe">
+			                            <label for="titre">Titre:</label>
+		                            	<input type="text" name="titre" value="<?php print htmlentities($grille['titre']); ?>"/>
+		                        	</div>
+		                        	<div class="form-groupe">
+			                            <label for="note">Not&eacute; sur:</label>
+			                            <input type="text" name="note_sur" value="<?php print htmlentities($grille['note_sur']) ?>"/>
+			                        </div>
+			                        <div class="form-groupe">
+			                            <label for="coef">Coef:</label>
+			                            <input type="text" name="coef" value="<?php print htmlentities($grille['coef']) ?>"/>
+			                        </div>
+			                        <div class="form-groupe">
+			                            <label for="coef">ProjetId:</label>
+			                            <input type="text" name="projetId" value="<?php print htmlentities($grille['projetId']); ?>"/>
+			                        </div>
+			                        <div class="form-groupe">
+		                            	<div class="row">
+			                            	<input type="hidden" name="form-submitted" value="1" />
+			                            	<input type="submit" value="Valider" />
+			                            </div>
+			                        </div>
 		                        </form>
 
 							</div>
