@@ -48,29 +48,6 @@
       </script>
     </div>
     
-		<!--<div class="col-sm-12 col-md-8 col-lg-8">
-      <h4>S&eacute;l&eacute;ctionnez la grille pour la notation</h4>
-      <form method="post" action="">
-        <div class="input-group">
-          <select class="custom-select" id="selectGrille" name="selectGrille">
-            <option selected="selected">Veuillez selectioner une grille....</option>
-            </*?php 
-              foreach ($grilles as $grille) : 
-                print '<option value="'.$grille['id'].'">';
-                print htmlentities($grille['titre']);
-              endforeach; 
-            ?>
-          </select>
-          <div class="input-group-append">
-            <button type="button submit" class="btn btn-outline-primary">S&eacute;l&eacute;ctionner</button>
-          </div>
-        </div>
-      </form>
-      <script type="text/javascript">
-        document.getElementById('selectGrille').value = "<?php echo $_POST['selectGrille'];?>";
-      </script>
-    </div>-->
-	
 	<div class="col-lg-12">
   <table class="table table-responsive">
     <thead>
@@ -98,6 +75,60 @@
     </tbody>
   </table>
 </div>
+
+<div>
+  <form method="post" action="index.php?page=groupe" enctype="multipart/form-data">
+    <input type="file" name="import"/>
+    <input type="submit" name="submit" value="Charger" />
+  </form>
+  <?php 
+    if(isset($_FILES['import']))
+    {
+      echo '+++++'.$_FILES['import']['name'];
+      
+      $content_dir = 'C:\\wamp64\\www\\tmp\\';
+      $name_file = $_FILES['import']['name'];
+      $tmp_file = $_FILES['import']['tmp_name'];
+      if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
+      {
+        exit("Impossible de copier le fichier dans $content_dir");
+      }
+      echo "Le fichier a bien été uploadé";
+      
+      //$file = $_FILES['import']['name'];
+      //echo $file;
+      //$name_file = $_FILES['import']['name'];
+ 
+      //if (file_exists($file)){
+        $fp = fopen($content_dir.$name_file, "r");
+        echo 'Fichier en lecture<br>';
+      //}
+      /*else { /* le fichier n'existe pas 
+        echo "Fichier introuvable !<br>Importation stoppée.";
+        exit();
+      }*/
+      
+      $ligne = fgetcsv($fp);
+      while (!feof($fp)){
+        $ligne = fgetcsv($fp);
+        
+        //echo 'lecture des lignes<br>';
+        //
+        $num = count($ligne);
+
+        for ($c=0; $c < $num; $c++) {
+          list($nom,$prenom,$id) = explode(';', $ligne[$c]);
+          echo $ligne[$c]. "<br />\n";
+          echo 'nom:'.$nom.' prenom:'.$prenom.' id:'.$id. "<br />\n";
+          echo "<br />\n";
+        }
+     
+      }
+    
+    }
+  ?>
+</div>
+
 	
 	</div>
 </body>
