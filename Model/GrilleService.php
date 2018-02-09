@@ -24,6 +24,17 @@ class GrilleService
 		}
 		return;
 	}
+	
+	public function getGrillesById($grilleId)
+	{
+		try {
+			$res = $this->grilleGateway->SelectByGrilleId($grilleId);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+		return;
+	}
 
 	public function ajouterGrille($titre, $note_sur, $coef, $projetId)
 	{
@@ -39,6 +50,16 @@ class GrilleService
 	{
 		try {
 			$res=$this->grilleGateway->Modifier($id, $titre, $note_sur, $coef, $projetId);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+	
+		public function addNoteGrille($groupeId, $grilleId, $note, $appreciation)
+	{
+		try {
+			$res=$this->notationCompetenceGateway->AjouterNoteGrille($groupeId, $grilleId, $note, $appreciation);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;

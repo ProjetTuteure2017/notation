@@ -40,6 +40,16 @@ class ProjetService {
 			throw $e;
 		}
 	}
+	
+	public function GetProjectByGroup($groupeId){
+		try {
+			$res = $this->competenceGateway->SelectProject($groupeId);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+		return;
+	}
 
 
 }

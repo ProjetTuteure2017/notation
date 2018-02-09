@@ -76,7 +76,7 @@
 		<div class="col-sm-4 col-md-4 col-lg-4">
 			<?php 
 				//$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
-				print '<a href="index.php?page=Competences&op=new&grilleId='.$grilleId.'">Ajouter competence</a>';
+				print '<a href="index.php?page=competence&op=new&grilleId='.$grilleId.'">Ajouter competence</a>';
 			?>
 		</div>
 		<div class="col-sm-12 col-md-12 col-lg-12">	

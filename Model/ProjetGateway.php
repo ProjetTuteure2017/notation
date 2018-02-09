@@ -34,7 +34,19 @@ class ProjetGateway {
         $stmt = $conn->prepare("UPDATE projet SET titre = :TITRE, description = :DESCRIPTION WHERE id = :ID");
         $stmt->execute(array("TITRE"=>$titre, "DESCRIPTION"=>$description, "ID"=>$id));
     }
+	
+	public function SelectProject($groupeId){
+		
+		include '../notation/connect.php';
 
+		$stmt = $conn->prepare("SELECT projetId FROM groupe WHERE id = :GROUPEID");
+
+		$stmt->execute(array("GROUPEID"=>$groupeId));
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
+	
 }
 
 ?>

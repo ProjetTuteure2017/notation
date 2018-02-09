@@ -6,7 +6,7 @@
 	</title>
 </head>
 
-<body>
+<body onLoad="Chargement();">
 	<div class="container">
 		<div class="col-md-12">
 			<?php     
@@ -47,7 +47,44 @@
         document.getElementById('selectProjet').value = "<?php echo $_POST['selectProjet'];?>";
       </script>
     </div>
-    
+
+   <div class="col-sm-12 col-md-8 col-lg-8">
+      <h4>S&eacute;l&eacute;ctionnez la grille pour afficher les competences associ&eacute;es</h4>
+      <form method="post" action="">
+	  <script type="text/javascript">
+	  function Chargement() { 
+		var e = document.getElementById("selectGrille");
+		var strUser="";
+		if(e != null){
+			e.addEventListener("click",function(){
+				var $a = $(".lien-noteGroupe");
+				$a.each( function(index, value) {
+				  this.href = this.href.replace(/&grilleId=([0-9]*)/, "&grilleId=" + e.options[e.selectedIndex].value);
+				});
+			});
+		}
+	  }
+	 </script>
+	 <?php 
+			
+			$grilleSelectionnee = '<script type="text/javascript">document.write(valeur); </script>';
+			//"<script>document.writeln(selectGrille);</script>";/* La valeur de strUser!!!!!!!*/?>
+        <div class="input-group">
+		
+          <select class="custom-select" size="auto" multiple="no" id="selectGrille" name="selectGrille">
+            <?php 
+              foreach ($grilles as $grille) : 
+                print '<option value="'.$grille['id'].'">';
+                print htmlentities($grille['titre']);
+              endforeach; 
+            ?>
+          </select>
+        </div>
+      </form>
+      
+	
+    </div>
+	
 	<div class="col-lg-12">
   <table class="table table-responsive">
     <thead>
@@ -62,7 +99,8 @@
       <?php 
         foreach ($groupes as $groupe): 
           print '<tr>';
-          print '<td>'.$groupe['nomGroupe'].'</td></a>';
+          print '<td><a class="lien-noteGroupe" href="index.php?page=noteGroupe&op=list&groupeId='.$groupe['id'].'&grilleId=">'.$groupe['nomGroupe'].'</td></a>';
+		  //echo '<a href="index.php?param='.$grilleSelectionnee.'">Lien</a>';
           $json = json_decode($groupe['etudiant'], true);
           print '<td>';
           for ($i=0; $i < count($json); $i++) { 
@@ -76,61 +114,7 @@
   </table>
 </div>
 
-<div>
-  <form method="post" action="index.php?page=groupe" enctype="multipart/form-data">
-    <input type="file" name="import"/>
-    <input type="submit" name="submit" value="Charger" />
-  </form>
-  <?php 
-    if(isset($_FILES['import']))
-    {
-      echo '+++++'.$_FILES['import']['name'];
-      
-      $content_dir = 'C:\\wamp64\\www\\tmp\\';
-      $name_file = $_FILES['import']['name'];
-      $tmp_file = $_FILES['import']['tmp_name'];
-      if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
-      {
-        exit("Impossible de copier le fichier dans $content_dir");
-      }
-      echo "Le fichier a bien été uploadé";
-      
-      //$file = $_FILES['import']['name'];
-      //echo $file;
-      //$name_file = $_FILES['import']['name'];
- 
-      //if (file_exists($file)){
-        $fp = fopen($content_dir.$name_file, "r");
-        echo 'Fichier en lecture<br>';
-      //}
-      /*else { /* le fichier n'existe pas 
-        echo "Fichier introuvable !<br>Importation stoppée.";
-        exit();
-      }*/
-      
-      $ligne = fgetcsv($fp);
-      while (!feof($fp)){
-        $ligne = fgetcsv($fp);
-        
-        //echo 'lecture des lignes<br>';
-        //
-        $num = count($ligne);
-
-        for ($c=0; $c < $num; $c++) {
-          list($nom,$prenom,$id) = explode(';', $ligne[$c]);
-          echo $ligne[$c]. "<br />\n";
-          echo 'nom:'.$nom.' prenom:'.$prenom.' id:'.$id. "<br />\n";
-          echo "<br />\n";
-        }
-     
-      }
-    
-    }
-  ?>
 </div>
-
-	
-	</div>
 </body>
 
 </html>

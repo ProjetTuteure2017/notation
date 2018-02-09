@@ -12,6 +12,19 @@ class GrilleGateway
 
 		return $result;
 	}
+	
+	
+		public function SelectByGrilleId($grilleId)
+	{
+		include '../notation/connect.php';
+
+		$stmt = $conn->prepare("SELECT * FROM grille WHERE id= :GRILLEID");
+		$stmt->execute(array("GRILLEID"=>$grilleId));
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
+
 
 	public function Ajouter($titre, $note_sur, $coef, $projetId)
 	{
@@ -42,7 +55,17 @@ class GrilleGateway
 
 	}
 
+	public function AjouterNoteGrille($groupeId, $grilleId, $note, $appreciation){
+		include '../notation/connect.php';
+		
+		$stmt = $conn->prepare("INSERT INTO notegrille (groupeId, grilleId, note, appreciation) VALUES(:GROUPEID, :GRILLEID, :NOTE, :APPRECIATION)");
+		
+		$stmt->execute(array(":GROUPEID"=>$groupeId, ":GRILLE"=> $grilleId, ":NOTE"=>$note, ":APPRECIATION"=>$appreciation));
+		$result = $stmt->fetchAll();
 
+		return $result;
+		
+	}
 	
 	
 }

@@ -42,6 +42,46 @@ class CompetenceGateway
 
 	}
 	
+	public function AjouterNoteCompetence($note, $competence, $groupeId, $appreciation){
+		include '../notation/connect.php';
+		
+		$stmt = $conn->prepare("INSERT INTO notecompetence (note, questionId, groupeId, appreciation) VALUES(:NOTE, :COMPETENCE, :GROUPEID, :APPRECIATION)");
+		
+		$stmt->execute(array(":NOTE"=>$note, ":COMPETENCE"=>$competence, ":GROUPEID"=>$groupeId, ":APPRECIATION"=>$appreciation));
+		$result = $stmt->fetchAll();
+
+		return $result;
+		
+	}
+	
+	public function ModifierNoteCompetence($note, $competence, $groupeId, $appreciation){
+		//TODO
+		//Update notecompetence set note = $note, appr = $appreciation where groupeid = $groupeid and questionid= $competence
+		/*$stmt = $conn->prepare("UPDATE competence SET theme = :THEME, intitule = :INTITULE, nombrePoint = :NOMBREPOINT, grilleId = :GRILLEID WHERE id = :ID");
+		$stmt->execute(array("THEME" =>$theme , "INTITULE"=>$intitule ,"NOMBREPOINT" => $nombrePoint, "GRILLEID"=>$grilleId, "ID" => $id));
+
+		*/
+	}
+	
+	public function SelectNoteCompetence($groupeId){
+		include '../notation/connect.php';
+
+		$stmt = $conn->prepare("SELECT * FROM notecompetence WHERE groupeId= :GROUPEID");
+		$stmt->execute(array("GROUPEID"=>$groupeId));
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
+	
+	public function SelectNoteByCompetence($competenceId ,$groupeId){
+		include '../notation/connect.php';
+
+		$stmt = $conn->prepare("SELECT * FROM notecompetence WHERE questionId = :COMPETENCE and groupeId= :GROUPEID");
+		$stmt->execute(array("GROUPEID"=>$groupeId, "COMPETENCE"=>$competenceId));
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
 }
 
 ?>

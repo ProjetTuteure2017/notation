@@ -35,6 +35,7 @@
 		    	<li class="nav-item"><a class="nav-link" href="index.php?page=groupe">Groupes</a></li>
 		    	<li class="nav-item"><a class="nav-link" href="index.php?page=groupe&op=etudiant">&Eacute;tudiants</a></li>
 		    	<li class="nav-item"><a class="nav-link" href="index.php?page=competence">Comp&eacute;tences</a></li>
+				<li class="nav-item"><a class="nav-link" href="index.php?page=noteCompetence">Note Comp&eacute;tences</a></li>
 		    </ul>
 		    <ul class="navbar-nav ml-auto">
 				<?php 
@@ -86,6 +87,18 @@
 			case 'groupe':
 				$groupeController = new GroupeController();
 				$groupeController->HandleRequest();
+				break;
+			case 'etudiant':
+				$etudiantController = new EtudiantController();
+				$etudiantController->HandleRequest();
+				break;
+			case 'noteCompetence':
+				$notationCompetenceController = new NotationCompetenceController();
+				$notationCompetenceController->HandleRequest();
+				break;
+			case 'noteGroupe':
+				$notationGroupeCompetenceController = new NotationGroupeCompetenceController();
+				$notationGroupeCompetenceController->HandleRequest();
 				break;
 			case 'competence':
 				$competenceController = new CompetenceController();

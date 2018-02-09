@@ -7,7 +7,7 @@ require_once '../notation/connect.php';
 class CompetenceService
 {
 	
-	private $CompetenceGateway = NULL;
+	private $competenceGateway = NULL;
 
 	public function __construct()
 	{
@@ -45,7 +45,44 @@ class CompetenceService
 		}
 	}
 
+	public function addNoteCompetence($note, $competence, $groupeId, $appreciation)
+	{
+		try {
+			$res=$this->competenceGateway->AjouterNoteCompetence($note, $competence, $groupeId, $appreciation);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
 
+	public function UpdateNoteCompetence($note, $competence, $groupeId, $appreciation)
+	{//TODO
+	/*
+		try {
+			$res=$this->competenceGateway->AjouterNoteCompetence($note, $competence, $groupeId, $appreciation);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}*/
+	}
+	
+	public function GetNoteCompetence($groupeId){
+		try {
+			$res=$this->competenceGateway->SelectNoteCompetence($groupeId);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+	
+	public function GetNoteByCompetence($competenceId, $groupeId){
+		try {
+			$res=$this->competenceGateway->SelectNoteByCompetence($competenceId, $groupeId);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
 }
 
 ?>
