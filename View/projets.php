@@ -4,7 +4,7 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
-	<script src="Public/js/myscripts.js"></script>	
+	<script src="Public/js/search-script.js"></script>
 </head>
 
 <body>
@@ -30,8 +30,8 @@
 			<a href="index.php?page=projet&op=new">Ajouter projet</a>
 		</div>
 		<div class="col-md-12">
-
-			<table class="table table-striped table-responsive">
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Recherche...">
+			<table id="myTable" class="table table-striped table-responsive">
 				<thead>
 					<tr>
 						<th scope="col">Titre</th>
