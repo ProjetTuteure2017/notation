@@ -30,12 +30,24 @@
     <a class="navbar-brand" href="#">Notation</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 		        <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
-		    	<li class="nav-item"><a class="nav-link" href="index.php?page=projet">Projets</a></li>
-		    	<li class="nav-item"><a class="nav-link" href="index.php?page=grille">Grilles</a></li>
-		    	<li class="nav-item"><a class="nav-link" href="index.php?page=groupe">Groupes</a></li>
-		    	<li class="nav-item"><a class="nav-link" href="index.php?page=groupe&op=etudiant">&Eacute;tudiants</a></li>
-		    	<li class="nav-item"><a class="nav-link" href="index.php?page=competence">Comp&eacute;tences</a></li>
-				<li class="nav-item"><a class="nav-link" href="index.php?page=noteCompetence">Note Comp&eacute;tences</a></li>
+		        <li class="dropdown">
+		        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partie configuration</a>
+		        	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+		    			<a class="dropdown-item" href="index.php?page=etudiant">&Eacute;tudiants</a>
+		    			<a class="dropdown-item" href="index.php?page=projet">Projets</a>
+				    	<a class="dropdown-item" href="index.php?page=grille">Grilles</a>
+		    			<a class="nav-link" href="index.php?page=competence">Comp&eacute;tences</a>
+		    		</div>
+		    	</li>
+		    	<li class="dropdown">
+		        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partie utilisation</a>
+		        	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				    	<a class="dropdown-item" href="index.php?page=groupe">Groupes</a>
+		    			<a class="dropdown-item" href="index.php?page=etudiant&op=note">Note &eacute;tudiants</a>
+						<a class="nav-link" href="index.php?page=noteCompetence">Note comp&eacute;tences</a>
+		    		</div>
+		    	</li>
+		    	
 		    </ul>
 		    <ul class="navbar-nav ml-auto">
 				<?php 

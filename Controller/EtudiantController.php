@@ -5,7 +5,7 @@ require_once 'Model/ProjetService.php';
 require_once 'Model/GrilleService.php';
 require_once '../notation/connect.php';
 
-class GroupeController
+class EtudiantController
 {
 
 	private $groupeService = NULL;
@@ -27,7 +27,9 @@ class GroupeController
 		$op = filter_input(INPUT_GET, 'op', FILTER_SANITIZE_URL);
 		try {
 		    if (!$op || $op == 'list' ) {
-		        $this->ListeGroupes();
+		        $this->ListeEtudiants();
+		    } else if($op == 'note') {
+		    	$this->ListeNoteEtudiant();
 		    } else {
 		        $this->showError("Page not found", "Page for operation ".$op." was not found!");
 		    }
@@ -42,16 +44,8 @@ class GroupeController
 		return $projets;
 	}
 
-	public function ListeGrilles() {
-		$projets = $this->ListeProjets();
-		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
-		$grilles = $this->grilleService->getAllGrilles($projetId);
-
-		return $grilles;
-	}
-
-	public function ListeGroupes() {
-		$title = 'Liste des groupes';
+	public function ListeEtudiants() {
+		$title = 'Liste des étudiants';
 
 		$projets = $this->ListeProjets();
 		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
@@ -59,12 +53,16 @@ class GroupeController
 		//Etudiant du projet selectionné
 		$groupes = $this->groupeService->getAllGroupes($projetId);
 
-		//Grilles of selected project
-		$grilles = $this->ListeGrilles();
+		include 'View/etudiants.php';
+	}
 
-		include 'View/groupes.php';
+	public function ListeNoteEtudiant() {
+		$title = 'Notes des étudiants';
+
+		$idGroupe = isset($_GET['idgroupe']) ? $_GET['idgroupe'] : NULL;
+		$groupe = $this->groupeService->getNoteGroupe($idGroupe);
+
+		include 'View/groupe-note.php';
 	}
 
 }
-
-?>
