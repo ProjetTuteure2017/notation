@@ -105,10 +105,8 @@
 		  $i=0;
 			$n=0;
 			foreach($notesGrilles as $nG){
-				$nbPoint = 20;
 				if(count($notesGrilles) > 0){
-					$noteTempo = $nG['note'];
-					$n += $noteTempo / $nbPoint * 20;
+					$n += $nG['note'];
 					$i++;
 				}
 			}

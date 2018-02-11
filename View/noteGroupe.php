@@ -61,7 +61,6 @@
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-			<h2> Note Grille <?php print $noteGrille;?></h2>
 		</div>
 	</div>
 </body>

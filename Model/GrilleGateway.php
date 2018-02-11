@@ -95,6 +95,7 @@ class GrilleGateway
 
 		return $result;
 	}
+	
 }
 
 ?>
