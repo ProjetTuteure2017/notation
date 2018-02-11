@@ -52,6 +52,7 @@
 							<td><input type="text" name="appreciation" value="<?php print $this->Bidouille($competence['id'])['appreciation']; ?>"/></td>
 							<td>
 								<input type="hidden" name="competenceId" value="<?php print htmlentities($competence['id']); ?>" />
+								<input type="hidden" name="nombrePoint" value="<?php print htmlentities($competence['nombrePoint']); ?>" />
 								<input type="hidden" name="form-submitted" value="1" />
 								<input type="submit" value="Valider" />
 							</td>
@@ -60,6 +61,7 @@
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+			<h2> Note Grille <?php print $noteGrille;?></h2>
 		</div>
 	</div>
 </body>

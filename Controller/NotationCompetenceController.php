@@ -65,10 +65,9 @@ class NotationCompetenceController{
 		$grilles = $this->ListeGrilles();
 		$groupes = $this->ListeGroupes();
 		//$grilleId = isset($_POST['selectGrille']) ? $_POST['selectGrille'] : NULL;
-				$grilleId = isset($_GET['grilleSelectionnee']) ? $_GET['grilleSelectionnee'] : NULL;
+		$grilleId = isset($_GET['grilleSelectionnee']) ? $_GET['grilleSelectionnee'] : NULL;
 
 		$competences = $this->competenceService->getAllCompetences($grilleId);
-		
 		//$this->AjouterNoteCompetence();
 		
 		include 'View/noteCompetence.php';	

@@ -56,14 +56,13 @@ class CompetenceService
 	}
 
 	public function UpdateNoteCompetence($note, $competence, $groupeId, $appreciation)
-	{//TODO
-	/*
+	{
 		try {
-			$res=$this->competenceGateway->AjouterNoteCompetence($note, $competence, $groupeId, $appreciation);
+			$res=$this->competenceGateway->ModifierNoteCompetence($note, $competence, $groupeId, $appreciation);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;
-		}*/
+		}
 	}
 	
 	public function GetNoteCompetence($groupeId){
@@ -83,6 +82,7 @@ class CompetenceService
 			throw $e;
 		}
 	}
+	
 }
 
 ?>

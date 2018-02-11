@@ -59,13 +59,41 @@ class GrilleService
 		public function addNoteGrille($groupeId, $grilleId, $note, $appreciation)
 	{
 		try {
-			$res=$this->notationCompetenceGateway->AjouterNoteGrille($groupeId, $grilleId, $note, $appreciation);
+			$res=$this->grilleGateway->AjouterNoteGrille($groupeId, $grilleId, $note, $appreciation);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+	
+		public function UpdateNoteGrille($note, $grilleId, $groupeId, $appreciation)
+	{
+		try {
+			$res=$this->grilleGateway->ModifierNoteGrille($note, $grilleId, $groupeId, $appreciation);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;
 		}
 	}
 
+	public function GetNoteByGrille($grilleId, $groupeId)
+	{
+		try {
+			$res=$this->grilleGateway->SelectNoteGrilleByGroupe($grilleId, $groupeId);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+	
+	public function getNotesByIdGroupe($groupeId){
+		try {
+			$res=$this->grilleGateway->SelectNotesGrillesByGroupeId($groupeId);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
 
 }
 

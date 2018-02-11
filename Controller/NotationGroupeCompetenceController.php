@@ -79,6 +79,16 @@ class NotationGroupeCompetenceController
 		else
 			return null;
 		}
+		
+	public function BidouilleGrille(){
+		$groupeId = isset($_GET['groupeId']) ? $_GET['groupeId'] : NULL;
+		$grilleId = isset($_GET['grilleId']) ? $_GET['grilleId'] : NULL;
+		$noteGrille = $this->grilleService->GetNoteByGrille($grilleId, $groupeId);
+		if(count($noteGrille) > 0)
+			return $noteGrille[0];
+		else
+			return null;
+		}
 
 	
 	public function ListeCompetences(){
@@ -95,6 +105,8 @@ class NotationGroupeCompetenceController
 		$competences = $this->competenceService->getAllCompetences($grilleId);
 		
 		$this->AjouteOrUpdateCompetence();
+		//$noteGrille = $this->grilleService->GetNoteByGrille($grilleId,$groupeId);
+		
 		
 		include 'View/noteGroupe.php';	
 	}
@@ -107,7 +119,7 @@ class NotationGroupeCompetenceController
 		
 		if($this->Bidouille($competenceId) != null)
 		{
-			$this->ModifierNoteCompetence();
+			$this->ModifyNoteCompetence();
 			//$this->ModifierNoteCompetence()
 		}
 		else
@@ -115,6 +127,20 @@ class NotationGroupeCompetenceController
 			$this->AjouterNoteCompetence();
 		}
 		
+		$this->UpdateNoteGrille();
+	}
+	
+	public function UpdateNoteGrille(){
+		$noteGrille = $this->BidouilleGrille();
+		if($noteGrille != null)
+		{
+			$this->ModifyNoteGrille();
+			//$this->ModifierNoteCompetence()
+		}
+		else
+		{
+			$this->AjouterNoteGrille();
+		}
 	}
 	
 	public function AjouterNoteCompetence() {
@@ -141,22 +167,33 @@ class NotationGroupeCompetenceController
 				$errors = $e->getErrors();
 			}
 		}
-		
-	
 
 	}
 	
-		public function ModifierNoteCompetence() {
-			//TODO sur modele du dessus 
-			//$this->competenceService->updateNoteCompetence($note, $competence, $groupeId, $appreciation);
-			
-			/*
-			$competenceId = isset($_POST['competenceId']) ? $_POST['competenceId'] : NULL;
-		$groupeId = isset($_GET['groupeId']) ? $_GET['groupeId'] : NULL;
-		$note = isset($_POST['note']) ? $_POST['note'] : NULL;
-		$appreciation = isset($_POST['appreciation']) ? $_POST['appreciation'] : NULL;
-			*/
+	public function ModifyNoteCompetence() {
+			//TODO  
+		$title = 'Modifier une note de competence';
+		$note = '';
+		$competence = '';
+		$appreciation = '';
+		$groupeId ='';
+		$errors = array();
+
+		if (isset($_POST['form-submitted'])) {
+			$note = isset($_POST['note']) ? $_POST['note'] : NULL;
+			$competence = isset($_POST['competenceId']) ? $_POST['competenceId'] : NULL;
+			$appreciation = isset($_POST['appreciation']) ? $_POST['appreciation'] : NULL;
+			$groupeId = isset($_GET['groupeId']) ? $_GET['groupeId'] : NULL;
+
+			try {
+				$this->competenceService->UpdateNoteCompetence($note, $competence, $groupeId, $appreciation);
+				header("Refresh:0");
+				return;
+			} catch (ValidationException $e) {
+				$errors = $e->getErrors();
+			}
 		}
+	}
 
 	public function AjouterNoteGrille() {
 		$title = 'Ajouter une note pour la grille';
@@ -170,12 +207,15 @@ class NotationGroupeCompetenceController
 
 		if (isset($_POST['form-submitted'])) {
 			$groupeId = isset($_GET['groupeId']) ? $_GET['groupeId'] : NULL;
-			$grilleId = isset($_POST['grilleId']) ? $_POST['grilleId'] : NULL;
-			$note = isset($_POST['note']) ? $_POST['note'] : NULL;
+			$grilleId = isset($_GET['grilleId']) ? $_GET['grilleId'] : NULL;
 			$appreciation = isset($_POST['appreciation']) ? $_POST['appreciation'] : NULL;
+			
+			$nouvelleNoteCompetence = isset($_POST['note']) ? $_POST['note'] : NULL;
+			$nombrePoint = isset($_POST['nombrePoint']) ? $_POST['nombrePoint'] : NULL;
+			$note = ($nouvelleNoteCompetence / $nombrePoint) * 20;
 
 			try {
-				$this->competenceService->addNoteGrille($groupeId, $grilleId, $note, $appreciation);
+				$this->grilleService->addNoteGrille($groupeId, $grilleId, $note, $appreciation);
 				header("Refresh:0");
 				return;
 			} catch (ValidationException $e) {
@@ -183,8 +223,52 @@ class NotationGroupeCompetenceController
 			}
 		}
 
-
 	}
+	
+	public function ModifyNoteGrille() {
+			//TODO  
+		$title = 'Modifier une note de grille';
+		$note = '';
+		$grilleId = '';
+		$appreciation = '';
+		$groupeId ='';
+		$errors = array();
+
+		if (isset($_POST['form-submitted'])) {
+			$grilleId = isset($_GET['grilleId']) ? $_GET['grilleId'] : NULL;
+			$appreciation = isset($_POST['appreciation']) ? $_POST['appreciation'] : NULL;
+			$groupeId = isset($_GET['groupeId']) ? $_GET['groupeId'] : NULL;
+			
+			
+			$competences = $this->competenceService->getAllCompetences($grilleId);
+			
+			$i=0;
+			$n=0;
+			foreach($competences as $c){
+				$nbPoint = $c['nombrePoint'];
+				$noteCompetence = $this->competenceService->GetNoteByCompetence($c['id'], $groupeId);
+				if(count($noteCompetence) > 0){
+					$noteTempo = $noteCompetence[0]['note'];
+					$n += $noteTempo / $nbPoint * 20;
+					$i++;
+				}
+			}
+			$note = ($n == 0 || $i == 0) ? NULL : ($n / $i);
+			
+			/*$nouvelleNoteCompetence = isset($_POST['note']) ? $_POST['note'] : NULL;
+			$nombrePoint = isset($_POST['nombrePoint']) ? $_POST['nombrePoint'] : NULL;
+			$note = ($moyenne + (($nouvelleNoteCompetence / $nombrePoint) * 20))/2;*/
+
+			try {
+				$this->grilleService->UpdateNoteGrille($note, $grilleId, $groupeId, $appreciation);
+				header("Refresh:0");
+				return;
+			} catch (ValidationException $e) {
+				$errors = $e->getErrors();
+			}
+		}
+	}
+	
 }
 
 ?>

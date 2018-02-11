@@ -99,7 +99,21 @@
             
           }
 
-          $noteGroupe = $groupe['noteGroupe'];
+          //$noteGroupe = $groupe['noteGroupe'];
+		  $groupeId = $groupe['id'];
+		  $notesGrilles = $this->grilleService->getNotesByIdGroupe($groupeId);
+		  $i=0;
+			$n=0;
+			foreach($notesGrilles as $nG){
+				$nbPoint = 20;
+				if(count($notesGrilles) > 0){
+					$noteTempo = $nG['note'];
+					$n += $noteTempo / $nbPoint * 20;
+					$i++;
+				}
+			}
+			$noteGroupe = ($n == 0 || $i == 0) ? NULL : ($n / $i);
+			
           if($noteGroupe>10)
             {
               print '<td class="bg-success">'.$noteGroupe.'</td>';

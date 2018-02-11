@@ -54,13 +54,14 @@ class CompetenceGateway
 		
 	}
 	
-	public function ModifierNoteCompetence($note, $competence, $groupeId, $appreciation){
+	public function ModifierNoteCompetence($note, $a, $groupeId, $appreciation){
 		//TODO
-		//Update notecompetence set note = $note, appr = $appreciation where groupeid = $groupeid and questionid= $competence
-		/*$stmt = $conn->prepare("UPDATE competence SET theme = :THEME, intitule = :INTITULE, nombrePoint = :NOMBREPOINT, grilleId = :GRILLEID WHERE id = :ID");
-		$stmt->execute(array("THEME" =>$theme , "INTITULE"=>$intitule ,"NOMBREPOINT" => $nombrePoint, "GRILLEID"=>$grilleId, "ID" => $id));
+		include '../notation/connect.php';
 
-		*/
+		//Update notecompetence set note = $note, appr = $appreciation where groupeid = $groupeid and questionid= $competence
+		$stmt = $conn->prepare("UPDATE notecompetence SET note = :NOTE, appreciation = :APPRECIATION WHERE groupeId = :GROUPEID and questionId = :b");
+		
+		$stmt->execute(array("NOTE" =>$note , "b"=>$a ,"GROUPEID" => $groupeId, "APPRECIATION"=>$appreciation));
 	}
 	
 	public function SelectNoteCompetence($groupeId){

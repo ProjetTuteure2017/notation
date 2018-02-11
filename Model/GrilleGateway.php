@@ -60,14 +60,41 @@ class GrilleGateway
 		
 		$stmt = $conn->prepare("INSERT INTO notegrille (groupeId, grilleId, note, appreciation) VALUES(:GROUPEID, :GRILLEID, :NOTE, :APPRECIATION)");
 		
-		$stmt->execute(array(":GROUPEID"=>$groupeId, ":GRILLE"=> $grilleId, ":NOTE"=>$note, ":APPRECIATION"=>$appreciation));
+		$stmt->execute(array(":GROUPEID"=>$groupeId, ":GRILLEID"=> $grilleId, ":NOTE"=>$note, ":APPRECIATION"=>$appreciation));
 		$result = $stmt->fetchAll();
 
 		return $result;
 		
 	}
 	
+	public function ModifierNoteGrille($note, $grilleId, $groupeId, $appreciation){
+		include '../notation/connect.php';
+
+		//Update notecompetence set note = $note, appr = $appreciation where groupeid = $groupeid and questionid= $competence
+		$stmt = $conn->prepare("UPDATE notegrille SET note = :NOTE, appreciation = :APPRECIATION WHERE groupeId = :GROUPEID and grilleId = :GRILLEID");
+		
+		$stmt->execute(array("NOTE" =>$note , "GRILLEID"=>$grilleId ,"GROUPEID" => $groupeId, "APPRECIATION"=>$appreciation));
+	}
 	
+	public function SelectNoteGrilleByGroupe($grilleId, $groupeId){
+		include '../notation/connect.php';
+
+		$stmt = $conn->prepare("SELECT * FROM notegrille WHERE grilleId= :GRILLEID and groupeId = :GROUPEID");
+		$stmt->execute(array("GRILLEID"=>$grilleId, "GROUPEID"=>$groupeId));
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
+	
+	public function SelectNotesGrillesByGroupeId($groupeId){
+		include '../notation/connect.php';
+
+		$stmt = $conn->prepare("SELECT * FROM notegrille WHERE groupeId = :GROUPEID");
+		$stmt->execute(array("GROUPEID"=>$groupeId));
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
 }
 
 ?>
