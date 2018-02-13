@@ -5,7 +5,6 @@
 		<?php print htmlentities($title); ?>
 	</title>
 	<link href="../Public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
 	<script>
 		function mySearch() {
 			var input, filter, table, tr, td, i;
@@ -78,32 +77,40 @@
 							<td><?php print htmlentities($projet['description']); ?></td>
 							<td><?php print htmlentities($projet['enseignantId']); ?></td>
 							<td><?php echo '<a href="index.php?page=grille&op=new&projetId='.htmlentities($projet['id']).'">Ajouter grille</a>';?></td>
-							<td><button id="btnModifier" onClick="showHide('modifier<?php print htmlentities($projet['id'])?>')" type="button" class="btn btn-sm btn-info">Modifier</button></td>
+							<td><button id="btnModifier" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($projet['id'])?>" type="button" class="btn btn-sm btn-info">Modifier</button></td>
 						</tr>
-						<tr id="modifier<?php print htmlentities($projet['id'])?>" class="closed">
-							<td colspan="4">
-								<div>
-			                        <form method="POST" action="">
-			                        	<input class="hidden" type="text" name="id" value="<?php print htmlentities($projet['id']); ?>"/>
-			                        	
-			                        	<div class="form-groupe">
-			                        		<label for="titre">Titre :</label>
-				                            <input type="text" name="titre" id="titre" value="<?php print htmlentities($projet['titre']); ?>"/>
-				                        </div>
-				                        <div class="form-groupe">
-				                        	<label for="description">Description :</label>
-			                            	<input type="text" name="description" id="description" value="<?php print htmlentities($projet['description']) ?>"/>
-			                            </div>
-			                            <div class="form-groupe">
-			                            	<div class="row">
-			                            		<input type="hidden" name="form-submitted" value="1" />
-			                            		<input type="submit" value="Valider" class="btn" />
-			                            	</div>
-			                        	</div>
-			                        </form>
+						<!-- Modal -->
+						<div class="modal fade" id="myModalModifier<?php print htmlentities($projet['id'])?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Modal Heading</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+							<form method="POST" action="">
+								<input class="hidden" type="text" name="id" value="<?php print htmlentities($projet['id']); ?>"/>
+
+								<div class="form-groupe">
+									<label for="titre">Titre :</label>
+									<input type="text" class="form-control" name="titre" id="titre" value="<?php print htmlentities($projet['titre']); ?>"/>
 								</div>
-							</td>
-						</tr>
+								<div class="form-groupe">
+									<label for="description">Description :</label>
+									<input type="text" class="form-control" name="description" id="description" value="<?php print htmlentities($projet['description']); ?>"/>
+								</div>
+								<div class="form-groupe">
+									<input type="hidden" name="form-submitted" value="1" />
+									<input type="submit" value="Valider" id="btnValider" class="btn" />
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+						</div>
+						</div>
+						</div>
+						</div>
 						<?php endforeach; ?>
 					</tbody>
 				</table>

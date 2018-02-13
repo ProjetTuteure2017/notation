@@ -25,6 +25,11 @@ footer p
 	visibility: visible;
 }
 
+#btnValider{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 #mydiv {
     top: 50%;
     left: 50%;
