@@ -77,7 +77,7 @@
 </div>
 
 <div>
-  <form method="post" action="index.php?page=groupe" enctype="multipart/form-data">
+  <form method="post" action="index.php?page=etudiant" enctype="multipart/form-data">
     <input type="file" name="import"/>
     <input type="submit" name="submit" value="Charger" />
   </form>
@@ -117,14 +117,19 @@
         $num = count($ligne);
 
         for ($c=0; $c < $num; $c++) {
-          list($nom,$prenom,$id) = explode(';', $ligne[$c]);
+          list($nom,$prenom,$idGroupe,$note,$pourcentage) = explode(';', $ligne[$c]);
           echo $ligne[$c]. "<br />\n";
-          echo 'nom:'.$nom.' prenom:'.$prenom.' id:'.$id. "<br />\n";
+          echo 'nom:'.$nom.' prenom:'.$prenom.' id:'.$idGroupe. "<br />\n";
           echo "<br />\n";
         }
-     
+		echo "coucou";
+		//if(isset($_POST['selectProjet']))
+		{
+			echo "coucou";
+			//$idProjet = isset($_POST['selectProjet']) ? isset($_POST['selectProjet']) : NULL;
+			$this->AddGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, 3);
+		}
       }
-    
     }
   ?>
 </div>

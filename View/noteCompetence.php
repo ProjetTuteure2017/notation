@@ -27,7 +27,8 @@
         </div>
 		<div class="col-sm-12 col-md-8 col-lg-8">
       <h4>S&eacute;l&eacute;ctionnez un projet :</h4>
-      <form method="post" action="">
+      <form method="get" action="">
+		<input type="hidden" name="page" value="noteCompetence">
         <div class="input-group">
           <select class="custom-select" id="selectProjet" name="selectProjet">
             <option selected="selected">Veuillez selectioner un projet....</option>
@@ -44,7 +45,7 @@
         </div>
       </form>
       <script type="text/javascript">
-        document.getElementById('selectProjet').value = "<?php echo $_POST['selectProjet'];?>";
+        document.getElementById('selectProjet').value = "<?php echo $_GET['selectProjet'];?>";
       </script>
     </div>
 
@@ -64,11 +65,21 @@
 			});
 		}
 	  }
+	  
+	  function Verif_Selection(){
+		  var options = document.getElementById("selectGrille").options;;
+		  for(var i=0; i< options.length;i++){
+			  if(options[i].selected){
+				return true;
+			  }
+		  }
+		  alert("Veuillez selectionner une grille");
+		  return false;
+	  }
 	 </script>
 	 <?php 
-			
-			$grilleSelectionnee = '<script type="text/javascript">document.write(valeur); </script>';
-			//"<script>document.writeln(selectGrille);</script>";/* La valeur de strUser!!!!!!!*/?>
+		$grilleSelectionnee = '<script type="text/javascript">document.write(valeur); </script>';
+	?>
         <div class="input-group">
 		
           <select class="custom-select" size="auto" multiple="no" id="selectGrille" name="selectGrille">
@@ -99,8 +110,7 @@
       <?php 
         foreach ($groupes as $groupe): 
           print '<tr>';
-          print '<td><a class="lien-noteGroupe" href="index.php?page=noteGroupe&op=list&groupeId='.$groupe['id'].'&grilleId=">'.$groupe['nomGroupe'].'</td></a>';
-		  //echo '<a href="index.php?param='.$grilleSelectionnee.'">Lien</a>';
+          print '<td><a onClick="return Verif_Selection();" class="lien-noteGroupe" href="index.php?page=noteGroupe&op=list&projetId='.(isset($_GET['selectProjet']) ? $_GET['selectProjet'] : NULL).'&groupeId='.$groupe['id'].'&grilleId=">'.$groupe['nomGroupe'].'</td></a>';
           $json = json_decode($groupe['etudiant'], true);
           print '<td>';
           for ($i=0; $i < count($json); $i++) { 

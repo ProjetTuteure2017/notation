@@ -40,7 +40,7 @@ class NotationGroupeCompetenceController
 	}
 
 	public function ListeGrilles() {
-		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
+		$projetId = isset($_GET['selectProjet']) ? $_GET['selectProjet'] : NULL;
 		$grilles = $this->grilleService->getAllGrilles($projetId);
 		return $grilles;
 	}
@@ -53,7 +53,7 @@ class NotationGroupeCompetenceController
 	
 	public function ListeGroupes() {
 		$projets = $this->ListeProjets();
-		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
+		$projetId = isset($_GET['selectProjet']) ? $_GET['selectProjet'] : NULL;
 		//Etudiant du projet selectionné
 		$groupes = $this->groupeService->getAllGroupes($projetId);
 		return $groupes;

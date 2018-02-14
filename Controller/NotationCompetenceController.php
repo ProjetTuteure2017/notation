@@ -38,7 +38,7 @@ class NotationCompetenceController{
 	}
 
 	public function ListeGrilles() {
-		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
+		$projetId = isset($_GET['selectProjet']) ? $_GET['selectProjet'] : NULL;
 		$grilles = $this->grilleService->getAllGrilles($projetId);
 		return $grilles;
 	}
@@ -51,7 +51,7 @@ class NotationCompetenceController{
 	
 	public function ListeGroupes() {
 		$projets = $this->ListeProjets();
-		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
+		$projetId = isset($_GET['selectProjet']) ? $_GET['selectProjet'] : NULL;
 		//Etudiant du projet selectionné
 		$groupes = $this->groupeService->getAllGroupes($projetId);
 		return $groupes;
@@ -73,34 +73,6 @@ class NotationCompetenceController{
 		include 'View/noteCompetence.php';	
 	}
 	
-
-	public function AjouterNoteGrille() {
-		$title = 'Ajouter une note pour la grille';
-
-		$groupeId = '';
-		$grilleId = '';
-		$note = '';
-		$appreciation = '';
-
-		$errors = array();
-
-		if (isset($_POST['form-submitted'])) {
-			$groupeId = isset($_GET['groupeId']) ? $_GET['groupeId'] : NULL;
-			$grilleId = isset($_POST['grilleId']) ? $_POST['grilleId'] : NULL;
-			$note = isset($_POST['note']) ? $_POST['note'] : NULL;
-			$appreciation = isset($_POST['appreciation']) ? $_POST['appreciation'] : NULL;
-
-			try {
-				$this->competenceService->addNoteGrille($groupeId, $grilleId, $note, $appreciation);
-				header("Refresh:0");
-				return;
-			} catch (ValidationException $e) {
-				$errors = $e->getErrors();
-			}
-		}
-
-
-	}
 }
 
 ?>

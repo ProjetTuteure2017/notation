@@ -55,6 +55,17 @@ class GroupeGateway
 		$stmt->execute(array("GROUPEID"=>$groupeId, "NOM"=>$nomEtudiant));
 	}
 	
+	public function InsertGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet){
+		include '../notation/connect.php';
+		
+		$stmt = $conn->prepare("INSERT INTO groupe (nomGroupe, etudiant, noteGroupe, projetId) VALUES(:NOMGROUPE, :ETUDIANT, :NOTEGROUPE, :PROJETID)");
+		$format = "{\"nom\" : \"".$nom."\",\"prenom\" : \"".$prenom."\",\"pourcentage\" : \"".$pourcentage."\",\"note\" : \"".$note."\"}";
+		$stmt->execute(array(":NOMGROUPE"=>$idGroupe, ":ETUDIANT"=> $format, ":NOTEGROUPE"=>0, "PROJETID"=>$idProjet));
+		$result = $stmt->fetchAll();
+
+		return $result;
+	}
+	
 	/** select g.noteGroupe, e.noteFinale, e.percentage, p.nom 
 FROM etudiant e 
 inner join personne p on e.personneId =p.id 

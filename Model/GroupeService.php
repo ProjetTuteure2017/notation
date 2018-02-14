@@ -45,6 +45,15 @@ class GroupeService
 			throw $e;
 		}
 	}
+	
+	public function AjouterGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet){
+		try {
+			$res = $this->groupeGateway->InsertGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}	
+	}
 }
 
 ?>

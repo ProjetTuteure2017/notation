@@ -64,5 +64,10 @@ class EtudiantController
 
 		include 'View/groupe-note.php';
 	}
+	
+	public function AddGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet){
+		$this->groupeService->AjouterGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet);
+		
+	}
 
 }
