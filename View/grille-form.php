@@ -36,7 +36,7 @@
                     ?>
                 </div>
 
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div id="mydiv">
                         <div class="panel panel-compte">
                             <div class="panel-heading">
@@ -45,7 +45,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         
                                         <form role="form" method="POST" action="" style="display : block;">
                                             <div class="form-group">

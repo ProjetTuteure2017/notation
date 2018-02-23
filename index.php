@@ -35,7 +35,6 @@
 		        	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 		    			<a class="dropdown-item" href="index.php?page=etudiant">&Eacute;tudiants</a>
 		    			<a class="dropdown-item" href="index.php?page=projet">Projets</a>
-				    	<a class="dropdown-item" href="index.php?page=grille">Grilles</a>
 		    			<a class="nav-link" href="index.php?page=competence">Comp&eacute;tences</a>
 		    		</div>
 		    	</li>

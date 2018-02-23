@@ -5,26 +5,8 @@
 		<?php print htmlentities($title); ?>
 	</title>
 	<link href="../Public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<script>
-		function mySearch() {
-			var input, filter, table, tr, td, i;
-			input = document.getElementById("myInput");
-			filter = input.value.toUpperCase();
-			table = document.getElementById("myTable");
-			tr = table.getElementsByTagName("tr");
-
-			for (i = 0; i < tr.length; i++) {
-				td = tr[i].getElementsByTagName("td")[0];
-				if (td) {
-					if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-						tr[i].style.display = "";
-					} else {
-						tr[i].style.display = "none";
-					}
-				} 
-			}
-		}
-	</script>
+	<script src="Public/js/mysearch.js"></script>	
+	
 </head>
 
 <body>
@@ -58,14 +40,13 @@
 			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 				<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-12 col-lg-12 col-sm-12">
 				<table id="myTable" class="table table-striped table-responsive">
 					<thead>
 						<tr>
 							<th scope="col">Titre</th>
 							<th scope="col">Description</th>
-							<th scope="col">Enseignant</th>
-							<th scope="col">Grille</th>
+							<th scope="col">Grilles</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
@@ -75,8 +56,7 @@
 						<tr>
 							<td><?php print htmlentities($projet['titre']); ?></td>
 							<td><?php print htmlentities($projet['description']); ?></td>
-							<td><?php print htmlentities($projet['enseignantId']); ?></td>
-							<td><?php echo '<a href="index.php?page=grille&op=new&projetId='.htmlentities($projet['id']).'">Ajouter grille</a>';?></td>
+							<td><?php echo '<a href="index.php?page=grille&projetId='.htmlentities($projet['id']).'">Liste</a>';?></td>
 							<td><button id="btnModifier" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($projet['id'])?>" type="button" class="btn btn-sm btn-info">Modifier</button></td>
 						</tr>
 						<!-- Modal -->
@@ -84,7 +64,7 @@
 						<div class="modal-dialog" role="document">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Modal Heading</h4>
+							<h4 class="modal-title">Modification du projet</h4>
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 						<div class="modal-body">
@@ -106,7 +86,7 @@
 							</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Annuler</button>
 						</div>
 						</div>
 						</div>
