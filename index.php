@@ -35,7 +35,7 @@
 		        	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 		    			<a class="dropdown-item" href="index.php?page=etudiant">&Eacute;tudiants</a>
 		    			<a class="dropdown-item" href="index.php?page=projet">Projets</a>
-		    			<a class="nav-link" href="index.php?page=competence">Comp&eacute;tences</a>
+		    			<a class="dropdown-item" href="index.php?page=competence">Comp&eacute;tences</a>
 		    		</div>
 		    	</li>
 		    	<li class="dropdown">
@@ -43,7 +43,7 @@
 		        	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 				    	<a class="dropdown-item" href="index.php?page=groupe">Groupes</a>
 		    			<a class="dropdown-item" href="index.php?page=etudiant&op=note">Note &eacute;tudiants</a>
-						<a class="nav-link" href="index.php?page=noteCompetence">Note comp&eacute;tences</a>
+						<a class="dropdown-item" href="index.php?page=noteCompetence">Note comp&eacute;tences</a>
 		    		</div>
 		    	</li>
 		    	

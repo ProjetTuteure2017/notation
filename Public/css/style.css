@@ -25,6 +25,26 @@ footer p
 	visibility: visible;
 }
 
+.btn-info {
+    color: #fff;
+    background-color: #E040FB;
+    border-color: #E040FB;
+}
+.btn-info:hover{
+    background-color: #cd30e8;
+    border-color: #cd30e8;
+}
+
+.btn-primary{
+    color : #fff;
+    background-color: #3F51B5;
+    border-color: #3F51B5;
+}
+.btn-primary:hover{
+    background-color: #293fb5;
+    border-color: #293fb5;
+}
+
 #btnValider{
     margin-top: 5px;
     margin-bottom: 5px;

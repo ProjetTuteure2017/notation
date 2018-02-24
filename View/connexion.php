@@ -39,7 +39,7 @@
                 <i id="filtersubmit" class="fa fa-eye"></i>
               </div>
               <input type="hidden" name="form-submitted" value="1" />
-              <input type="submit" value="Se connecter" tabindex="4" class="btn btn-info"/>
+              <input type="submit" value="Se connecter" tabindex="4" class="btn btn-primary"/>
         </form>
       </div>
 

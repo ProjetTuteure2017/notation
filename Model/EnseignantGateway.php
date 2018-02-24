@@ -21,6 +21,9 @@ class EnseignantGateway {
 				if($motDePasse==$checkMDP)
 				{
 					$_SESSION['nom'] = $nom;
+					$_SESSION['start'] = time(); // Taking now logged in time.
+            		// Ending a session in 30 minutes from the starting time.
+            		$_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
 					print 'element exist';
 					return 1;
 				} else 

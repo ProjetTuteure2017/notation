@@ -25,8 +25,20 @@
 
 	                exit();
 	            }
+	            /*else {
+        			$now = time();
 
-				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
+			        if ($now > $_SESSION['expire']) {
+			            session_destroy();
+			            print '<div class="alert alert-dismissible alert-warning">';
+	                	print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+	                	print "<h4>Votre session est expir&eacute; !</h4>";
+	                	print '<a href="index.php?op=login">Se connecter</a>';
+	                	print '</div>';
+			        }
+			        else { */
+
+						$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 	        ?>
 	    	</div>
     	</div>
@@ -98,6 +110,11 @@
 
 		</div>
 	</div>
+
+	<?php
+      //  }
+    //}
+?>
 </body>
 
 </html>
