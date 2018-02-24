@@ -52,14 +52,14 @@
 			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 				<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
 			</div>
-			<div class="col-md-12 col-lg-12 col-sm-12">
-				<table id="myTable" class="table table-striped table-responsive">
-					<thead>
-						<tr>
-							<th scope="col">Titre</th>
-							<th scope="col">Description</th>
-							<th scope="col">Grilles</th>
-							<th scope="col"></th>
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<table id="myTable" class="table table-responsive table-hover">
+					<thead class="indigo">
+						<tr class="text-white">
+							<th scope="col" style="width: 25%">Titre</th>
+							<th scope="col" style="width: 60%">Description</th>
+							<th scope="col" style="width: 10%">Grilles</th>
+							<th scope="col" style="width: 10%"></th>
 						</tr>
 					</thead>
 					<tbody>

@@ -27,40 +27,38 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">Notation</a>
+    <a class="navbar-brand" href="index.php">Notation</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-		        <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
-		        <li class="dropdown">
-		        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partie configuration</a>
-		        	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-		    			<a class="dropdown-item" href="index.php?page=etudiant">&Eacute;tudiants</a>
-		    			<a class="dropdown-item" href="index.php?page=projet">Projets</a>
-		    			<a class="dropdown-item" href="index.php?page=competence">Comp&eacute;tences</a>
-		    		</div>
-		    	</li>
-		    	<li class="dropdown">
-		        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partie utilisation</a>
-		        	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-				    	<a class="dropdown-item" href="index.php?page=groupe">Groupes</a>
-		    			<a class="dropdown-item" href="index.php?page=etudiant&op=note">Note &eacute;tudiants</a>
-						<a class="dropdown-item" href="index.php?page=noteCompetence">Note comp&eacute;tences</a>
-		    		</div>
-		    	</li>
-		    	
-		    </ul>
-		    <ul class="navbar-nav ml-auto">
-				<?php 
-					if(empty($_SESSION['nom']))
-					{
-						print '<li class="nav-item"><a class="nav-link" href="index.php?op=login">Se Connecter</a></li>';
-					}
-					else 
-					{
-						print '<li class="nav-item"><a class="nav-link" href="index.php?op=logout">Se D&eacuteconnecter</a></li>';
+        <li class="dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partie configuration</a>
+        	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+    			<a class="dropdown-item" href="index.php?page=etudiant">&Eacute;tudiants</a>
+    			<a class="dropdown-item" href="index.php?page=projet">Projets</a>
+    			<a class="dropdown-item" href="index.php?page=competence">Comp&eacute;tences</a>
+    		</div>
+    	</li>
+    	<li class="dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partie utilisation</a>
+        	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+		    	<a class="dropdown-item" href="index.php?page=groupe">Groupes</a>
+				<a class="dropdown-item" href="index.php?page=noteCompetence">Note comp&eacute;tences</a>
+    		</div>
+    	</li>
+    	
+    </ul>
+    <ul class="navbar-nav ml-auto">
+		<?php 
+			if(empty($_SESSION['nom']))
+			{
+				print '<li class="nav-item"><a class="nav-link" href="index.php?op=login">Se Connecter</a></li>';
+			}
+			else 
+			{
+				print '<li class="nav-item"><a class="nav-link" href="index.php?op=logout">Se D&eacuteconnecter</a></li>';
 
-					}
-				?>
-			</ul>
+			}
+		?>
+	</ul>
 		</div>
 	</div>
 </nav>

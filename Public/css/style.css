@@ -70,3 +70,13 @@ footer p
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
 }
+
+.table-fixed {
+    table-layout: fixed; 
+    overflow: hidden;
+}
+
+.indigo
+{
+  background-color : #303F9F;
+}

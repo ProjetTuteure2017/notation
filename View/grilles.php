@@ -42,7 +42,7 @@
 					<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
 			</div>
 			<div class="col-sm-12 col-md-12 col-lg-12">	
-				<table class="table table-striped table-responsive" id="myTable">
+				<table class="table table-striped table-responsive table-fixed" id="myTable">
 					<thead>
 						<tr>
 							<th scope="col">Titre</th>
