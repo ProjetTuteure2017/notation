@@ -71,9 +71,13 @@ footer p
     margin-bottom: 12px; /* Add some space below the input */
 }
 
-.table-fixed {
-    table-layout: fixed; 
-    overflow: hidden;
+table { table-layout: fixed; }
+table th, table td 
+{ 
+    overflow: hidden; 
+}
+.table > tbody > tr > td {
+     vertical-align: middle;
 }
 
 .indigo

@@ -5,8 +5,9 @@
 		<?php print htmlentities($title); ?>
 	</title>
 	<link href="../Public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
+	<script src="Public/js/bootstrap-sortable.js"></script>
 	<script src="Public/js/mysearch.js"></script>	
-	
 </head>
 
 <body>
@@ -53,13 +54,13 @@
 				<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
 			</div>
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-				<table id="myTable" class="table table-responsive table-hover">
+				<table id="myTable" class="table table-responsive table-hover sortable">
 					<thead class="indigo">
 						<tr class="text-white">
 							<th scope="col" style="width: 25%">Titre</th>
-							<th scope="col" style="width: 60%">Description</th>
-							<th scope="col" style="width: 10%">Grilles</th>
-							<th scope="col" style="width: 10%"></th>
+							<th data-defaultsort="disabled" scope="col" style="width: 60%">Description</th>
+							<th data-defaultsort="disabled" scope="col" style="width: 10%">Grilles</th>
+							<th data-defaultsort="disabled" scope="col" style="width: 10%"></th>
 						</tr>
 					</thead>
 					<tbody>

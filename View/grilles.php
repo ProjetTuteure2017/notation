@@ -5,6 +5,9 @@
 		<?php print htmlentities($title); ?>
 	</title>
 	<script src="Public/js/mysearch.js"></script>
+	<script src="Public/js/bootstrap-sortable.js"></script>
+	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -41,14 +44,14 @@
 			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 					<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
 			</div>
-			<div class="col-sm-12 col-md-12 col-lg-12">	
-				<table class="table table-striped table-responsive table-fixed" id="myTable">
-					<thead>
-						<tr>
-							<th scope="col">Titre</th>
-							<th scope="col">Not&eacute; sur</th>
-							<th scope="col">Coef</th>
-							<th scope="col"></th>
+			<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">	
+				<table class="table table-hover table-responsive sortable" id="myTable">
+					<thead class="indigo">
+						<tr class="text-white">
+							<th scope="col" style="width: 50%">Titre</th>
+							<th data-defaultsort="disabled" scope="col" style="width: 20%">Not&eacute; sur</th>
+							<th data-defaultsort="disabled" scope="col" style="width: 20%">Coef</th>
+							<th data-defaultsort="disabled" scope="col" style="width: 25%"></th>
 						</tr>
 					</thead>
 					<tbody>
