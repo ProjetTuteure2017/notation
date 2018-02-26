@@ -1,7 +1,10 @@
 <?php
 
 require_once 'Model/enseignantService.php';
-require_once '../notation/connect.php';
+require_once 'Includes/functions.php';
+require_once '../notation/Includes/connect.php';
+
+sec_session_start(); 
 
 class PagesController
 {
@@ -42,7 +45,7 @@ class PagesController
     
 	public function Logout()
     {
-        $title = 'Deconnecter';
+        $title = 'Déconnecter';
         include 'View/logout.php';
     }
 
@@ -50,29 +53,30 @@ class PagesController
     {
     	$title = 'Connexion';
 
-    	$nom = '';
+    	$email = '';
     	$motDePasse = '';
 
     	$enseignantId = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
 
     	$errors = array();
 
-    	if(isset($_POST['form-submitted']) ) 
+    	if(isset($_POST['email'], $_POST['p'])) 
     	{
-    		$nom = isset($_POST['nom']) ? $_POST['nom'] :NULL;
-            $motDePasse = isset($_POST['motDePasse']) ? $_POST['motDePasse'] :NULL;
+            $email = $_POST['email'];
+            $motDePasse = $_POST['p'];
 
             try {
-            	$enseignantExist = $this->enseignantService->EnseignantLoginExist($nom, $motDePasse);
+            	$enseignantExist = $this->enseignantService->EnseignantLoginExist($email, $motDePasse);
 
-            	if($enseignantExist == 1) 
+            	if($enseignantExist == true) 
             	{
 
-            		$enseignantLogged = $this->enseignantService->EnseignantLogin($nom, $motDePasse);
+            		$enseignantLogged = $this->enseignantService->EnseignantLogin($email, $motDePasse);
             		if(isset($enseignantLogged))
             		{
             			/* Test if responsable logged*/
-            			$responsableLogged = $this->enseignantService->ResponsableLogin($nom, $motDePasse);
+            			$responsableLogged = $this->enseignantService->ResponsableLogin($email, $motDePasse);
+                        //row responsable true = 1
             			if($responsableLogged == 1)
             			{
             				$this->Redirect('index.php?page=enseignant&op=resp');

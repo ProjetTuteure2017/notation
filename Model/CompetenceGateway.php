@@ -4,7 +4,7 @@ class CompetenceGateway
 {
 	public function SelectAll($grilleId)
 	{
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("SELECT * FROM competence WHERE grilleId= :GrilleID");
 		$stmt->execute(array("GrilleID"=>$grilleId));
@@ -15,7 +15,7 @@ class CompetenceGateway
 
 	public function Ajouter($theme, $intitule, $nombrePoint, $grilleId)
 	{
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$theme = isset($_POST['theme']) ? $_POST['theme'] : '';
 		$intitule = isset($_POST['intitule']) ? $_POST['intitule'] : '';
@@ -29,7 +29,7 @@ class CompetenceGateway
 	
 	public function Modifier($id, $theme, $intitule, $nombrePoint, $grilleId)
 	{
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$id = isset($_POST['id']) ? $_POST['id'] : '';
 		$theme = isset($_POST['theme']) ? $_POST['theme'] : '';
@@ -43,7 +43,7 @@ class CompetenceGateway
 	}
 	
 	public function AjouterNoteCompetence($note, $competence, $groupeId, $appreciation){
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 		
 		$stmt = $conn->prepare("INSERT INTO notecompetence (note, questionId, groupeId, appreciation) VALUES(:NOTE, :COMPETENCE, :GROUPEID, :APPRECIATION)");
 		
@@ -56,7 +56,7 @@ class CompetenceGateway
 	
 	public function ModifierNoteCompetence($note, $a, $groupeId, $appreciation){
 		//TODO
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		//Update notecompetence set note = $note, appr = $appreciation where groupeid = $groupeid and questionid= $competence
 		$stmt = $conn->prepare("UPDATE notecompetence SET note = :NOTE, appreciation = :APPRECIATION WHERE groupeId = :GROUPEID and questionId = :b");
@@ -65,7 +65,7 @@ class CompetenceGateway
 	}
 	
 	public function SelectNoteCompetence($groupeId){
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("SELECT * FROM notecompetence WHERE groupeId= :GROUPEID");
 		$stmt->execute(array("GROUPEID"=>$groupeId));
@@ -75,7 +75,7 @@ class CompetenceGateway
 	}
 	
 	public function SelectNoteByCompetence($competenceId ,$groupeId){
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("SELECT * FROM notecompetence WHERE questionId = :COMPETENCE and groupeId= :GROUPEID");
 		$stmt->execute(array("GROUPEID"=>$groupeId, "COMPETENCE"=>$competenceId));

@@ -4,7 +4,7 @@ class GrilleGateway
 {
 	public function SelectAll($projetId)
 	{
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("SELECT * FROM grille WHERE projetId= :PROJETID");
 		$stmt->execute(array("PROJETID"=>$projetId));
@@ -16,7 +16,7 @@ class GrilleGateway
 	
 		public function SelectByGrilleId($grilleId)
 	{
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("SELECT * FROM grille WHERE id= :GRILLEID");
 		$stmt->execute(array("GRILLEID"=>$grilleId));
@@ -28,7 +28,7 @@ class GrilleGateway
 
 	public function Ajouter($titre, $note_sur, $coef, $projetId)
 	{
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$titre = isset($_POST['titre']) ? $_POST['titre'] : '';
 		$note_sur = isset($_POST['note_sur']) ? $_POST['note_sur'] : '';
@@ -42,7 +42,7 @@ class GrilleGateway
 
 	public function Modifier($id, $titre, $note_sur, $coef)
 	{
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$id = isset($_POST['id']) ? $_POST['id'] : '';
 		$titre = isset($_POST['titre']) ? $_POST['titre'] : '';
@@ -55,7 +55,7 @@ class GrilleGateway
 	}
 
 	public function AjouterNoteGrille($groupeId, $grilleId, $note, $appreciation){
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 		
 		$stmt = $conn->prepare("INSERT INTO notegrille (groupeId, grilleId, note, appreciation) VALUES(:GROUPEID, :GRILLEID, :NOTE, :APPRECIATION)");
 		
@@ -67,7 +67,7 @@ class GrilleGateway
 	}
 	
 	public function ModifierNoteGrille($note, $grilleId, $groupeId, $appreciation){
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		//Update notecompetence set note = $note, appr = $appreciation where groupeid = $groupeid and questionid= $competence
 		$stmt = $conn->prepare("UPDATE notegrille SET note = :NOTE, appreciation = :APPRECIATION WHERE groupeId = :GROUPEID and grilleId = :GRILLEID");
@@ -76,7 +76,7 @@ class GrilleGateway
 	}
 	
 	public function SelectNoteGrilleByGroupe($grilleId, $groupeId){
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("SELECT * FROM notegrille WHERE grilleId= :GRILLEID and groupeId = :GROUPEID");
 		$stmt->execute(array("GRILLEID"=>$grilleId, "GROUPEID"=>$groupeId));
@@ -86,7 +86,7 @@ class GrilleGateway
 	}
 	
 	public function SelectNotesGrillesByGroupeId($groupeId){
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("SELECT * FROM notegrille WHERE groupeId = :GROUPEID");
 		$stmt->execute(array("GROUPEID"=>$groupeId));

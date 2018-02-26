@@ -3,7 +3,7 @@
 require_once 'Model/CompetenceService.php';
 require_once 'Model/GrilleService.php';
 require_once 'Model/ProjetService.php';
-require_once '../notation/connect.php';
+require_once '../notation/Includes/connect.php';
 
 class CompetenceController
 {

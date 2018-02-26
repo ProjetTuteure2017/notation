@@ -29,7 +29,7 @@ var textfield = $("input[name=nom]");
                     $("#output").removeClass('alert alert-success');
                     $("#output").addClass("alert alert-danger animated fadeInUp").html("Veuillez saisir votre nom d'utilisateur !");
                 }
-                //console.log(textfield.val());
+                //ChromePhp::log(textfield.val());
 
             });
 });

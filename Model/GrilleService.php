@@ -2,7 +2,7 @@
 
 require_once 'Model/GrilleGateway.php';
 require_once 'Model/ValidationException.php';
-require_once '../notation/connect.php';
+require_once '../notation/Includes/connect.php';
 
 class GrilleService
 {

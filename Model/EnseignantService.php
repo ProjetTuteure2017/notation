@@ -2,7 +2,7 @@
 
 require_once 'Model/EnseignantGateway.php';
 require_once 'Model/ValidationException.php';
-require_once '../notation/connect.php';
+require_once '../notation/Includes/connect.php';
 
 class EnseignantService {
 
@@ -25,7 +25,7 @@ class EnseignantService {
 
 		try {
 			$this->enseignantGateway->Login($nom, $motDePasse);
-			$result = $this->enseignantGateway->IsLogged();
+			$result = $this->enseignantGateway->login_check();
 			return $result;
 		} catch (Exception $e) {
 			throw $e;

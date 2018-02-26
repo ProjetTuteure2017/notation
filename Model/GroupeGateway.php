@@ -6,7 +6,7 @@ class GroupeGateway
 
 	public function SelectAll($projetId)
 	{
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("SELECT id, nomGroupe, etudiant, noteGroupe
 								FROM groupe 
@@ -21,7 +21,7 @@ class GroupeGateway
 
 	public function SelectNoteGrille($groupeId, $grilleId)
 	{
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("SELECT DISTINCT(ng.note) FROM noteGrille ng
 								INNER JOIN groupe gr on ng.groupeId = gr.id
@@ -35,7 +35,7 @@ class GroupeGateway
 
 	public function SelectNoteGroupe($idGroupe)
 	{
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("SELECT id, nomGroupe, etudiant, noteGroupe
 								FROM groupe 
@@ -48,7 +48,7 @@ class GroupeGateway
 
 	public function AjouterNoteEtudiant($idGroupe, $nomEtudiant)
 	{
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("UPDATE groupe SET etudiant= JSON_SET(etudiant, '$.note', ':NOTE', '$.pourcentage', ':POURCENTAGE')
 								WHERE id = :IDGROUPE AND etudiant->'$.nom' = :NOM");
@@ -56,7 +56,7 @@ class GroupeGateway
 	}
 	
 	public function InsertGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet){
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 		
 		$stmt = $conn->prepare("INSERT INTO groupe (nomGroupe, etudiant, noteGroupe, projetId) VALUES(:NOMGROUPE, :ETUDIANT, :NOTEGROUPE, :PROJETID)");
 		$format = "{\"nom\" : \"".$nom."\",\"prenom\" : \"".$prenom."\",\"pourcentage\" : \"".$pourcentage."\",\"note\" : \"".$note."\"}";

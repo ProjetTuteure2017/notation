@@ -1,10 +1,12 @@
 <?php
+	
+	include_once 'psl-config.php';
 
 	try {
 		$conn = new PDO(
-			"mysql:host=localhost;dbname=db_notation;charset=UTF8",
-			"root",
-			"");
+			"mysql:host=".HOST.";dbname=".DATABASE.";charset=UTF8",
+			USER,
+			PASSWORD);
 	
 	}
 	catch(PDOException $e) {
