@@ -23,6 +23,55 @@ function sec_session_start() {
     } 
 }
 
+
+    function login_check() {
+        include '../notation/Includes/connect.php';
+        // Check if all session variables are set 
+        if (isset($_SESSION['id'], 
+                            $_SESSION['username'], 
+                            $_SESSION['login_string'])) {
+     
+            $user_id = $_SESSION['id'];
+            $login_string = $_SESSION['login_string'];
+            $username = $_SESSION['username'];
+     
+            // Get the user-agent string of the user.
+            $user_browser = $_SERVER['HTTP_USER_AGENT'];
+     
+            if ($stmt = $conn->prepare("SELECT password 
+                                          FROM personne 
+                                          WHERE id = :ID LIMIT 1")) {
+                $stmt->execute(array("ID"=>$user_id));   // Execute the prepared query.
+     
+                if ($stmt->rowCount() == 1) {
+                    // If the user exists get variables from result.
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC); 
+
+                    $password = $row['password'];
+
+                    $login_check = hash('sha512', $password . $user_browser);
+     
+                    if (hash_equals($login_check, $login_string) ){
+                        // Logged In!!!! 
+                        return true;
+                    } else {
+                        // Not logged in 
+                        return false;
+                    }
+                } else {
+                    // Not logged in 
+                    return false;
+                }
+            } else {
+                // Not logged in 
+                return false;
+            }
+        } else {
+            // Not logged in 
+            return false;
+        }
+    }
+
 function esc_url($url) {
  
     if ('' == $url) {

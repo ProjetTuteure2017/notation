@@ -2,7 +2,7 @@
 
 require_once 'Model/enseignantService.php';
 require_once 'Includes/functions.php';
-require_once '../notation/Includes/connect.php';
+require_once 'Includes/connect.php';
 
 sec_session_start(); 
 
@@ -68,7 +68,7 @@ class PagesController
             try {
             	$enseignantExist = $this->enseignantService->EnseignantLoginExist($email, $motDePasse);
 
-            	if($enseignantExist == true) 
+            	if($enseignantExist == 1) 
             	{
 
             		$enseignantLogged = $this->enseignantService->EnseignantLogin($email, $motDePasse);
@@ -88,16 +88,28 @@ class PagesController
             		{
             			$this->Redirect('index.php');
             		}
-            	} else 
+            	} else if($enseignantExist == 2) 
             	{
-                    $this->Redirect('index.php?op=login');
+                    //2 => Mot de passe incorrect
+                    //$this->Redirect('index.php?op=login');
+                    print 'Mot de passe incorrect';
             	}
+                else if($enseignantExist == 3){
+                    //user doesnt exist
+                    print 'user doesnt exist';
+
+                } else{
+                    print 'Account locked';
+                }
             } catch (ValidationException $e) {
             	
             	$errors = $e->GetErrors();	
             }
 
     	}
+
+        $check = login_check();
+        
 		include 'View/connexion.php';
 
     }

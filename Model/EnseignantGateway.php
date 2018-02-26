@@ -25,13 +25,12 @@ class EnseignantGateway {
 	            if ($this->checkbrute($user_id) == true) {
 	                // Account is locked 
 	                // Send an email to user saying their account is locked
-	                return false;
+	                return 0;
 	            } else {
 	                // Check if the password in the database matches
 	                // the password the user submitted. We are using
 	                // the password_verify function to avoid timing attacks.
 	                if (password_verify($password, $db_password)) {
-	                    // Password is correct!
 	                    // Get the user-agent string of the user.
 	                    $user_browser = $_SERVER['HTTP_USER_AGENT'];
 	                    // XSS protection as we might print this value
@@ -46,21 +45,20 @@ class EnseignantGateway {
 	                    $_SESSION['login_string'] = hash('sha512', 
 	                              $db_password . $user_browser);
 	                    // Login successful.
-	                    return true;
+	                    return 1;
 	                } else {
-	                    // Password is not correct
-	                    print 'Mot de passe incorrect';
-	                    // We record this attempt in the database
 	                    $now = time();
 	                    $conn->query("INSERT INTO login_attempts(user_id, time)
 	                                    VALUES ('$user_id', '$now')");
-	                    return false;
+	                    // Password is not correct
+	                    return 2;
+	                    //return false;
 	                }
 	            }
 	        } else {
 	            // No user exists.
-	            print 'user n existe';
-	            return false;
+	            return 3;
+	            //return false;
 	        }
 	    }
 	}
@@ -105,113 +103,22 @@ class EnseignantGateway {
 	    }
 	}
 
-	public function login_check() {
-		include '../notation/Includes/connect.php';
-	    // Check if all session variables are set 
-	    if (isset($_SESSION['id'], 
-	                        $_SESSION['username'], 
-	                        $_SESSION['login_string'])) {
-	 
-	        $user_id = $_SESSION['id'];
-	        $login_string = $_SESSION['login_string'];
-	        $username = $_SESSION['username'];
-	 
-	        // Get the user-agent string of the user.
-	        $user_browser = $_SERVER['HTTP_USER_AGENT'];
-	 
-	        if ($stmt = $conn->prepare("SELECT password 
-	                                      FROM personne 
-	                                      WHERE id = :ID LIMIT 1")) {
-	            $stmt->execute(array("ID"=>$user_id));   // Execute the prepared query.
-	 
-	            if ($stmt->rowCount() == 1) {
-	                // If the user exists get variables from result.
-	                $row = $stmt->fetch(PDO::FETCH_ASSOC); 
-
-	                $password = $row['password'];
-
-	                $login_check = hash('sha512', $password . $user_browser);
-	 
-	                if (hash_equals($login_check, $login_string) ){
-	                    // Logged In!!!! 
-	                    return true;
-	                } else {
-	                    // Not logged in 
-	                    return false;
-	                }
-	            } else {
-	                // Not logged in 
-	                return false;
-	            }
-	        } else {
-	            // Not logged in 
-	            return false;
-	        }
-	    } else {
-	        // Not logged in 
-	        return false;
-	    }
-	}
-
-/*
-	public function Login($nom, $motDePasse)
-	{
-		include '../notation/Includes/connect.php';
-		
-		try {
-			$nom = isset($_POST['nom']) ? $_POST['nom'] : '';
-			$motDePasse = isset($_POST['motDePasse']) ? $_POST['motDePasse'] : '';
-
-			$query = $conn->prepare("SELECT * FROM personne WHERE nom=:NOM");
-			$query->execute(array("NOM"=>$nom));
-			
-			$num = $query->rowCount();
-
-			$checkMDP = $nom;
-			if($num > 0)
-			{
-				if($motDePasse==$checkMDP)
-				{
-					$_SESSION['nom'] = $nom;
-					$_SESSION['start'] = time(); 
-            		$_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
-					print 'element exist';
-					return 1;
-				} else 
-				{
-					print 'Mot de passe incorrect';
-				}
-			}
-			else
-			{
-				print 'element doesnt exist';
-			}
-		} catch (Exception $e) {
-            print 'caught exception'. $e->getMessage();
-		}
-	}
-
-
 	public function IsLogged()
 	{
 		include '../notation/Includes/connect.php';
 		
-		$nomCheck = isset($_SESSION['nom']) ? $_SESSION['nom'] : '';
+		$idCheck = isset($_SESSION['id']) ? $_SESSION['id'] : '';
 
-		$result = $conn->prepare("SELECT * FROM personne WHERE nom= :NOMCHECK");
-        $result->execute(array("NOMCHECK"=>$nomCheck));
+		$result = $conn->prepare("SELECT * FROM personne WHERE id= :IDCHECK");
+        $result->execute(array("IDCHECK"=>$idCheck));
 
         $row = $result->fetch(PDO::FETCH_ASSOC);
         $num = $result->rowCount();
 
-        $nomSession =$row['nom'];
-
-        
         $_SESSION['id'] = $row['id'];
 		
 		if($num > 0)
         {
-            print 'Session nom' .$nomSession. 'id : '.$_SESSION['id'];
             return $_SESSION['id'];
         }
         else
@@ -222,12 +129,6 @@ class EnseignantGateway {
         }
 
 	}
-
-
-
-*/
-	
-
 
 }
 

@@ -1,7 +1,8 @@
 <?php
 
 require_once 'Model/ProjetService.php';
-require_once '../notation/Includes/connect.php';
+include_once 'Includes/functions.php';
+require_once 'Includes/connect.php';
 
 class ProjetController {
 
@@ -38,6 +39,8 @@ class ProjetController {
         $projets = $this->projetService->getAllProjets($enseignantId);
         $this->ModifierProjet();
 
+        $check = login_check();
+
         include 'View/projets.php';
     }
     
@@ -64,6 +67,8 @@ class ProjetController {
             }
         }
 
+        $check = login_check();
+        
         include 'View/projet-form.php';
     }
 

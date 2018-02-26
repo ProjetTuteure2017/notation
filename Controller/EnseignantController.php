@@ -1,4 +1,5 @@
 <?php
+include_once 'Includes/functions.php';
 
 class EnseignantController{
 	
@@ -28,12 +29,16 @@ class EnseignantController{
     {
     	$title = 'Home | Enseignant';
 
+        $check = login_check();
+
     	include 'View/enseignant-page.php';
     }
 
     public function ResponsablePage()
     {
     	$title = 'Home | Responsable';
+
+        $check = login_check();
 
     	include 'View/responsable-page.php';
     }

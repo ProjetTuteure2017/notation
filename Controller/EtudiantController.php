@@ -3,7 +3,8 @@
 require_once 'Model/GroupeService.php';
 require_once 'Model/ProjetService.php';
 require_once 'Model/GrilleService.php';
-require_once '../notation/Includes/connect.php';
+include_once 'Includes/functions.php';
+require_once 'Includes/connect.php';
 
 class EtudiantController
 {
@@ -53,6 +54,8 @@ class EtudiantController
 		//Etudiant du projet selectionné
 		$groupes = $this->groupeService->getAllGroupes($projetId);
 
+        $check = login_check();
+
 		include 'View/etudiants.php';
 	}
 
@@ -61,6 +64,8 @@ class EtudiantController
 
 		$idGroupe = isset($_GET['idgroupe']) ? $_GET['idgroupe'] : NULL;
 		$groupe = $this->groupeService->getNoteGroupe($idGroupe);
+
+        $check = login_check();
 
 		include 'View/groupe-note.php';
 	}

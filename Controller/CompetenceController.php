@@ -3,7 +3,8 @@
 require_once 'Model/CompetenceService.php';
 require_once 'Model/GrilleService.php';
 require_once 'Model/ProjetService.php';
-require_once '../notation/Includes/connect.php';
+require_once 'Includes/functions.php';
+require_once 'Includes/connect.php';
 
 class CompetenceController
 {
@@ -47,6 +48,8 @@ class CompetenceController
 
 		$this->ModifierCompetence();
 
+        $check = login_check();
+
 		include 'View/competences.php';
 	}
 	
@@ -88,11 +91,13 @@ class CompetenceController
 			}
 		}
 
+        $check = login_check();
+
 		include 'View/competences-form.php';
 
 	}
 	
-		public function ModifierCompetence() {
+	public function ModifierCompetence() {
 		$title = 'Modifier une competence';
 
 		$theme = '';

@@ -4,7 +4,7 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
-	<link href="../Public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="Public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
 	<script src="Public/js/bootstrap-sortable.js"></script>
 	<script src="Public/js/mysearch.js"></script>	
@@ -12,37 +12,12 @@
 
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2 col-sm-12">
-			<?php     
-
-	            if(!isset($_SESSION['nom']))
-	            {
-	                print '<div class="alert alert-dismissible alert-warning">';
-	                print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-	                print "<h4>Vous n'&ecirc;tes pas connecter!</h4>";
-	                print '<a href="index.php?op=login">Se connecter</a>';
-	                print '</div>';
-
-	                exit();
-	            }
-	            /*else {
-        			$now = time();
-
-			        if ($now > $_SESSION['expire']) {
-			            session_destroy();
-			            print '<div class="alert alert-dismissible alert-warning">';
-	                	print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-	                	print "<h4>Votre session est expir&eacute; !</h4>";
-	                	print '<a href="index.php?op=login">Se connecter</a>';
-	                	print '</div>';
-			        }
-			        else { */
-
-						$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
-	        ?>
-	    	</div>
-    	</div>
+			
+		<?php 
+			sec_session_start();
+			if($check == true) {
+				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
+		?>
     	<div class="row">
 			<div class="col-md-4 col-lg-4">
 				<a href="index.php?page=projet&op=new">Ajouter projet</a>
@@ -110,12 +85,23 @@
 			</div>
 
 		</div>
-	</div>
 
-	<?php
-      //  }
-    //}
-?>
+		<?php
+
+			} else { 
+				print '<div class="row">';
+				print '<div class="col-lg-12 col-md-12 col-sm-12">';
+				print '<div class="alert alert-dismissible alert-warning">';
+				print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+				print "<h4>Vous n'&ecirc;tes pas connecter!</h4>";
+				print '<a href="index.php?op=login">Se connecter</a>';
+				print '</div>';
+				print '</div>';
+				print '</div>';
+			} 
+
+		?>
+	</div>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
   <link href="Public/css/style-authentification.css" rel="stylesheet">
   <link rel="stylesheet" href="Public/font-awesome/css/font-awesome.min.css">
   
-  <script src="Public/js/script-authentification.js"></script>
+  <script type="text/JavaScript" src="Public/js/script-authentification.js"></script>
   <script type="text/JavaScript" src="Public/js/sha512.js"></script> 
   <script type="text/JavaScript" src="Public/js/forms.js"></script> 
 
@@ -28,6 +28,21 @@
       ?>
 
   <div class="container">
+    <?php 
+      sec_session_start();
+      if($check == true) {
+        print '<div class="row">';
+        print '<div class="col-lg-12 col-md-12 col-sm-12">';
+        print '<div class="alert alert-dismissible alert-info">';
+        print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+        print "<h4>Vous &ecirc;tes d&eacute;ja connect&eacute; !</h4>";
+        print '<a href="index.php?op=logout">Se d&eacute;connecter</a>';
+        print '</div>';
+        print '</div>';
+        print '</div>';
+      } else { 
+
+    ?>
     <div class="login-container">
       <div id="output"></div>
       <div>
@@ -46,6 +61,10 @@
       </div>
 
     </div>
+
+    <?php
+  }
+    ?>
   </div>
 
 

@@ -2,7 +2,8 @@
 
 require_once 'Model/GrilleService.php';
 require_once 'Model/ProjetService.php';
-require_once '../notation/Includes/connect.php';
+include_once 'Includes/functions.php';
+require_once 'Includes/connect.php';
 
 class GrilleController
 {
@@ -42,6 +43,8 @@ class GrilleController
 
 		$this->ModifierGrille();
 
+        $check = login_check();
+
 		include 'View/grilles.php';
 	}
 	public function ListeProjets() {
@@ -74,6 +77,8 @@ class GrilleController
 				$errors = $e->getErrors();
 			}
 		}
+
+        $check = login_check();
 
 		include 'View/grille-form.php';
 

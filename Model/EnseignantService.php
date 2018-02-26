@@ -25,7 +25,7 @@ class EnseignantService {
 
 		try {
 			$this->enseignantGateway->Login($nom, $motDePasse);
-			$result = $this->enseignantGateway->login_check();
+			$result = $this->enseignantGateway->IsLogged();
 			return $result;
 		} catch (Exception $e) {
 			throw $e;
