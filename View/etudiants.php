@@ -39,7 +39,6 @@
       </script>
     </div>
     
-<<<<<<< HEAD
 	<div class="col-lg-12">
   <table class="table table-responsive">
     <thead>
@@ -69,8 +68,6 @@
   </table>
 </div>
 
-
-=======
     <div class="col-lg-12 col-md-12">
       <hr>
       <h4>S&eacute;l&eacute;ctionnez un groupe d'&eacute;tudiant pour la notation :</h4>
@@ -101,7 +98,6 @@
   </div>
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
->>>>>>> 221d46883ab25f835d5bcde2a728c4b258d9d0e2
   <form method="post" action="index.php?page=etudiant" enctype="multipart/form-data">
 	<input type="hidden" name="ProjID" value="<?php print (isset($_POST['selectProjet']) ? $_POST['selectProjet'] : "0");?>"/>
     <input type="file" name="import"/>
@@ -155,8 +151,6 @@
 		
 	}
   ?>
-<<<<<<< HEAD
-=======
 </div>
 
 
@@ -175,7 +169,6 @@
       } 
 
     ?>
->>>>>>> 221d46883ab25f835d5bcde2a728c4b258d9d0e2
 	
 	</div>
 </body>
