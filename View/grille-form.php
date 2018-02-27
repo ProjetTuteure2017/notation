@@ -18,25 +18,15 @@
         ?>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2 col-sm-12">
-                    <?php     
-                        if(!isset($_SESSION['nom']))
-                        {
-                            print '<div class="alert alert-dismissible alert-warning">';
-                            print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-                            print "<h4>Vous n'&ecirc;tes pas connecter!</h4>";
-                            print '<a href="index.php?op=login">Se connecter</a>';
-                            print '</div>';
+            <?php 
+                sec_session_start();
+                if($check == true) {
+                    $enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
+            ?>
 
-                            exit();
-                        }
 
-                        $enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 
-                    ?>
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div id="mydiv">
                         <div class="panel panel-compte">
                             <div class="panel-heading">
@@ -45,7 +35,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         
                                         <form role="form" method="POST" action="" style="display : block;">
                                             <div class="form-group">
@@ -77,6 +67,22 @@
 
                 </div>
             </div>
+
+            <?php
+
+            } else { 
+                print '<div class="row">';
+                print '<div class="col-lg-12 col-md-12 col-sm-12">';
+                print '<div class="alert alert-dismissible alert-warning">';
+                print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                print "<h4>Vous n'&ecirc;tes pas connecter!</h4>";
+                print '<a href="index.php?op=login">Se connecter</a>';
+                print '</div>';
+                print '</div>';
+                print '</div>';
+            } 
+
+        ?>
         </div>
 
 

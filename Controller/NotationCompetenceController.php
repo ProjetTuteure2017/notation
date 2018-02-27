@@ -4,7 +4,8 @@ require_once 'Model/CompetenceService.php';
 require_once 'Model/GrilleService.php';
 require_once 'Model/ProjetService.php';
 require_once 'Model/GroupeService.php';
-require_once '../notation/connect.php';
+include_once 'Includes/functions.php';
+require_once 'Includes/connect.php';
 
 class NotationCompetenceController{
 	
@@ -70,6 +71,8 @@ class NotationCompetenceController{
 		$competences = $this->competenceService->getAllCompetences($grilleId);
 		//$this->AjouterNoteCompetence();
 		
+        $check = login_check();
+
 		include 'View/noteCompetence.php';	
 	}
 	

@@ -8,23 +8,13 @@
 
 <body>
   <div class="container">
-    <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2 col-sm-12">
-    <?php     
+    <?php 
+      sec_session_start();
+      if($check == true) {
+        $enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
+    ?>
 
-            if(!isset($_SESSION['nom']))
-            {
-                print '<div class="alert alert-dismissible alert-warning">';
-                print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-                print "<h4>Vous n'&ecirc;tes pas connecter!</h4>";
-                print '<a href="index.php?op=login">Se connecter</a>';
-                print '</div>';
-
-                exit();
-            }
-
-      $enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
-        ?>
-      </div>
+    <div class="row">
       <div class="col-sm-12 col-md-8 col-lg-8">
       <h4>S&eacute;l&eacute;ctionnez le projet pour afficher les gilles associ&eacute;es</h4>
       <form method="post" action="">
@@ -47,26 +37,30 @@
         document.getElementById('selectProjet').value = "<?php echo isset($_POST['selectProjet']) ? $_POST['selectProjet'] : "-1";?>";
       </script>
     </div>
-
-<div class="col-md-12">
+  </div>
+<hr>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   <table class="table table-responsive table-bordered">
     <thead>
       <tr>
-        <th>Groupes</th>
-        <th>Nom etudiants</th>
-        <th colspan="<?php print count($grilles);?>">Grilles</th>
-        <th>Note groupe</th>
+        <th style="width: 10%">Groupes</th>
+        <th style="width: 20%">Nom etudiants</th>
+        <th style="width: 60%" colspan="<?php print count($grilles);?>">Grilles</th>
+        <th style="width: 10%">Note groupe</th>
+        <th style="width: 5%">Details</th>
       </tr>
       <tr>
         <th></th>
       	<th></th>
         <?php 
           foreach($grilles as $grille) :
-            print '<th>'.$grille['titre'].'</th>';
+            print '<th style="width: 20%">'.$grille['titre'].'</th>';
           endforeach;
 
         ?>
       	<th></th>
+        <th></th>
 
       </tr>
     </thead>
@@ -99,36 +93,53 @@
             
           }
 
-          //$noteGroupe = $groupe['noteGroupe'];
-		  $groupeId = $groupe['id'];
-		  $notesGrilles = $this->grilleService->getNotesByIdGroupe($groupeId);
-		  $i=0;
-			$n=0;
-			foreach($notesGrilles as $nG){
-				if(count($notesGrilles) > 0){
-					$n += $nG['note'];
-					$i++;
-				}
-			}
-			$noteGroupe = ($n == 0 || $i == 0) ? NULL : ($n / $i);
-			
+          $groupeId = $groupe['id'];
+          $notesGrilles = $this->grilleService->getNotesByIdGroupe($groupeId);
+          $i=0;
+          $n=0;
+          foreach($notesGrilles as $nG){
+          	if(count($notesGrilles) > 0){
+          		$n += $nG['note'];
+          		$i++;
+          	}
+          }
+          $noteGroupe = ($n == 0 || $i == 0) ? NULL : ($n / $i);
+
           if($noteGroupe>10)
-            {
-              print '<td class="bg-success">'.$noteGroupe.'</td>';
-            }
-            else if ($noteGroupe < 10 && isset($noteGroupe))
-            {
-              print '<td class="bg-warning">'.$noteGroupe.'</td>';
-            }
-            else if(!isset($noteGroupe))
-            {
-              print '<td class="bg-danger">'.$noteGroupe.'</td>';
-            }
+          {
+            print '<td class="bg-success">'.$noteGroupe.'</td>';
+          }
+          else if ($noteGroupe < 10 && isset($noteGroupe))
+          {
+            print '<td class="bg-warning">'.$noteGroupe.'</td>';
+          }
+          else if(!isset($noteGroupe))
+          {
+            print '<td class="bg-danger">'.$noteGroupe.'</td>';
+          }
+          print '<td><a href="http://notation/index.php?page=etudiant&op=note&idgroupe='.$groupe['id'].'">+</a></td>';
           print '</tr>';
         endforeach;
       ?>
     </tbody>
   </table>
+</div>
+</div>
+    <?php
+
+      } else { 
+        print '<div class="row">';
+        print '<div class="col-lg-12 col-md-12 col-sm-12">';
+        print '<div class="alert alert-dismissible alert-warning">';
+        print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+        print "<h4>Vous n'&ecirc;tes pas connecter!</h4>";
+        print '<a href="index.php?op=login">Se connecter</a>';
+        print '</div>';
+        print '</div>';
+        print '</div>';
+      } 
+
+    ?>
 </div>
 </body>
 </html>

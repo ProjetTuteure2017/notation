@@ -1,14 +1,16 @@
 <?php
+ 
 $_SESSION = array();
 
-if (ini_get("session.use_cookies")) {
-    $params = session_get_cookie_params();
-    setcookie(session_name(), '', time() - 42000,
-        $params["path"], $params["domain"],
-        $params["secure"], $params["httponly"]
-    );
-}
-
+$params = session_get_cookie_params();
+ 
+setcookie(session_name(),
+        '', time() - 42000, 
+        $params["path"], 
+        $params["domain"], 
+        $params["secure"], 
+        $params["httponly"]);
+ 
 session_destroy();
 ?>
 <!DOCTYPE html>
@@ -28,7 +30,7 @@ session_destroy();
 
   <div class="container">
     <div class="row">
-      <div class="col-md-offset-3 col-md-6 col-xs-12">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
         	<div class="alert alert-dismissible alert-success">
             <button type="button" class="close" data-dismiss="alert">&times;</button>

@@ -2,7 +2,7 @@
 
 require_once 'Model/EnseignantGateway.php';
 require_once 'Model/ValidationException.php';
-require_once '../notation/connect.php';
+require_once '../notation/Includes/connect.php';
 
 class EnseignantService {
 
@@ -48,6 +48,24 @@ class EnseignantService {
 
 		try {
 			$result = $this->enseignantGateway->IsResponsable();
+			return $result;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
+	public function canRegister($email, $username) {
+		try {
+			$result = $this->enseignantGateway->registerCheck($email, $username);
+			return $result;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
+	public function IsRegister($nom, $prenom, $username, $email, $password) {
+		try {
+			$result = $this->enseignantGateway->register($nom, $prenom, $username, $email, $password);
 			return $result;
 		} catch (Exception $e) {
 			throw $e;

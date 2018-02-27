@@ -3,7 +3,7 @@
 class ProjetGateway {
 
 	public function SelectAll($enseignantId) {
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
         $stmt = $conn->prepare("SELECT * FROM projet WHERE enseignantId= :ENSEIGNANTID");
         $stmt->execute(array('ENSEIGNANTID'=>$enseignantId));
@@ -13,7 +13,7 @@ class ProjetGateway {
 	}
 
 	public function Ajouter($titre, $description, $enseignantId) {
-        include '../notation/connect.php';
+        include '../notation/Includes/connect.php';
         
         $titre = isset($_POST['titre']) ? $_POST['titre'] : '';
         $description = isset($_POST['description']) ? $_POST['description'] : '';
@@ -25,7 +25,7 @@ class ProjetGateway {
 
     public function Modifier($id, $titre, $description)
     {
-        include '../notation/connect.php';
+        include '../notation/Includes/connect.php';
 
         $id = isset($_POST['id']) ? $_POST['id'] : '';
         $titre = isset($_POST['titre']) ? $_POST['titre'] : '';
@@ -37,7 +37,7 @@ class ProjetGateway {
 	
 	public function SelectProject($groupeId){
 		
-		include '../notation/connect.php';
+		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("SELECT projetId FROM groupe WHERE id = :GROUPEID");
 

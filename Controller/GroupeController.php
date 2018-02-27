@@ -3,7 +3,8 @@
 require_once 'Model/GroupeService.php';
 require_once 'Model/ProjetService.php';
 require_once 'Model/GrilleService.php';
-require_once '../notation/connect.php';
+include_once 'Includes/functions.php';
+require_once 'Includes/connect.php';
 
 class GroupeController
 {
@@ -61,6 +62,8 @@ class GroupeController
 
 		//Grilles of selected project
 		$grilles = $this->ListeGrilles();
+
+        $check = login_check();
 
 		include 'View/groupes.php';
 	}

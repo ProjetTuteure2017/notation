@@ -8,32 +8,21 @@
 
 <body>
 	<div class="container">
-		<div class="col-md-12">
-			<?php     
-                if(!isset($_SESSION['nom']))
-                {
-	                print '<div class="alert alert-dismissible alert-warning">';
-	                print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-	                print "<h4>Vous n'&ecirc;tes pas connecter!</h4>";
-	                print '<a href="index.php?op=login">Se connecter</a>';
-	                print '</div>';
-
-	                exit();
-                }
-
+		<?php 
+			sec_session_start();
+			if($check == true) {
 				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
+		?>
 
-            ?>
-        </div>
-
-		<div class="col-md-12">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<table class="table table-responsive table-bordered">
-		    	<thead>
-		      		<tr>
-		        		<th>Noms des &eacute;tudiants</th>
-		        		<th>Pourcentage &eacute;tudiant</th>
-		        		<th>Note &eacute;tudiant</th>
-		       			<th>Note groupe</th>
+		    	<thead class="indigo">
+		      		<tr class="text-white">
+		        		<th style="width: 20%">Noms des &eacute;tudiants</th>
+		        		<th style="width: 20%">Pourcentage &eacute;tudiant</th>
+		        		<th style="width: 20%">Note &eacute;tudiant</th>
+		       			<th style="width: 20%">Note groupe</th>
 		       		</tr>
 				</thead>
 				<tbody>
@@ -47,7 +36,7 @@
 						print '</td>';
 
 						print '<td>';
-						print $json[$i]['pourcentage'];
+						print $json[$i]['pourcentage'].'%';
 						print '</td>';
 
 						print '<td>';
@@ -67,6 +56,22 @@
 				</tbody>
 			</table>
 		</div>
+	</div>
+		<?php
+
+			} else { 
+				print '<div class="row">';
+				print '<div class="col-lg-12 col-md-12 col-sm-12">';
+				print '<div class="alert alert-dismissible alert-warning">';
+				print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+				print "<h4>Vous n'&ecirc;tes pas connecter!</h4>";
+				print '<a href="index.php?op=login">Se connecter</a>';
+				print '</div>';
+				print '</div>';
+				print '</div>';
+			} 
+
+		?>
 	</div>
 </body>
 </html>

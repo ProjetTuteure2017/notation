@@ -2,7 +2,7 @@
 
 require_once 'Model/GrilleGateway.php';
 require_once 'Model/ValidationException.php';
-require_once '../notation/connect.php';
+require_once '../notation/Includes/connect.php';
 
 class GrilleService
 {
@@ -46,10 +46,10 @@ class GrilleService
 		}
 	}
 
-	public function modifierGrille($id, $titre, $note_sur, $coef, $projetId)
+	public function modifierGrille($id, $titre, $note_sur, $coef)
 	{
 		try {
-			$res=$this->grilleGateway->Modifier($id, $titre, $note_sur, $coef, $projetId);
+			$res=$this->grilleGateway->Modifier($id, $titre, $note_sur, $coef);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;

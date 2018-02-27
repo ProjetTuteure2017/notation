@@ -2,7 +2,8 @@
 
 require_once 'Model/GrilleService.php';
 require_once 'Model/ProjetService.php';
-require_once '../notation/connect.php';
+include_once 'Includes/functions.php';
+require_once 'Includes/connect.php';
 
 class GrilleController
 {
@@ -37,10 +38,12 @@ class GrilleController
 		$title = 'Liste des grilles';
 
 		$projets = $this->ListeProjets();
-		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
+		$projetId = isset($_GET['projetId']) ? $_GET['projetId'] : NULL;
 		$grilles = $this->grilleService->getAllGrilles($projetId);
 
 		$this->ModifierGrille();
+
+        $check = login_check();
 
 		include 'View/grilles.php';
 	}
@@ -68,12 +71,14 @@ class GrilleController
 
 			try {
 				$this->grilleService->ajouterGrille($titre, $note_sur, $coef, $projetId);
-				$this->redirect('index.php');
+				$this->redirect('http://notation/index.php?page=grille&projetId='.$projetId);
 				return;
 			} catch (ValidationException $e) {
 				$errors = $e->getErrors();
 			}
 		}
+
+        $check = login_check();
 
 		include 'View/grille-form.php';
 
@@ -94,10 +99,9 @@ class GrilleController
 			$titre = isset($_POST['titre']) ? $_POST['titre'] : NULL;
 			$note_sur = isset($_POST['note_sur']) ? $_POST['note_sur'] : NULL;
 			$coef = isset($_POST['coef']) ? $_POST['coef'] : NULL;     
-			$projetId = isset($_POST['projetId']) ? $_POST['projetId'] : NULL;
 
 			try {
-                $this->grilleService->modifierGrille($id, $titre, $note_sur, $coef, $projetId);
+                $this->grilleService->modifierGrille($id, $titre, $note_sur, $coef);
                 header("Refresh:0");
                 return;
             } catch (ValidationException $e) {

@@ -25,6 +25,37 @@ footer p
 	visibility: visible;
 }
 
+.btn-info {
+    color: #fff;
+    background-color: #E040FB;
+    border-color: #E040FB;
+}
+.btn-info:hover{
+    background-color: #cd30e8;
+    border-color: #cd30e8;
+}
+
+.btn-primary{
+    color : #fff;
+    background-color: #3F51B5;
+    border-color: #3F51B5;
+}
+.btn-primary:hover{
+    background-color: #293fb5;
+    border-color: #293fb5;
+}
+
+.btn-outline-primary {
+    color: #3F51B5;
+    background-color: transparent;
+    background-image: none;
+    border-color: #3F51B5;
+}
+.btn-outline-primary:hover{
+    background-color: #3F51B5;
+    border-color: #3F51B5;
+}
+
 #btnValider{
     margin-top: 5px;
     margin-bottom: 5px;
@@ -49,4 +80,19 @@ footer p
     padding: 12px 20px 12px 40px; /* Add some padding */
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
+}
+
+table { table-layout: fixed; }
+
+table th, table td 
+{ 
+    overflow: hidden; 
+}
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+.indigo
+{
+  background-color : #303F9F;
 }
