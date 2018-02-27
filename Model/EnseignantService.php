@@ -54,6 +54,24 @@ class EnseignantService {
 		}
 	}
 
+	public function canRegister($email, $username) {
+		try {
+			$result = $this->enseignantGateway->registerCheck($email, $username);
+			return $result;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
+	public function IsRegister($nom, $prenom, $username, $email, $password) {
+		try {
+			$result = $this->enseignantGateway->register($nom, $prenom, $username, $email, $password);
+			return $result;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
 }
 
 ?>

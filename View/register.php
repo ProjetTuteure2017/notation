@@ -1,24 +1,26 @@
 <?php
-include_once 'includes/register.inc.php';
-include_once 'includes/functions.php';
+include_once 'Includes/functions.php';
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>Secure Login: Registration Form</title>
-        <script type="text/JavaScript" src="js/sha512.js"></script> 
-        <script type="text/JavaScript" src="js/forms.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>
+        <?php print htmlentities($title); ?>
+        </title>
+        <script type="text/JavaScript" src="Public/js/sha512.js"></script> 
+        <script type="text/JavaScript" src="Public/js/forms.js"></script>
     </head>
     <body>
-        <!-- Registration form to be output if the POST variables are not
-        set or if the registration script caused an error. -->
-        <h1>Register with us</h1>
         <?php
-        if (!empty($error_msg)) {
-            echo $error_msg;
+        if ( $errors ) {
+            print '<ul class="errors">';
+            foreach ( $errors as $field => $error ) {
+                print '<li>'.htmlentities($error).'</li>';
+            }
+            print '</ul>';
         }
-        ?>
+      ?>
         <ul>
             <li>Usernames may contain only digits, upper and lowercase letters and underscores</li>
             <li>Emails must have a valid email format</li>
@@ -32,34 +34,60 @@ include_once 'includes/functions.php';
             </li>
             <li>Your password and confirmation must match exactly</li>
         </ul>
-        <form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" 
-                method="post" 
-                name="registration_form">
-                Nom: <input type='text' 
-                name='nom' 
-                id='nom' /><br>
-                Prenom: <input type='text' 
-                name='prenom' 
-                id='prenom' /><br>
-            Username: <input type='text' 
-                name='username' 
-                id='username' /><br>
-            Email: <input type="text" name="email" id="email" /><br>
-            Password: <input type="password"
-                             name="password" 
-                             id="password"/><br>
-            Confirm password: <input type="password" 
-                                     name="confirmpwd" 
-                                     id="confirmpwd" /><br>
-            <input type="submit" 
-                   value="Register" 
-                   onclick="return regformhash(this.form,
-                    this.form.nom, this.form.prenom,
-                                   this.form.username,
-                                   this.form.email,
-                                   this.form.password,
-                                   this.form.confirmpwd);" /> 
-        </form>
-        <p>Return to the <a href="index.php">login page</a>.</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div id="mydiv">
+                        <div class="panel panel-compte">
+                            <div class="panel-heading">
+                                <h5>S'enregistrer</h5>
+                                <hr>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" name="registration_form" style="display: block;">
+                                            <div class="form-group">
+                                                <input type="text" name="nom" id="nom" placeholder="Nom" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="prenom" id="prenom" placeholder="Prenom" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="email" id="email" placeholder="Email" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="password" id="password" placeholder="Mot de passe" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="confirmpwd" id="confirmpwd" placeholder="Confirmation mot de passe" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                                        <input type="submit" value="Register" 
+                                                           onclick="return regformhash(this.form, this.form.nom, this.form.prenom,
+                                                                           this.form.username,
+                                                                           this.form.email,
+                                                                           this.form.password,
+                                                                           this.form.confirmpwd);" /> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </body>
 </html>
