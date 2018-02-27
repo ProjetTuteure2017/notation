@@ -32,16 +32,18 @@
 					for ($i=0; $i < count($json); $i++) { 
 						print '<tr>';
 
+
 						print '<td>';
 						print $json[$i]['nom'];
 						print '</td>';
-
+						print '<form method="POST" action="">';
 						print '<td>';
-						print '<input class="form-control" name="pourcentage" id="pourcentage" value='.$json[$i]['pourcentage'].'>';
+						print '<input class="hidden" name="nom" id="nom" value="'.htmlentities($json[$i]['nom']).'">';
+						print '<input class="form-control" name="pourcentage" id="pourcentage" value="'.htmlentities($json[$i]['pourcentage']).'"">';
 						print '</td>';
 
 						print '<td>';
-						print '<input class="form-control" name="pourcentage" id="pourcentage" value='.$json[$i]['note'].'>';
+						print '<input class="form-control" name="note" id="note" value="'.htmlentities($json[$i]['note']).'"">';
 						print '</td>';
 						/*if($i==0)
 						{
@@ -51,9 +53,11 @@
 						}*/
 
 						print '<td>';
-						print '<input type="submit" class="btn btn-info" value="Valider" name="btnValider">';
+						print '<input type="hidden" name="form-submitted" value="1" />';
+						print '<input type="submit" class="btn btn-sm btn-info" value="Valider" name="btnValider">';
 						print '</td>';
 
+						print '</form>';
 						print '</tr>';
 					}
 

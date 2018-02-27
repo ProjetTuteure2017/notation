@@ -46,13 +46,13 @@ class GroupeGateway
 		return $result;
 	}
 
-	public function AjouterNoteEtudiant($idGroupe, $nomEtudiant)
+	public function ModifierNoteEtudiant($idGroupe, $nomEtudiant, $note, $pourcentage)
 	{
 		include '../notation/Includes/connect.php';
 
-		$stmt = $conn->prepare("UPDATE groupe SET etudiant= JSON_SET(etudiant, '$.note', ':NOTE', '$.pourcentage', ':POURCENTAGE')
+		$stmt = $conn->prepare("UPDATE groupe SET etudiant= JSON_SET(etudiant, '$.note', :NOTE, '$.pourcentage', :POURCENTAGE)
 								WHERE id = :IDGROUPE AND etudiant->'$.nom' = :NOM");
-		$stmt->execute(array("GROUPEID"=>$groupeId, "NOM"=>$nomEtudiant));
+		$stmt->execute(array("NOTE"=>$note, "POURCENTAGE"=>$pourcentage,"IDGROUPE"=>$idGroupe, "NOM"=>$nomEtudiant));
 	}
 
 	public function InsertGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet){
@@ -66,11 +66,6 @@ class GroupeGateway
 		return $result;
 	}
 
-	public function ModifierGroupe($idGroupe, $pourcentage, $note)
-	{
-		include '../notation/Includes/connect.php';
-		
-	}
 	
 	/** select g.noteGroupe, e.noteFinale, e.percentage, p.nom 
 FROM etudiant e 

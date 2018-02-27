@@ -65,6 +65,8 @@ class EtudiantController
 		$idGroupe = isset($_GET['idgroupe']) ? $_GET['idgroupe'] : NULL;
 		$groupe = $this->groupeService->getNoteGroupe($idGroupe);
 
+		$this->ModifierNoteEtudiant();
+
         $check = login_check();
 
 		include 'View/groupe-note.php';
@@ -75,6 +77,30 @@ class EtudiantController
 		
 	}
 
-	
+	public function ModifierNoteEtudiant() {
+
+		$title = 'Modifer note';
+
+		$nom ='';
+		$note ='';
+		$pourcentage ='';
+
+		$errors = array();
+
+		$idGroupe = isset($_GET['idgroupe']) ? $_GET['idgroupe'] : NULL;
+
+		if(isset($_POST['form-submitted'])){
+			$nom = isset($_POST['nom']) ? $_POST['nom'] : NULL;
+			$note = isset($_POST['note']) ? $_POST['note'] : NULL;
+			$pourcentage = isset($_POST['pourcentage']) ? $_POST['pourcentage'] : NULL;
+			try {
+				$this->groupeService->ModifyNoteEtudiant($idGroupe, $nom, $note, $pourcentage);
+				header("Refresh:0");
+				return;
+			} catch (ValidationException $e) {
+				$errors = $e->getErrors();
+			}
+		}
+	}
 
 }

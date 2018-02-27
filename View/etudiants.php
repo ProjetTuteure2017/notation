@@ -39,35 +39,6 @@
       </script>
     </div>
     
-	<div class="col-lg-12">
-  <table class="table table-responsive">
-    <thead>
-	<h4>S&eacute;l&eacute;ctionnez un groupe d'&eacute;tudiant pour la notation :</h4>
-      <tr>
-        <th>Groupes</th>
-        <th>Nom etudiants</th>
-      </tr>
-      
-    </thead>
-    <tbody>
-      <?php 
-	  echo $projetId;
-        foreach ($groupes as $groupe): 
-          print '<tr>';
-          print '<td>'.$groupe['nomGroupe'].'</td></a>';
-          $json = json_decode($groupe['etudiant'], true);
-          print '<td>';
-          for ($i=0; $i < count($json); $i++) { 
-            print $json[$i]['nom']. '; ';
-          }
-          print '</td>';
-        endforeach;
-      ?>
-      </tr>   
-    </tbody>
-  </table>
-</div>
-
     <div class="col-lg-12 col-md-12">
       <hr>
       <h4>S&eacute;l&eacute;ctionnez un groupe d'&eacute;tudiant pour la notation :</h4>
@@ -104,9 +75,7 @@
     <input type="submit" name="submit" value="Charger" />
   </form>
   <?php 
-  if(isset($_POST['selectProjet'])){
-  print "llllllllaaaa" .  $_POST['selectProjet'];
-  }
+
     if(isset($_FILES['import']))
     {
 		  echo '+++++'.$_FILES['import']['name'];

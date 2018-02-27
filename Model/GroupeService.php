@@ -46,6 +46,16 @@ class GroupeService
 		}
 	}
 	
+	public function ModifyNoteEtudiant($idGroupe, $nomEtudiant, $note, $pourcentage)
+	{
+		try {
+			$res = $this->groupeGateway->ModifierNoteEtudiant($idGroupe, $nomEtudiant, $note, $pourcentage);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
 	public function AjouterGroupe($etudiant, $idGroupe, $note, $idProjet){
 		try {
 			$res = $this->groupeGateway->InsertGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet);
