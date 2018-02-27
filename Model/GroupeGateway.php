@@ -65,6 +65,12 @@ class GroupeGateway
 
 		return $result;
 	}
+
+	public function ModifierGroupe($idGroupe, $pourcentage, $note)
+	{
+		include '../notation/Includes/connect.php';
+		
+	}
 	
 	/** select g.noteGroupe, e.noteFinale, e.percentage, p.nom 
 FROM etudiant e 
