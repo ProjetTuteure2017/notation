@@ -47,6 +47,7 @@
 							<td><?php echo '<a href="index.php?page=grille&projetId='.htmlentities($projet['id']).'">Liste</a>';?></td>
 							<td><button id="btnModifier" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($projet['id'])?>" type="button" class="btn btn-sm btn-info">Modifier</button></td>
 						</tr>
+						
 						<!-- Modal -->
 						<div class="modal fade" id="myModalModifier<?php print htmlentities($projet['id'])?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog" role="document">

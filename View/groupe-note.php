@@ -14,15 +14,15 @@
 				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 		?>
 
-
+	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<table class="table table-responsive table-bordered">
-		    	<thead>
-		      		<tr>
-		        		<th>Noms des &eacute;tudiants</th>
-		        		<th>Pourcentage &eacute;tudiant</th>
-		        		<th>Note &eacute;tudiant</th>
-		       			<th>Note groupe</th>
+		    	<thead class="indigo">
+		      		<tr class="text-white">
+		        		<th style="width: 20%">Noms des &eacute;tudiants</th>
+		        		<th style="width: 20%">Pourcentage &eacute;tudiant</th>
+		        		<th style="width: 20%">Note &eacute;tudiant</th>
+		       			<th style="width: 20%">Note groupe</th>
 		       		</tr>
 				</thead>
 				<tbody>
@@ -36,7 +36,7 @@
 						print '</td>';
 
 						print '<td>';
-						print $json[$i]['pourcentage'];
+						print $json[$i]['pourcentage'].'%';
 						print '</td>';
 
 						print '<td>';
@@ -56,6 +56,7 @@
 				</tbody>
 			</table>
 		</div>
+	</div>
 		<?php
 
 			} else { 

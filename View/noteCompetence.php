@@ -85,32 +85,32 @@
 	
     </div>
 	
-	<div class="col-lg-12">
-  <table class="table table-responsive">
-    <thead>
-	<h4>S&eacute;l&eacute;ctionnez un groupe d'&eacute;tudiant pour la notation :</h4>
-      <tr>
-        <th>Groupes</th>
-        <th>Nom etudiants</th>
-      </tr>
-      
-    </thead>
-    <tbody>
-      <?php 
-        foreach ($groupes as $groupe): 
-          print '<tr>';
-          print '<td><a onClick="return Verif_Selection();" class="lien-noteGroupe" href="index.php?page=noteGroupe&op=list&projetId='.(isset($_GET['selectProjet']) ? $_GET['selectProjet'] : NULL).'&groupeId='.$groupe['id'].'&grilleId=">'.$groupe['nomGroupe'].'</td></a>';
-          $json = json_decode($groupe['etudiant'], true);
-          print '<td>';
-          for ($i=0; $i < count($json); $i++) { 
-            print $json[$i]['nom']. '; ';
-          }
-          print '</td>';
-        endforeach;
-      ?>
-      </tr>   
-    </tbody>
-  </table>
+	<div class="col-lg-12 col-md-12 col-sm-12">
+	 <h4>S&eacute;l&eacute;ctionnez un groupe d'&eacute;tudiant pour la notation :</h4>
+    <table class="table table-responsive table-hover">
+      <thead class="indigo">
+        <tr class="text-white">
+          <th style="width : 30%">Groupes</th>
+          <th style="width : 50%">Noms des &eacute;tudiants</th>
+        </tr>
+        
+      </thead>
+      <tbody>
+        <?php 
+          foreach ($groupes as $groupe): 
+            print '<tr>';
+            print '<td><a onClick="return Verif_Selection();" class="lien-noteGroupe" href="index.php?page=noteGroupe&op=list&projetId='.(isset($_GET['selectProjet']) ? $_GET['selectProjet'] : NULL).'&groupeId='.$groupe['id'].'&grilleId=">'.$groupe['nomGroupe'].'</td></a>';
+            $json = json_decode($groupe['etudiant'], true);
+            print '<td>';
+            for ($i=0; $i < count($json); $i++) { 
+              print $json[$i]['nom']. '<br /> ';
+            }
+            print '</td>';
+          endforeach;
+        ?>
+        </tr>   
+      </tbody>
+    </table>
 </div>
 
     <?php

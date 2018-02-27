@@ -14,7 +14,7 @@
         $enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
     ?>
 
-		<div class="col-sm-12 col-md-8 col-lg-8">
+		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
       <h4>S&eacute;l&eacute;ctionnez un projet :</h4>
       <form method="post" action="">
         <div class="input-group">
@@ -37,13 +37,14 @@
       </script>
     </div>
     
-  	<div class="col-lg-12">
-      <table class="table table-responsive">
-        <thead>
-    	     <h4>S&eacute;l&eacute;ctionnez un groupe d'&eacute;tudiant pour la notation :</h4>
-          <tr>
-            <th>Groupes</th>
-            <th>Nom etudiants</th>
+    <div class="col-lg-12 col-md-12">
+      <hr>
+      <h4>S&eacute;l&eacute;ctionnez un groupe d'&eacute;tudiant pour la notation :</h4>
+      <table class="table table-responsive table-hover">
+        <thead class="indigo">
+          <tr class="text-white">
+            <th style="width : 30%">Groupes</th>
+            <th style="width: 50%">Noms des &eacute;tudiants</th>
           </tr>
           
         </thead>
@@ -55,7 +56,7 @@
               $json = json_decode($groupe['etudiant'], true);
               print '<td>';
               for ($i=0; $i < count($json); $i++) { 
-                print $json[$i]['nom']. '; ';
+                print $json[$i]['nom']. '<br /> ';
               }
               print '</td>';
             endforeach;

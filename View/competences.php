@@ -4,40 +4,43 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
-	<script src="Public/js/myscripts.js"></script>	
+	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
+	<script src="Public/js/bootstrap-sortable.js"></script>
+	<script src="Public/js/mysearch.js"></script>	
+	<script src="Public/js/myscripts.js"></script>
 		
 </head>
 
 <body>
 	<div class="container">
-<?php 
+		<?php 
 			sec_session_start();
 			if($check == true) {
 				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 		?>
 
-		<div class="col-sm-12 col-md-8 col-lg-8">
-      <h4>S&eacute;l&eacute;ctionnez le projet pour afficher les grilles associ&eacute;es</h4>
-      <form method="post" action="">
-        <div class="input-group">
-          <select class="custom-select" id="selectProjet" name="selectProjet">
-            <option selected="selected">Veuillez selectioner un projet....</option>
-            <?php 
-              foreach ($projets as $projet) : 
-                print '<option value="'.$projet['id'].'">';
-                print htmlentities($projet['titre']);
-              endforeach; 
-            ?>
-          </select>
-          <div class="input-group-append">
-            <button type="button submit" class="btn btn-outline-primary">S&eacute;l&eacute;ctionner</button>
-          </div>
-        </div>
-      </form>
-      <script type="text/javascript">
-        document.getElementById('selectProjet').value = "<?php echo $_POST['selectProjet'];?>";
-      </script>
-    </div>
+	<div class="col-sm-12 col-md-8 col-lg-8">
+		<h4>S&eacute;l&eacute;ctionnez le projet pour afficher les grilles associ&eacute;es</h4>
+		<form method="post" action="">
+			<div class="input-group">
+				<select class="custom-select decorated" id="selectProjet" name="selectProjet">
+					<option selected="selected">Veuillez selectioner un projet....</option>
+					<?php 
+					foreach ($projets as $projet) : 
+					print '<option value="'.$projet['id'].'">';
+					print htmlentities($projet['titre']);
+					endforeach; 
+					?>
+				</select>
+				<div class="input-group-append">
+					<button type="button submit" class="btn btn-outline-primary">S&eacute;l&eacute;ctionner</button>
+				</div>
+			</div>
+		</form>
+		<script type="text/javascript">
+		document.getElementById('selectProjet').value = "<?php echo $_POST['selectProjet'];?>";
+		</script>
+		</div>
     
 		<div class="col-sm-12 col-md-8 col-lg-8">
       <h4>S&eacute;l&eacute;ctionnez la grille pour afficher les competences associ&eacute;es</h4>
@@ -62,58 +65,81 @@
       </script>
     </div>
     
-		<div class="col-sm-4 col-md-4 col-lg-4">
+    <div class="row">
+		<div class="col-sm-12 col-md-12 col-lg-12">
 			<?php 
 				//$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
 				print '<a href="index.php?page=competence&op=new&grilleId='.$grilleId.'">Ajouter competence</a>';
 			?>
 		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+			<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
+		</div>
 		<div class="col-sm-12 col-md-12 col-lg-12">	
-			<table class="table table-striped table-responsive">
-				<thead>
-					<tr>
-						<th scope="col">Id</th>
-						<th scope="col">Theme</th>
-						<th scope="col">Intitule</th>
-						<th scope="col">NB Point</th>
-						<th scope="col"></th>
+			<table id="myTable" class="table table-hover table-responsive sortable">
+				<thead class="indigo">
+					<tr class="text-white">
+						<th scope="col" style="width: 25%">Th&egrave;me</th>
+						<th data-defaultsort="disabled" scope="col" style="width: 50%">Intitule</th>
+						<th data-defaultsort="disabled" scope="col" style="width: 20%">Nombre du point</th>
+						<th data-defaultsort="disabled" scope="col" style="width: 20%"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php 
 						foreach ($competences as $competence) : ?>
 					<tr>
-						<td><?php print htmlentities($competence['id']); ?></td>
 						<td><?php print htmlentities($competence['theme']); ?></td>
 						<td><?php print htmlentities($competence['intitule']); ?></td>
 						<td><?php print htmlentities($competence['nombrePoint']); ?></td>
-						<td><button id="btnModifier" type="button" onClick="showHide('modifier<?php print htmlentities($competence['id'])?>')" class="btn btn-sm btn-info">Modifier</button></td>
+						<td><button id="btnModifier" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($competence['id'])?>" type="button" class="btn btn-sm btn-info">Modifier</button></td>
 					</tr>
-					<tr id="modifier<?php print htmlentities($competence['id'])?>" class="closed">
-						<td colspan="5">
-							<div>
-		                        <form method="POST" action="" style="display : inline;">
-		                        	<input class="hidden" type="text" name="id" value="<?php print htmlentities($competence['id']); ?>"/>
-		                            <label for="theme">Theme:</label>
-		                            <input type="text" name="theme" value="<?php print htmlentities($competence['theme']); ?>"/>
-									<label for="Intitule">Intitule:</label>
-		                            <input type="text" name="intitule" value="<?php print htmlentities($competence['intitule']); ?>"/>
-		                            <label for="nombrePoint">Nombre de Points:</label>
-		                            <input type="text" name="nombrePoint" value="<?php print htmlentities($competence['nombrePoint']); ?>"/>
-		                            <label for="grilleId">GrilleId:</label>
-		                            <input type="text" name="grilleId" value="<?php print htmlentities($competence['grilleId']);?>"/>
-		                            <input type="hidden" name="form-submitted" value="1" />
-		                            <input type="submit" value="Valider" />
-		                        </form>
 
+					<!-- Modal -->
+					<div class="modal fade" id="myModalModifier<?php print htmlentities($competence['id'])?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+					<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Modification du projet</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<form method="POST" action="">
+							<input class="hidden" type="text" name="id" value="<?php print htmlentities($competence['id']); ?>"/>
+
+							<div class="form-groupe">
+								<label for="theme">Theme :</label>
+								<input type="text" class="form-control" name="theme" id="theme" value="<?php print htmlentities($competence['theme']); ?>"/>
 							</div>
-						</td>
-					</tr>
+							<div class="form-groupe">
+								<label for="intitule">Intitule :</label>
+								<input type="text" class="form-control" name="intitule" id="intitule" value="<?php print htmlentities($competence['intitule']); ?>"/>
+							</div>
+							<div class="form-groupe">
+								<label for="nombrePoint">Nombre de Points :</label>
+								<input type="text" class="form-control" name="nombrePoint" id="nombrePoint" value="<?php print htmlentities($competence['nombrePoint']); ?>"/>
+							</div>
+							<div class="form-groupe">
+								<input type="hidden" name="form-submitted" value="1" />
+								<input type="submit" class="btn btn-info" value="Valider" id="btnValider" class="btn" />
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Annuler</button>
+					</div>
+					</div>
+					</div>
+					</div>
 					<?php endforeach; ?>
+					<!-- !!!! -->
 				</tbody>
 			</table>
 		</div>
-
+	</div>
 		
 		<?php
 

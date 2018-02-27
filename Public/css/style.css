@@ -45,6 +45,17 @@ footer p
     border-color: #293fb5;
 }
 
+.btn-outline-primary {
+    color: #3F51B5;
+    background-color: transparent;
+    background-image: none;
+    border-color: #3F51B5;
+}
+.btn-outline-primary:hover{
+    background-color: #3F51B5;
+    border-color: #3F51B5;
+}
+
 #btnValider{
     margin-top: 5px;
     margin-bottom: 5px;
@@ -72,6 +83,7 @@ footer p
 }
 
 table { table-layout: fixed; }
+
 table th, table td 
 { 
     overflow: hidden; 
