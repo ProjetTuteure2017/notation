@@ -4,6 +4,8 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
+	<script src="..\Public\js\etudiant.js" type="text/javascript"></script>
+	<script src="..\Public\js\verif_selection.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -28,7 +30,7 @@
             ?>
           </select>
           <div class="input-group-append">
-            <button type="button submit" class="btn btn-outline-primary">S&eacute;l&eacute;ctionner</button>
+            <button type="button submit" class="btn btn-outline-primary" >S&eacute;l&eacute;ctionner</button>
           </div>
         </div>
       </form>
@@ -37,6 +39,38 @@
       </script>
     </div>
     
+<<<<<<< HEAD
+	<div class="col-lg-12">
+  <table class="table table-responsive">
+    <thead>
+	<h4>S&eacute;l&eacute;ctionnez un groupe d'&eacute;tudiant pour la notation :</h4>
+      <tr>
+        <th>Groupes</th>
+        <th>Nom etudiants</th>
+      </tr>
+      
+    </thead>
+    <tbody>
+      <?php 
+	  echo $projetId;
+        foreach ($groupes as $groupe): 
+          print '<tr>';
+          print '<td>'.$groupe['nomGroupe'].'</td></a>';
+          $json = json_decode($groupe['etudiant'], true);
+          print '<td>';
+          for ($i=0; $i < count($json); $i++) { 
+            print $json[$i]['nom']. '; ';
+          }
+          print '</td>';
+        endforeach;
+      ?>
+      </tr>   
+    </tbody>
+  </table>
+</div>
+
+
+=======
     <div class="col-lg-12 col-md-12">
       <hr>
       <h4>S&eacute;l&eacute;ctionnez un groupe d'&eacute;tudiant pour la notation :</h4>
@@ -67,61 +101,62 @@
   </div>
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+>>>>>>> 221d46883ab25f835d5bcde2a728c4b258d9d0e2
   <form method="post" action="index.php?page=etudiant" enctype="multipart/form-data">
+	<input type="hidden" name="ProjID" value="<?php print (isset($_POST['selectProjet']) ? $_POST['selectProjet'] : "0");?>"/>
     <input type="file" name="import"/>
     <input type="submit" name="submit" value="Charger" />
   </form>
   <?php 
+  if(isset($_POST['selectProjet'])){
+  print "llllllllaaaa" .  $_POST['selectProjet'];
+  }
     if(isset($_FILES['import']))
     {
-      echo '+++++'.$_FILES['import']['name'];
-      
-      $content_dir = 'C:\\wamp64\\www\\tmp\\';
-      $name_file = $_FILES['import']['name'];
-      $tmp_file = $_FILES['import']['tmp_name'];
-      if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
-      {
-        exit("Impossible de copier le fichier dans $content_dir");
-      }
-      echo "Le fichier a bien été uploadé";
-      
-      //$file = $_FILES['import']['name'];
-      //echo $file;
-      //$name_file = $_FILES['import']['name'];
- 
-      //if (file_exists($file)){
-        $fp = fopen($content_dir.$name_file, "r");
-        echo 'Fichier en lecture<br>';
-      //}
-      /*else { /* le fichier n'existe pas 
-        echo "Fichier introuvable !<br>Importation stoppée.";
-        exit();
-      }*/
-      
-      $ligne = fgetcsv($fp);
-      while (!feof($fp)){
-        $ligne = fgetcsv($fp);
-        
-        //echo 'lecture des lignes<br>';
-        //
-        $num = count($ligne);
+		  echo '+++++'.$_FILES['import']['name'];
+		  
+		  $content_dir = 'C:\\wamp64\\www\\tmp\\';
+		  $name_file = $_FILES['import']['name'];
+		  $tmp_file = $_FILES['import']['tmp_name'];
+		  if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
+		  {
+			exit("Impossible de copier le fichier dans $content_dir");
+		  }
+		  echo "Le fichier a bien été uploadé";
+		  $fp = fopen($content_dir.$name_file, "r");
+		  echo 'Fichier en lecture<br>';
+		  
+		  //$i=0;
+		  $ligne = fgetcsv($fp);
+		  while (!feof($fp)){
+		 $ligne = fgetcsv($fp);
 
-        for ($c=0; $c < $num; $c++) {
-          list($nom,$prenom,$idGroupe,$note,$pourcentage) = explode(';', $ligne[$c]);
-          echo $ligne[$c]. "<br />\n";
-          echo 'nom:'.$nom.' prenom:'.$prenom.' id:'.$idGroupe. "<br />\n";
-          echo "<br />\n";
-        }
-		echo "coucou";
-		//if(isset($_POST['selectProjet']))
-		{
-			echo "coucou";
-			//$idProjet = isset($_POST['selectProjet']) ? isset($_POST['selectProjet']) : NULL;
-			$this->AddGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, 3);
+			$ProjID = $_POST['ProjID'];
+			echo "ID PROJET ". $ProjID;
+			
+			$num = count($ligne);
+			//for ($c=0; $c < $num; $c++) {
+			  list($nom,$prenom,$idGroupe,$note,$pourcentage) = explode(';', $ligne[0]);
+			  echo $ligne[0]. "<br />\n";
+			  echo 'nom:'.$nom.' prenom:'.$prenom.' id:'.$idGroupe. "<br/>\n";
+			  echo "<br />\n";
+			  $etudiant = "[{\"nom\" : \"".$nom."\",\"prenom\" : \"".$prenom."\",\"pourcentage\" : \"".$pourcentage."\",\"note\" : \"".$note."\"}]";
+			//}
+			
+			
+			//$tab = array('etudiant' => $etudiant, 'idGroupe' => $idGroupe, 'note'=> $note, 'idProjet'=>$ProjID);
+			//if()
+			//$tab2d = array( $i => $tab);
+			
+			$this->AddGroupe($etudiant, ("Groupe ".$idGroupe), $note, $ProjID);
+
 		}
-      }
-    }
+		
+		
+	}
   ?>
+<<<<<<< HEAD
+=======
 </div>
 
 
@@ -140,6 +175,7 @@
       } 
 
     ?>
+>>>>>>> 221d46883ab25f835d5bcde2a728c4b258d9d0e2
 	
 	</div>
 </body>

@@ -46,7 +46,7 @@ class GroupeService
 		}
 	}
 	
-	public function AjouterGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet){
+	public function AjouterGroupe($etudiant, $idGroupe, $note, $idProjet){
 		try {
 			$res = $this->groupeGateway->InsertGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet);
 			return $res;

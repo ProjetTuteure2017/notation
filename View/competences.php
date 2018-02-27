@@ -4,21 +4,70 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
+<<<<<<< HEAD
+	<script src="../Public/js/myscripts.js"></script>	
+	<script src="../Public/js/search.js"></script>
+	<script src="../Public/js/etudiant.js"></script>
+=======
 	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
 	<script src="Public/js/bootstrap-sortable.js"></script>
 	<script src="Public/js/mysearch.js"></script>	
 	<script src="Public/js/myscripts.js"></script>
 		
+>>>>>>> 221d46883ab25f835d5bcde2a728c4b258d9d0e2
 </head>
 
 <body>
 	<div class="container">
+<<<<<<< HEAD
+		<div class="col-md-12">
+			<?php     
+                if(!isset($_SESSION['nom']))
+                {
+	                print '<div class="alert alert-dismissible alert-warning">';
+	                print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+	                print "<h4>Vous n'&ecirc;tes pas connecter!</h4>";
+	                print '<a href="index.php?op=login">Se connecter</a>';
+	                print '</div>';
+	                exit();
+                }
+
+=======
 		<?php 
 			sec_session_start();
 			if($check == true) {
+>>>>>>> 221d46883ab25f835d5bcde2a728c4b258d9d0e2
 				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 		?>
 
+<<<<<<< HEAD
+            ?>
+        </div>
+		<div class="col-sm-12 col-md-8 col-lg-8">	
+		<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
+		
+		<h4>S&eacute;l&eacute;ctionnez le projet pour afficher les grilles associ&eacute;es</h4>
+		<form method="post" action="">
+			<div class="input-group">
+				<select class="custom-select" id="selectProjet" name="selectProjet">
+					<option selected="selected">Veuillez selectioner un projet....</option>
+					<?php 
+						foreach ($projets as $projet) : 
+						print '<option value="'.$projet['id'].'">';
+						print htmlentities($projet['titre']);
+						endforeach; 
+					?>
+				</select>
+          <div class="input-group-append">
+            <button type="button submit" class="btn btn-outline-primary">S&eacute;l&eacute;ctionner</button>
+          </div>
+        </div>
+      </form>
+      <script type="text/javascript">
+        document.getElementById('selectProjet').value = "<?php echo $_POST['selectProjet'];?>";
+      </script>
+    </div>
+=======
 	<div class="col-sm-12 col-md-8 col-lg-8">
 		<h4>S&eacute;l&eacute;ctionnez le projet pour afficher les grilles associ&eacute;es</h4>
 		<form method="post" action="">
@@ -41,6 +90,7 @@
 		document.getElementById('selectProjet').value = "<?php echo $_POST['selectProjet'];?>";
 		</script>
 		</div>
+>>>>>>> 221d46883ab25f835d5bcde2a728c4b258d9d0e2
     
 		<div class="col-sm-12 col-md-8 col-lg-8">
       <h4>S&eacute;l&eacute;ctionnez la grille pour afficher les competences associ&eacute;es</h4>
@@ -72,6 +122,18 @@
 				print '<a href="index.php?page=competence&op=new&grilleId='.$grilleId.'">Ajouter competence</a>';
 			?>
 		</div>
+<<<<<<< HEAD
+			<div class="col-md-12">
+				<table id="myTable" class="table table-striped table-responsive">
+			
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Theme</th>
+						<th scope="col">Intitule</th>
+						<th scope="col">NB Point</th>
+						<th scope="col"></th>
+=======
 	</div>
 	<hr>
 	<div class="row">
@@ -86,6 +148,7 @@
 						<th data-defaultsort="disabled" scope="col" style="width: 50%">Intitule</th>
 						<th data-defaultsort="disabled" scope="col" style="width: 20%">Nombre du point</th>
 						<th data-defaultsort="disabled" scope="col" style="width: 20%"></th>
+>>>>>>> 221d46883ab25f835d5bcde2a728c4b258d9d0e2
 					</tr>
 				</thead>
 				<tbody>

@@ -55,12 +55,17 @@ class GroupeGateway
 		$stmt->execute(array("GROUPEID"=>$groupeId, "NOM"=>$nomEtudiant));
 	}
 	
+<<<<<<< HEAD
+	public function InsertGroupe($etudiant, $idGroupe, $note, $idProjet){
+		include '../notation/connect.php';
+=======
 	public function InsertGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet){
 		include '../notation/Includes/connect.php';
+>>>>>>> 221d46883ab25f835d5bcde2a728c4b258d9d0e2
 		
 		$stmt = $conn->prepare("INSERT INTO groupe (nomGroupe, etudiant, noteGroupe, projetId) VALUES(:NOMGROUPE, :ETUDIANT, :NOTEGROUPE, :PROJETID)");
-		$format = "{\"nom\" : \"".$nom."\",\"prenom\" : \"".$prenom."\",\"pourcentage\" : \"".$pourcentage."\",\"note\" : \"".$note."\"}";
-		$stmt->execute(array(":NOMGROUPE"=>$idGroupe, ":ETUDIANT"=> $format, ":NOTEGROUPE"=>0, "PROJETID"=>$idProjet));
+		
+		$stmt->execute(array(":NOMGROUPE"=>$idGroupe, ":ETUDIANT"=> $$etudiant, ":NOTEGROUPE"=>$note, "PROJETID"=>$idProjet));
 		$result = $stmt->fetchAll();
 
 		return $result;
