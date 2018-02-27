@@ -226,7 +226,6 @@ class NotationGroupeCompetenceController
 	}
 	
 	public function ModifyNoteGrille() {
-			//TODO  
 		$title = 'Modifier une note de grille';
 		$note = '';
 		$grilleId = '';
@@ -254,10 +253,6 @@ class NotationGroupeCompetenceController
 				}
 			}
 			$note = ($n == 0 || $i == 0) ? NULL : ($n / $i);
-			
-			/*$nouvelleNoteCompetence = isset($_POST['note']) ? $_POST['note'] : NULL;
-			$nombrePoint = isset($_POST['nombrePoint']) ? $_POST['nombrePoint'] : NULL;
-			$note = ($moyenne + (($nouvelleNoteCompetence / $nombrePoint) * 20))/2;*/
 
 			try {
 				$this->grilleService->UpdateNoteGrille($note, $grilleId, $groupeId, $appreciation);

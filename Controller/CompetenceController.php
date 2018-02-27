@@ -78,7 +78,8 @@ class CompetenceController
 			$intitule = isset($_POST['intitule']) ? $_POST['intitule'] : NULL;
 			$nombrePoint = isset($_POST['nombrePoint']) ? $_POST['nombrePoint'] : NULL;
 			$grilleId = isset($_POST['grilleId']) ? $_POST['grilleId'] : NULL;
-
+			
+			
 			try {
 				$this->competenceService->ajouterCompetence($theme, $intitule, $nombrePoint, $grilleId);
 				$this->redirect('index.php');

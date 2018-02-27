@@ -4,8 +4,9 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
-	<script src="Public/js/myscripts.js"></script>	
-		
+	<script src="../Public/js/myscripts.js"></script>	
+	<script src="../Public/js/search.js"></script>
+	<script src="../Public/js/etudiant.js"></script>
 </head>
 
 <body>
@@ -19,7 +20,6 @@
 	                print "<h4>Vous n'&ecirc;tes pas connecter!</h4>";
 	                print '<a href="index.php?op=login">Se connecter</a>';
 	                print '</div>';
-
 	                exit();
                 }
 
@@ -27,19 +27,21 @@
 
             ?>
         </div>
-		<div class="col-sm-12 col-md-8 col-lg-8">
-      <h4>S&eacute;l&eacute;ctionnez le projet pour afficher les grilles associ&eacute;es</h4>
-      <form method="post" action="">
-        <div class="input-group">
-          <select class="custom-select" id="selectProjet" name="selectProjet">
-            <option selected="selected">Veuillez selectioner un projet....</option>
-            <?php 
-              foreach ($projets as $projet) : 
-                print '<option value="'.$projet['id'].'">';
-                print htmlentities($projet['titre']);
-              endforeach; 
-            ?>
-          </select>
+		<div class="col-sm-12 col-md-8 col-lg-8">	
+		<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
+		
+		<h4>S&eacute;l&eacute;ctionnez le projet pour afficher les grilles associ&eacute;es</h4>
+		<form method="post" action="">
+			<div class="input-group">
+				<select class="custom-select" id="selectProjet" name="selectProjet">
+					<option selected="selected">Veuillez selectioner un projet....</option>
+					<?php 
+						foreach ($projets as $projet) : 
+						print '<option value="'.$projet['id'].'">';
+						print htmlentities($projet['titre']);
+						endforeach; 
+					?>
+				</select>
           <div class="input-group-append">
             <button type="button submit" class="btn btn-outline-primary">S&eacute;l&eacute;ctionner</button>
           </div>
@@ -79,8 +81,9 @@
 				print '<a href="index.php?page=competence&op=new&grilleId='.$grilleId.'">Ajouter competence</a>';
 			?>
 		</div>
-		<div class="col-sm-12 col-md-12 col-lg-12">	
-			<table class="table table-striped table-responsive">
+			<div class="col-md-12">
+				<table id="myTable" class="table table-striped table-responsive">
+			
 				<thead>
 					<tr>
 						<th scope="col">Id</th>

@@ -48,17 +48,18 @@
                                     
                                     <form role="form" method="POST" action="" style="display : block;">
 										<div class="form-group">
-                                            <input type="text" class="form-control" name="theme" value="<?php print htmlentities($theme) ?>" placeholder="Theme">
+                                            <input type="text" class="form-control" name="theme" placeholder="Theme">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="intitule" value="<?php print htmlentities($intitule) ?>" placeholder="Intitule">
+                                            <input type="text" class="form-control" name="intitule" placeholder="Intitule">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="nombrePoint" value="<?php print htmlentities($nombrePoint) ?>" placeholder="Nombre de Points">
+                                            <input type="text" class="form-control" name="nombrePoint" placeholder="Nombre de Points">
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">
+													<input type="hidden" name="grilleId" value="<?php print (isset($_GET['grilleId'])? $_GET['grilleId'] : NULL);?>" /> 
                                                     <input type="hidden" name="form-submitted" value="1" />
                                                     <input type="submit" value="Valider" tabindex="4" class="form-control btn"/>
                                         </div>
