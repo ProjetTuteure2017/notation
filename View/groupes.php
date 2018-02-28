@@ -20,11 +20,11 @@
       <form method="post" action="">
         <div class="input-group">
           <select class="custom-select" id="selectProjet" name="selectProjet">
-            <option value="-1" selected="selected">Veuillez selectioner un projet....</option>
+            <option value="-1" selected="selected">Veuillez selectioner un projet...</option>
             <?php 
               foreach ($projets as $projet) : 
                 print '<option value="'.$projet['id'].'">';
-                print htmlentities($projet['titre']);
+                print htmlentities($projet['titre']).'</option>';
               endforeach; 
             ?>
           </select>

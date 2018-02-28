@@ -33,8 +33,9 @@
 					<thead class="indigo">
 						<tr class="text-white">
 							<th scope="col" style="width: 25%">Titre</th>
-							<th data-defaultsort="disabled" scope="col" style="width: 60%">Description</th>
+							<th data-defaultsort="disabled" scope="col" style="width: 50%">Description</th>
 							<th data-defaultsort="disabled" scope="col" style="width: 10%">Grilles</th>
+							<th data-defaultsort="disabled" scope="col" style="width: 10%">Enseignant</th>
 							<th data-defaultsort="disabled" scope="col" style="width: 10%">Modifier</th>
 						</tr>
 					</thead>
@@ -45,6 +46,7 @@
 							<td><?php print htmlentities($projet['titre']); ?></td>
 							<td><?php print htmlentities($projet['description']); ?></td>
 							<td><?php echo '<a href="index.php?page=grille&projetId='.htmlentities($projet['id']).'"><i class="fas fa-list"></i></a>';?></td>
+							<td><?php echo '<a href="index.php?page=enseignant&op=add&projetId='.htmlentities($projet['id']).'"><i class="fas fa-plus"></i></a>';?></td>
 							<td><button id="btnModifier" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($projet['id'])?>" type="button" class="btn btn-sm btn-info"><i class="far fa-edit"></i></button></td>
 						</tr>
 						

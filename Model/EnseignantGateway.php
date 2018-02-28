@@ -2,6 +2,25 @@
 
 class EnseignantGateway {
 
+	public function SelectAll($currentId)
+	{
+		include '../notation/Includes/connect.php';
+
+        $stmt = $conn->prepare("SELECT p.id, p.nom FROM enseignant e INNER JOIN personne p ON e.personneId = p.id WHERE p.id != :ID ");
+        $stmt->execute(array("ID"=>$currentId));
+        $result = $stmt->fetchAll();
+        
+        return $result;	
+	}
+
+	public function AddEnseignantProjet($projetId, $enseignantId)
+	{
+		include '../notation/Includes/connect.php';
+
+		$stmt = $conn->prepare("INSERT INTO projetenseignant VALUES (:PROJETID, :ENSID)");
+		$stmt->execute(array("PROJETID"=>$projetId, "ENSID"=>$enseignantId));
+	}
+
 	public function login($email, $password) {
 		include '../notation/Includes/connect.php';
 

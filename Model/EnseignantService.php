@@ -12,6 +12,25 @@ class EnseignantService {
 		$this->enseignantGateway = new EnseignantGateway();
 	}
 
+
+	public function getAllEnseignants($currentId) {
+		try {
+			$result = $this->enseignantGateway->SelectAll($currentId);
+			return $result;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
+	public function AddEnseignantsToProject($projetId, $enseignantId) {
+		try {
+			$result = $this->enseignantGateway->AddEnseignantProjet($projetId, $enseignantId);
+			return $result;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
+
 	public function EnseignantLoginExist($nom, $motDePasse) {
 		try {
 			$result = $this->enseignantGateway->Login($nom, $motDePasse);

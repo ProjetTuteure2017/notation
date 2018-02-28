@@ -26,6 +26,8 @@ class EnseignantController{
             	$this->Page();
             } else if($op == 'resp') {
                 $this->ResponsablePage();
+            } else if($op == 'add') {
+                $this->AddEnseignantToProjet();
             } else if($op == 'reg') {
                 $this->Register();
             } else if($op == 'succes') {
@@ -55,6 +57,23 @@ class EnseignantController{
         $check = login_check();
 
     	include 'View/responsable-page.php';
+    }
+
+    public function AddEnseignantToProjet()
+    {
+        $title = "Ajout enseignant au projet";
+        $projetId = isset($_GET['projetId']) ? $_GET['projetId'] : NULL;
+
+        $currentId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
+
+        $enseignants = $this->enseignantService->getAllEnseignants($currentId);
+
+        $ensSelectionne = isset($_POST['selectEnseignant']) ? $_POST['selectEnseignant'] : NULL;
+        $result = $this->enseignantService->AddEnseignantsToProject($projetId, $ensSelectionne);
+
+        $check = login_check();
+
+        include 'View/enseignants.php';
     }
 
     public function SuccessPage()
