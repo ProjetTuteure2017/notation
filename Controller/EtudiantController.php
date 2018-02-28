@@ -71,9 +71,8 @@ class EtudiantController
 
 		include 'View/groupe-note.php';
 	}
-	
-	public function AddGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet){
-		$this->groupeService->AjouterGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet);
+	public function AddGroupe($etudiant, $idGroupe, $note, $idProjet){
+		$this->groupeService->AjouterGroupe($etudiant, $idGroupe, $note, $idProjet);
 		
 	}
 
@@ -84,10 +83,10 @@ class EtudiantController
 		$nom ='';
 		$note ='';
 		$pourcentage ='';
+		$idGroupe = isset($_GET['idgroupe']) ? $_GET['idgroupe'] : NULL;
 
 		$errors = array();
 
-		$idGroupe = isset($_GET['idgroupe']) ? $_GET['idgroupe'] : NULL;
 
 		if(isset($_POST['form-submitted'])){
 			$nom = isset($_POST['nom']) ? $_POST['nom'] : NULL;

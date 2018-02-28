@@ -58,7 +58,7 @@ class GroupeService
 
 	public function AjouterGroupe($etudiant, $idGroupe, $note, $idProjet){
 		try {
-			$res = $this->groupeGateway->InsertGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet);
+			$res = $this->groupeGateway->InsertGroupe($etudiant, $idGroupe, $note, $idProjet);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;

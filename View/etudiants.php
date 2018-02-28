@@ -105,7 +105,7 @@
 			  echo $ligne[0]. "<br />\n";
 			  echo 'nom:'.$nom.' prenom:'.$prenom.' id:'.$idGroupe. "<br/>\n";
 			  echo "<br />\n";
-			  $etudiant = "[{\"nom\" : \"".$nom."\",\"prenom\" : \"".$prenom."\",\"pourcentage\" : \"".$pourcentage."\",\"note\" : \"".$note."\"}]";
+			  $etudiant = "[{\"nom\" : \"".$nom."\",\"prenom\" : \"".$prenom."\",\"pourcentage\" : \"\",\"note\" : \"\"}]";
 			//}
 			
 			

@@ -50,46 +50,26 @@ class GroupeGateway
 	{
 		include '../notation/Includes/connect.php';
 
-		$stmt = $conn->prepare("UPDATE groupe SET etudiant= JSON_SET(etudiant, '$.note', :NOTE, '$.pourcentage', :POURCENTAGE)
-								WHERE id = :IDGROUPE AND etudiant->'$.nom' = :NOM");
-		$stmt->execute(array("NOTE"=>$note, "POURCENTAGE"=>$pourcentage,"IDGROUPE"=>$idGroupe, "NOM"=>$nomEtudiant));
+
+		/*$stmt = $conn->prepare("UPDATE groupe SET etudiant = [:ETUDIANT] WHERE id = :IDGROUPE");
+
+
+			//UPDATE groupe SET etudiant= JSON_SET(etudiant, '$.note', :NOTE, '$.pourcentage', :POURCENTAGE)
+			//					WHERE id = :IDGROUPE AND etudiant->'$.nom' = :NOM");
+		$etudiant = "{\"nom\" : \"".$nom."\",\"pourcentage\" : \"".$pourcentage."\",\"note\" : \"".$note."\"}";
+		$stmt->execute(array("NOTE"=>$note, "POURCENTAGE"=>$pourcentage,"IDGROUPE"=>$idGroupe, "NOM"=>$nomEtudiant));*/
 	}
 
-	public function InsertGroupe($nom, $prenom, $idGroupe, $note, $pourcentage, $idProjet){
+	public function InsertGroupe($etudiant, $idGroupe, $note, $idProjet){
 		include '../notation/Includes/connect.php';
 		
 		$stmt = $conn->prepare("INSERT INTO groupe (nomGroupe, etudiant, noteGroupe, projetId) VALUES(:NOMGROUPE, :ETUDIANT, :NOTEGROUPE, :PROJETID)");
 		
-		$stmt->execute(array(":NOMGROUPE"=>$idGroupe, ":ETUDIANT"=> $$etudiant, ":NOTEGROUPE"=>$note, "PROJETID"=>$idProjet));
+		//la variable $$etudaint , n'est pas declaré !! 
+		$stmt->execute(array(":NOMGROUPE"=>$idGroupe, ":ETUDIANT"=> $etudiant, ":NOTEGROUPE"=>$note, "PROJETID"=>$idProjet));
 		$result = $stmt->fetchAll();
 
 		return $result;
 	}
 
-	
-	/** select g.noteGroupe, e.noteFinale, e.percentage, p.nom 
-FROM etudiant e 
-inner join personne p on e.personneId =p.id 
-inner join groupe g on e.goupeId = g.id
-inner join grille gr on g.projetId = gr.projetId*/
-/*
-UPDATE `groupe` SET `etudiant` = '[{"nom": "Fastani", "note": "15", "pourcentage": "50"},{"nom": "Chandler", "note": "15", "pourcentage": "50"}]', `noteGroupe` = '14' WHERE `groupe`.`id` = 1
-SELECT etudiant->"$[*].nom" FROM groupe
-*/
-
-
-/*
-	$stmt = $conn->prepare("SELECT id, nomGroupe, etudiant, noteGroupe FROM groupe");
-		
-	$stmt->execute();
-	$result = $stmt->fetchAll();
-	foreach ($result as $gr): 
-		echo $gr['nomGroupe'];
-		$json = json_decode($gr['etudiant'], true);
-		for ($i=0; $i < count($json); $i++) { 
-			echo $json[$i]['nom'];
-		}
-		echo nl2br("\n");
-	endforeach;
-*/
 }
