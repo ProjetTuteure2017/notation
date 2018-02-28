@@ -15,28 +15,47 @@
                 $enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
         ?>
 
-
-        <div class="col-sm-12 col-md-8 col-lg-8">
-            <h4>S&eacute;l&eacute;ctionnez un projet :</h4>
-            <form method="post" action="">
-                <div class="input-group">
-                    <select class="custom-select" id="selectEnseignant" name="selectEnseignant">
-                        <option value="-1" selected="selected">Veuillez selectioner un enseignant...</option>
-                        <?php 
-                            foreach ($enseignants as $enseignant) : 
-                                print '<option value="'.$enseignant['id'].'">';
-                                print htmlentities($enseignant['nom']).'</option>';
-                            endforeach; 
-                        ?>
-                    </select>
-                    <div class="input-group-append">
-                        <button type="button submit" class="btn btn-outline-primary">S&eacute;l&eacute;ctionner</button>
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-8">
+                <h4>S&eacute;l&eacute;ctionnez un projet :</h4>
+                <form method="post" action="">
+                    <div class="input-group">
+                        <select class="custom-select" id="selectEnseignant" name="selectEnseignant">
+                            <option value="-1" selected="selected">Veuillez selectioner un enseignant...</option>
+                            <?php 
+                                foreach ($enseignants as $enseignant) : 
+                                    print '<option value="'.$enseignant['id'].'">';
+                                    print htmlentities($enseignant['nom']).'</option>';
+                                endforeach; 
+                            ?>
+                        </select>
+                        <div class="input-group-append">
+                            <button type="button submit" class="btn btn-outline-primary">S&eacute;l&eacute;ctionner</button>
+                        </div>
                     </div>
+                </form>
+                <script type="text/javascript">
+            document.getElementById('selectEnseignant').value = "<?php echo isset($_POST['selectEnseignant']) ? $_POST['selectEnseignant'] : "-1";?>";
+                </script>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h4>Les enseignants dans ce projet : </h4>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="list-group">
+                    <?php 
+                        foreach ($ensbyprojet as $value) {
+                            print '<p>';
+                            print $value['nom'];
+                            print '</p>';
+                        }
+
+                    ?>
                 </div>
-            </form>
-            <script type="text/javascript">
-        document.getElementById('selectEnseignant').value = "<?php echo isset($_POST['selectEnseignant']) ? $_POST['selectEnseignant'] : "-1";?>";
-            </script>
+            </div>
         </div>
 
         <?php 

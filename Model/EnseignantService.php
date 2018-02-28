@@ -22,6 +22,15 @@ class EnseignantService {
 		}
 	}
 
+	
+	public function getAllEnseignantsbyProjet($projetId) {
+		try {
+			$result = $this->enseignantGateway->SelectAllbyProjet($projetId);
+			return $result;
+		} catch (Exception $e) {
+			throw $e;
+		}
+	}
 	public function AddEnseignantsToProject($projetId, $enseignantId) {
 		try {
 			$result = $this->enseignantGateway->AddEnseignantProjet($projetId, $enseignantId);

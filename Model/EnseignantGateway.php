@@ -6,8 +6,19 @@ class EnseignantGateway {
 	{
 		include '../notation/Includes/connect.php';
 
-        $stmt = $conn->prepare("SELECT p.id, p.nom FROM enseignant e INNER JOIN personne p ON e.personneId = p.id WHERE p.id != :ID ");
+        $stmt = $conn->prepare("SELECT p.id, p.nom FROM enseignant e INNER JOIN personne p ON e.personneId = p.id WHERE p.id != :ID");
         $stmt->execute(array("ID"=>$currentId));
+        $result = $stmt->fetchAll();
+        
+        return $result;	
+	}
+
+	public function SelectAllbyProjet($projetId)
+	{
+		include '../notation/Includes/connect.php';
+
+        $stmt = $conn->prepare("SELECT p.nom FROM enseignant e, projetenseignant pe, personne p WHERE e.personneId = p.id AND pe.enseignantId = e.personneId AND pe.projetId =:PROJETID");
+        $stmt->execute(array("PROJETID"=>$projetId));
         $result = $stmt->fetchAll();
         
         return $result;	
@@ -18,7 +29,8 @@ class EnseignantGateway {
 		include '../notation/Includes/connect.php';
 
 		$stmt = $conn->prepare("INSERT INTO projetenseignant VALUES (:PROJETID, :ENSID)");
-		$stmt->execute(array("PROJETID"=>$projetId, "ENSID"=>$enseignantId));
+		$result = $stmt->execute(array("PROJETID"=>$projetId, "ENSID"=>$enseignantId));
+		return $result;
 	}
 
 	public function login($email, $password) {

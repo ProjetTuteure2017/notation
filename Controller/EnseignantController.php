@@ -68,9 +68,16 @@ class EnseignantController{
 
         $enseignants = $this->enseignantService->getAllEnseignants($currentId);
 
+        $ensbyprojet = $this->enseignantService->getAllEnseignantsbyProjet($projetId);
+
         $ensSelectionne = isset($_POST['selectEnseignant']) ? $_POST['selectEnseignant'] : NULL;
         $result = $this->enseignantService->AddEnseignantsToProject($projetId, $ensSelectionne);
-
+        if($result)
+        {
+            header("Refresh:0");
+            
+        }
+            
         $check = login_check();
 
         include 'View/enseignants.php';
