@@ -53,7 +53,7 @@ class GroupeGateway
 
 		/*$stmt = $conn->prepare("UPDATE groupe SET etudiant = [:ETUDIANT] WHERE id = :IDGROUPE");
 
-
+	//Donner la poistion de chaque etudiant dans le groupe $[1].note:
 			//UPDATE groupe SET etudiant= JSON_SET(etudiant, '$.note', :NOTE, '$.pourcentage', :POURCENTAGE)
 			//					WHERE id = :IDGROUPE AND etudiant->'$.nom' = :NOM");
 		$etudiant = "{\"nom\" : \"".$nom."\",\"pourcentage\" : \"".$pourcentage."\",\"note\" : \"".$note."\"}";

@@ -4,7 +4,7 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
-	<link href="Public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
 	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
 	<script src="Public/js/bootstrap-sortable.js"></script>
 	<script src="Public/js/mysearch.js"></script>	
@@ -35,7 +35,7 @@
 							<th scope="col" style="width: 25%">Titre</th>
 							<th data-defaultsort="disabled" scope="col" style="width: 60%">Description</th>
 							<th data-defaultsort="disabled" scope="col" style="width: 10%">Grilles</th>
-							<th data-defaultsort="disabled" scope="col" style="width: 10%"></th>
+							<th data-defaultsort="disabled" scope="col" style="width: 10%">Modifier</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -44,8 +44,8 @@
 						<tr>
 							<td><?php print htmlentities($projet['titre']); ?></td>
 							<td><?php print htmlentities($projet['description']); ?></td>
-							<td><?php echo '<a href="index.php?page=grille&projetId='.htmlentities($projet['id']).'">Liste</a>';?></td>
-							<td><button id="btnModifier" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($projet['id'])?>" type="button" class="btn btn-sm btn-info">Modifier</button></td>
+							<td><?php echo '<a href="index.php?page=grille&projetId='.htmlentities($projet['id']).'"><i class="fas fa-list"></i></a>';?></td>
+							<td><button id="btnModifier" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($projet['id'])?>" type="button" class="btn btn-sm btn-info"><i class="far fa-edit"></i></button></td>
 						</tr>
 						
 						<!-- Modal -->
