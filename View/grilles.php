@@ -37,6 +37,7 @@
 							<th scope="col" style="width: 60%">Titre</th>
 							<th data-defaultsort="disabled" scope="col" style="width: 20%">Not&eacute; sur</th>
 							<th data-defaultsort="disabled" scope="col" style="width: 20%">Coef</th>
+							<th data-defaultsort="disabled" scope="col" style="width: 20%">Comp&eacute;tences</th>
 							<th data-defaultsort="disabled" scope="col" style="width: 25%">Modifier</th>
 						</tr>
 					</thead>
@@ -47,6 +48,7 @@
 							<td><?php print htmlentities($grille['titre']); ?></td>
 							<td><?php print htmlentities($grille['note_sur']); ?></td>
 							<td><?php print htmlentities($grille['coef']); ?></td>
+							<td><?php echo '<a href="index.php?page=competence&grilleId='.htmlentities($grille['id']).'">';?><i class="fas fa-list"></i></a></td>
 							<td><button id="btnModifier" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($grille['id'])?>" type="button" class="btn btn-sm btn-info"><i class="far fa-edit"></i></button></td>
 						</tr>
 						<!-- Modal -->

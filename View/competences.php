@@ -16,59 +16,13 @@
 
 <body>
 	<div class="container">
-		<div class="row">
 		<?php 
 			sec_session_start();
 			if($check == true) {
 				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 		?>
-		<div class="col-sm-12 col-md-8 col-lg-8">
-			<h4>S&eacute;l&eacute;ctionnez le projet pour afficher les grilles associ&eacute;es</h4>
-			<form method="post" action="">
-				<div class="input-group">
-					<select class="custom-select decorated" id="selectProjet" name="selectProjet">
-						<option selected="selected">Veuillez selectioner un projet....</option>
-						<?php 
-						foreach ($projets as $projet) : 
-						print '<option value="'.$projet['id'].'">';
-						print htmlentities($projet['titre']);
-						endforeach; 
-						?>
-					</select>
-					<div class="input-group-append">
-						<button type="button submit" class="btn btn-outline-primary">S&eacute;l&eacute;ctionner</button>
-					</div>
-				</div>
-			</form>
-			<script type="text/javascript">
-			document.getElementById('selectProjet').value = "<?php echo $_POST['selectProjet'];?>";
-			</script>
-		</div>
-    
-			<div class="col-sm-12 col-md-8 col-lg-8">
-		      <h4>S&eacute;l&eacute;ctionnez la grille pour afficher les competences associ&eacute;es</h4>
-		      <form method="post" action="">
-		        <div class="input-group">
-		          <select class="custom-select" id="selectGrille" name="selectGrille">
-		            <option selected="selected">Veuillez selectioner une grille....</option>
-		            <?php 
-		              foreach ($grilles as $grille) : 
-		                print '<option value="'.$grille['id'].'">';
-		                print htmlentities($grille['titre']);
-		              endforeach; 
-		            ?>
-		          </select>
-		          <div class="input-group-append">
-		            <button type="button submit" class="btn btn-outline-primary">S&eacute;l&eacute;ctionner</button>
-		          </div>
-		        </div>
-		      </form>
-		      <script type="text/javascript">
-		        document.getElementById('selectGrille').value = "<?php echo $_POST['selectGrille'];?>";
-		      </script>
-	    </div>
-    
-    </div>
+
+
     <div class="row">
 		<div class="col-sm-12 col-md-12 col-lg-12">
 			<?php 

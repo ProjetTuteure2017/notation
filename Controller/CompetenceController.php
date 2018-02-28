@@ -41,9 +41,9 @@ class CompetenceController
 		$title = 'Liste des competences';
 
 		
-		$projets = $this->ListeProjets();
-		$grilles = $this->ListeGrilles();
-		$grilleId = isset($_POST['selectGrille']) ? $_POST['selectGrille'] : NULL;
+		//$projets = $this->ListeProjets();
+		//$grilles = $this->ListeGrilles();
+		$grilleId = isset($_GET['grilleId']) ? $_GET['grilleId'] : NULL;
 		$competences = $this->competenceService->getAllCompetences($grilleId);
 
 		$this->ModifierCompetence();
@@ -52,7 +52,7 @@ class CompetenceController
 
 		include 'View/competences.php';
 	}
-	
+	/*
 	public function ListeGrilles() {
 		$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
 		$grilles = $this->grilleService->getAllGrilles($projetId);
@@ -64,7 +64,7 @@ class CompetenceController
 		$projets = $this->projetService->getAllProjets($enseignantId);
 		return $projets;
 	}
-	
+	*/
 
 	public function AjouterCompetence() {
 		$title = 'Ajouter une competence';
