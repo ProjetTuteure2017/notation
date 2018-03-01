@@ -46,10 +46,10 @@ class GroupeService
 		}
 	}
 	
-	public function ModifyNoteEtudiant($idGroupe, $nomEtudiant, $note, $pourcentage)
+	public function ModifyNoteEtudiant($idGroupe, $position, $nomEtudiant, $note, $pourcentage)
 	{
 		try {
-			$res = $this->groupeGateway->ModifierNoteEtudiant($idGroupe, $nomEtudiant, $note, $pourcentage);
+			$res = $this->groupeGateway->ModifierNoteEtudiant($idGroupe, $position, $nomEtudiant, $note, $pourcentage);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;

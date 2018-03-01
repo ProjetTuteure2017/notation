@@ -65,7 +65,11 @@ class EtudiantController
 		$idGroupe = isset($_GET['idgroupe']) ? $_GET['idgroupe'] : NULL;
 		$groupe = $this->groupeService->getNoteGroupe($idGroupe);
 
-		$this->ModifierNoteEtudiant();
+		$result = $this->ModifierNoteEtudiant();
+		if($result)
+		{
+			header("Refresh:0");
+		}
 
         $check = login_check();
 
@@ -89,13 +93,14 @@ class EtudiantController
 
 
 		if(isset($_POST['form-submitted'])){
+			$position = isset($_POST['position']) ? $_POST['position'] : NULL;
 			$nom = isset($_POST['nom']) ? $_POST['nom'] : NULL;
 			$note = isset($_POST['note']) ? $_POST['note'] : NULL;
 			$pourcentage = isset($_POST['pourcentage']) ? $_POST['pourcentage'] : NULL;
 			try {
-				$this->groupeService->ModifyNoteEtudiant($idGroupe, $nom, $note, $pourcentage);
-				header("Refresh:0");
-				return;
+				$result = $this->groupeService->ModifyNoteEtudiant($idGroupe, $position, $nom, $note, $pourcentage);
+				//header("Refresh:0");
+				return $result;
 			} catch (ValidationException $e) {
 				$errors = $e->getErrors();
 			}

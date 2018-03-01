@@ -14,7 +14,9 @@
     <script src="Public/js/bootstrap.min.js"></script>
 
 <?php
-	session_start();
+	require_once 'Includes/functions.php';
+
+	sec_session_start();
 
 	$page = isset($_GET['page']) ? $_GET['page'] : NULL;
 	$op = isset($_GET['op']) ? $_GET['op'] : NULL;
@@ -29,14 +31,22 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <a class="navbar-brand" href="index.php">Notation</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    	<?php
+    	//id du responsable
+    		//if($idSession == 2)
+    		//{
+
+    			?>
         <li class="dropdown">
         	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partie configuration</a>
         	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
     			<a class="dropdown-item" href="index.php?page=etudiant">&Eacute;tudiants</a>
     			<a class="dropdown-item" href="index.php?page=projet">Projets</a>
-    			<a class="dropdown-item" href="index.php?page=competence">Comp&eacute;tences</a>
     		</div>
     	</li>
+    	<?php 
+    	//} 
+    	?>
     	<li class="dropdown">
         	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partie utilisation</a>
         	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -76,10 +86,6 @@
 	}
 	else {
 		switch ($_GET['page']) {
-			case 'responsable':
-				$enseignantController = new EnseignantController();
-				$enseignantController->HandleRequest();
-				break;
 			case 'enseignant':
 				$enseignantController = new EnseignantController();
 				$enseignantController->HandleRequest();
