@@ -4,6 +4,8 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
+	<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+	
 </head>
 
 <body>
@@ -23,6 +25,7 @@
 		        		<th style="width: 20%">Noms des &eacute;tudiants</th>
 		        		<th style="width: 20%">Pourcentage &eacute;tudiant</th>
 		        		<th style="width: 20%">Note &eacute;tudiant</th>
+		       			<th style="width: 5%">Modifier</th>
 		       			<th style="width: 10%"></th>
 		       		</tr>
 				</thead>
@@ -39,11 +42,11 @@
 						print '<td>';
 						print '<input class="hidden" name="position" id="position" value="'.htmlentities($i).'">';
 						print '<input class="hidden" name="nom" id="nom" value="'.htmlentities($json[$i]['nom']).'">';
-						print '<input class="form-control" name="pourcentage" id="pourcentage" value="'.htmlentities($json[$i]['pourcentage']).'"">';
+						print '<input class="form-control" name="pourcentage" id="pourcentage'.$i.'" value="'.htmlentities($json[$i]['pourcentage']).'" disabled="disabled">';
 						print '</td>';
 
 						print '<td>';
-						print '<input class="form-control" name="note" id="note" value="'.htmlentities($json[$i]['note']).'"">';
+						print '<input class="form-control" name="note" id="note'.$i.'" value="'.htmlentities($json[$i]['note']).'" disabled="disabled">';
 						print '</td>';
 						/*if($i==0)
 						{
@@ -51,6 +54,9 @@
 							print $groupe['noteGroupe'];
 							print '</td>';
 						}*/
+						print '<td>';
+						print '<button type="button" class="btn btn-sm btn-info" id="btnModifier'.$i.'"><i class="far fa-edit"></i></button>';
+						print '</td>';
 
 						print '<td>';
 						print '<input type="hidden" name="form-submitted" value="1" />';
@@ -59,13 +65,23 @@
 
 						print '</form>';
 						print '</tr>';
-					}
+						?>
+						<script type="text/javascript">
+								$('#btnModifier<?php echo $i?>').click(function(){
+							        $('#note<?php echo $i?>').prop('disabled', !$("#note<?php echo $i?>").attr('disabled'));
+							        $('#pourcentage<?php echo $i?>').prop('disabled', !$("#pourcentage<?php echo $i?>").attr('disabled'));
+								});
+							
+						</script>
+					<?php 
+				}
 
 				?>
 				</tbody>
 			</table>
 		</div>
 	</div>
+			
 		<?php
 
 			} else { 

@@ -68,7 +68,7 @@ class EtudiantController
 		$result = $this->ModifierNoteEtudiant();
 		if($result)
 		{
-			header("Refresh:0");
+			$this->redirect("index.php?page=etudiant&op=note&idgroupe=".$idGroupe);
 		}
 
         $check = login_check();
