@@ -7,28 +7,17 @@
   </title>
 
   <link href="Public/css/style-authentification.css" rel="stylesheet">
-  <link rel="stylesheet" href="Public/font-awesome/css/font-awesome.min.css">
-  
-  <script type="text/JavaScript" src="Public/js/script-authentification.js"></script>
   <script type="text/JavaScript" src="Public/js/sha512.js"></script> 
   <script type="text/JavaScript" src="Public/js/forms.js"></script> 
 
 </head>
 
 <body>
+  <div class="container">
  
       <?php
-        if ( $errors ) {
-            print '<ul class="errors">';
-            foreach ( $errors as $field => $error ) {
-                print '<li>'.htmlentities($error).'</li>';
-            }
-            print '</ul>';
-        }
-      ?>
 
-  <div class="container">
-    <?php 
+
       sec_session_start();
       if($check == true) {
         print '<div class="row">';
@@ -47,6 +36,20 @@
       <div id="output"></div>
       <div>
         <h3>Se connecter :</h3>
+        <?php 
+          if ( $errors ) {
+          print '<div class="row">';
+          print '<div class="col-lg-12 col-md-12 col-sm-12">';
+          print '<div class="alert alert-dismissible alert-danger">';
+          print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+            foreach ( $errors as $field => $error ) {
+                print '<strong>'.htmlentities($error).'</strong>';
+            }
+          print '</div>';
+          print '</div>';
+          print '</div>';
+        }
+        ?>
         <hr/>
       </div>
       <div class="form-box">
@@ -54,13 +57,25 @@
               <input type="text" name="email" placeholder="Email">
               <div class="password">
                 <input type="password" id="password" name="password" placeholder="Mot de passe"/>
-                <i id="filtersubmit" class="fa fa-eye"></i>
+                <a onclick="show()" id="filtersubmit"><i class="fa fa-eye"></i></a>
               </div>
               <input type="submit" value="Se connecter" class="btn btn-primary" onclick="formhash(this.form, this.form.password);"/>
         </form>
       </div>
 
     </div>
+    
+    <script type="text/javascript">
+      function show() {
+        var a=document.getElementById("password");
+        if (a.type=="password")  {
+          a.type="text";
+        }
+        else {
+          a.type="password";
+        }
+        }
+    </script>
 
     <?php
   }

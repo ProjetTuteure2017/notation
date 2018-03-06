@@ -91,15 +91,15 @@ class PagesController
             	} else if($enseignantExist == 2) 
             	{
                     //2 => Mot de passe incorrect
-                    //$this->Redirect('index.php?op=login');
-                    print 'Mot de passe incorrect';
+                    array_push($errors, 'Mot de Passe incorrect');
             	}
                 else if($enseignantExist == 3){
-                    //user doesnt exist
-                    print 'user doesnt exist';
+                    //3 => user doesnt exist
+                    array_push($errors, 'Nom d\'Utilisateur incorrect');
 
                 } else{
-                    print 'Account locked';
+                    array_push($errors, 'Compte bloqué');
+                    //print 'Account locked';
                 }
             } catch (ValidationException $e) {
             	

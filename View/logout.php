@@ -1,5 +1,4 @@
 <?php
- 
 $_SESSION = array();
 
 $params = session_get_cookie_params();
@@ -21,8 +20,6 @@ session_destroy();
         <title>
           <?php print htmlentities($title) ?>
         </title>
-
-        <link href="Public/css/style-authentification.css" rel="stylesheet">
 
 </head>
 

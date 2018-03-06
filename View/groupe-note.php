@@ -18,15 +18,15 @@
 
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<p>Note groupe : <?php print $groupe['noteGroupe'];?></p>
+			<p class="font-weight-bold">La note de ce groupe : <?php print $groupe['noteGroupe'];?></p>
 			<table class="table table-responsive table-bordered">
 		    	<thead class="color-primary-dark">
 		      		<tr class="text-white">
 		        		<th style="width: 20%">Noms des &eacute;tudiants</th>
 		        		<th style="width: 20%">Pourcentage &eacute;tudiant</th>
 		        		<th style="width: 20%">Note &eacute;tudiant</th>
-		       			<th style="width: 5%">Modifier</th>
-		       			<th style="width: 10%"></th>
+		       			<th class="middle" style="width: 5%">Modifier</th>
+		       			<th class="middle" style="width: 10%">Valider</th>
 		       		</tr>
 				</thead>
 				<tbody>
@@ -54,13 +54,13 @@
 							print $groupe['noteGroupe'];
 							print '</td>';
 						}*/
-						print '<td>';
-						print '<button type="button" class="btn btn-sm btn-info" id="btnModifier'.$i.'"><i class="far fa-edit"></i></button>';
+						print '<td class="middle">';
+						print '<button type="button" class="btn" id="btnModifier'.$i.'"><i class="far fa-edit"></i></button>';
 						print '</td>';
 
-						print '<td>';
+						print '<td class="middle">';
 						print '<input type="hidden" name="form-submitted" value="1" />';
-						print '<input type="submit" class="btn btn-sm btn-info" value="Valider" name="btnValider">';
+						print '<input type="submit" class="btn btn-info" value="Valider" name="btnValider">';
 						print '</td>';
 
 						print '</form>';
@@ -68,9 +68,7 @@
 						?>
 						<script>
 								/*Calculer la note*/
-								//var pourcentage = $('#pourcentage<?php echo $i?>').val();
-								//var noteFinale = <?php echo $groupe['noteGroupe'];?> * 2 * pourcentage / 100;
-								$('#note<?php echo $i ?>').val(<?php echo $groupe['noteGroupe'];?> * 2 * $('#pourcentage<?php echo $i?>').val() / 100);
+								$('#note<?php echo $i ?>').val(<?php echo $groupe['noteGroupe'];?> * <?php echo count($json) ?> * $('#pourcentage<?php echo $i?>').val() / 100);
 						</script>
 						<script type="text/javascript">
 								$('#btnModifier<?php echo $i?>').click(function(){

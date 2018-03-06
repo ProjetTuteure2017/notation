@@ -45,26 +45,21 @@
 <div class="row">
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   <table class="table table-responsive table-bordered">
-    <thead>
-      <tr>
-        <th style="width: 10%">Groupes</th>
-        <th style="width: 20%">Nom etudiants</th>
-        <th style="width: 60%" colspan="<?php print count($grilles);?>">Grilles</th>
-        <th style="width: 10%">Note groupe</th>
-        <th style="width: 5%">Details</th>
+    <thead class="color-primary-dark">
+      <tr class="text-white">
+        <th class="middle" style="width: 10%; vertical-align: middle;" rowspan="2">Groupes</th>
+        <th class="middle" style="width: 20%; vertical-align: middle;" rowspan="2">Nom etudiants</th>
+        <th class="middle" style="width: 60%; vertical-align: middle;" colspan="<?php print count($grilles);?>">Grilles</th>
+        <th class="middle" style="width: 10%; vertical-align: middle;" rowspan="2">Note groupe</th>
+        <th class="middle" style="width: 5%; vertical-align: middle;" rowspan="2">Details</th>
       </tr>
       <tr>
-        <th></th>
-      	<th></th>
         <?php 
           foreach($grilles as $grille) :
-            print '<th style="width: 20%">'.$grille['titre'].'</th>';
+            print '<th class="text-white color-primary-darker" style="width: 20%">'.$grille['titre'].'</th>';
           endforeach;
 
         ?>
-      	<th></th>
-        <th></th>
-
       </tr>
     </thead>
     <tbody>
@@ -110,17 +105,17 @@
 
           if($noteGroupe>10)
           {
-            print '<td class="bg-success">'.$noteGroupe.'</td>';
+            print '<td class="middle bg-success">'.$noteGroupe.'</td>';
           }
           else if ($noteGroupe < 10 && isset($noteGroupe))
           {
-            print '<td class="bg-warning">'.$noteGroupe.'</td>';
+            print '<td class="middle bg-warning">'.$noteGroupe.'</td>';
           }
           else if(!isset($noteGroupe))
           {
-            print '<td class="bg-danger">'.$noteGroupe.'</td>';
+            print '<td class="middle bg-danger">'.$noteGroupe.'</td>';
           }
-          print '<td><a href="http://notation/index.php?page=etudiant&op=note&idgroupe='.$groupe['id'].'"><i class="fas fa-plus"></i></a></td>';
+          print '<td class="middle"><a href="http://notation/index.php?page=etudiant&op=note&idgroupe='.$groupe['id'].'"><i class="fas fa-plus"></i></a></td>';
           print '</tr>';
         endforeach;
       ?>

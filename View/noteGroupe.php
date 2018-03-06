@@ -31,10 +31,10 @@
 					<tr class="text-white">
 						<th scope="col" style="width: 20%">Theme</th>
 						<th data-defaultsort="disabled" scope="col" style="width: 45%">Intitule</th>
-						<th data-defaultsort="disabled" scope="col" style="width: 10%">Points</th>
-						<th data-defaultsort="disabled" scope="col" style="width: 10%">Note</th>
-						<th data-defaultsort="disabled" scope="col" style="width: 25%">Appreciation</th>
-						<th data-defaultsort="disabled" scope="col" style="width: 10%"></th>
+						<th class="middle" data-defaultsort="disabled" scope="col" style="width: 10%">Points</th>
+						<th class="middle" data-defaultsort="disabled" scope="col" style="width: 10%">Note</th>
+						<th class="middle" data-defaultsort="disabled" scope="col" style="width: 25%">Appreciation</th>
+						<th class="middle" data-defaultsort="disabled" scope="col" style="width: 10%">Modifier/Ajouter</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,15 +42,15 @@
 		      		<tr>
 						<td><?php print htmlentities($competence['theme']); ?></td>
 						<td><?php print htmlentities($competence['intitule']); ?></td>
-						<td><?php print htmlentities($competence['nombrePoint']); ?></td>
+						<td class="middle"><?php print htmlentities($competence['nombrePoint']); ?></td>
 						<form method="POST" action="" style="display : inline;" onsubmit ="return verification()">
-							<td><input type="text" name="note" class="form-control" value="<?php print $this->Bidouille($competence['id'])['note']; ?>"/></td>
-							<td><input type="text" name="appreciation" class="form-control" value="<?php print $this->Bidouille($competence['id'])['appreciation']; ?>"/></td>
-							<td>
-								<input type="hidden" name="competenceId" value="<?php print htmlentities($competence['id']); ?>" />
-								<input type="hidden" name="nombrePoint" value="<?php print htmlentities($competence['nombrePoint']); ?>" />
-								<input type="hidden" name="form-submitted" value="1" />
-								<input type="submit" class="btn btn-sm btn-info" value="<?php $this->Bidouille($competence['id']) != NULL ? print "Modifier" : print "Ajouter"  ?>" />
+							<td class="middle"><input type="text" name="note" class="form-control" value="<?php print $this->Bidouille($competence['id'])['note']; ?>"/></td>
+							<td class="middle"><input type="text" name="appreciation" class="form-control" value="<?php print $this->Bidouille($competence['id'])['appreciation']; ?>"/></td>
+							<input type="hidden" name="competenceId" value="<?php print htmlentities($competence['id']); ?>" />
+							<input type="hidden" name="nombrePoint" value="<?php print htmlentities($competence['nombrePoint']); ?>" />
+							<input type="hidden" name="form-submitted" value="1" />
+							<td class="middle">
+								<button type="submit" class="btn"><?php $this->Bidouille($competence['id']) != NULL ? print '<i class="fas fa-edit"></i>' : print '<i class="fas fa-plus"></i>'  ?> </button>
 							</td>
 						</form>
 		       		</tr>
