@@ -17,11 +17,11 @@
 
         <div class="row">
             <div class="col-sm-12 col-md-8 col-lg-8">
-                <h4>S&eacute;l&eacute;ctionnez un projet :</h4>
+                <h4>S&eacute;l&eacute;ctionnez un enseignant :</h4>
                 <form method="post" action="">
                     <div class="input-group">
                         <select class="custom-select" id="selectEnseignant" name="selectEnseignant">
-                            <option value="-1" selected="selected">Veuillez selectioner un enseignant...</option>
+                            <option value="-1" selected="selected">Veuillez selectionner un enseignant...</option>
                             <?php 
                                 foreach ($enseignants as $enseignant) : 
                                     print '<option value="'.$enseignant['id'].'">';

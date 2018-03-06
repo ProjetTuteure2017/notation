@@ -1,8 +1,3 @@
-html,body{
-    position: relative;
-    height: 100%;
-}
-
 .login-container{
     position: relative;
     width: 300px;
@@ -11,48 +6,6 @@ html,body{
     text-align: center;
     background: #fff;
     border: 1px solid #ccc;
-}
-
-#output{
-    position: absolute;
-    width: 300px;
-    top: -75px;
-    left: 0;
-    color: #fff;
-}
-
-#output.alert-success{
-    background: rgb(25, 204, 25);
-}
-
-#output.alert-danger{
-    background: rgb(228, 105, 105);
-}
-
-
-.login-container::before,.login-container::after{
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 3.5px;
-    left: 0;
-    background: #fff;
-    z-index: -1;
-    -webkit-transform: rotateZ(4deg);
-    -moz-transform: rotateZ(4deg);
-    -ms-transform: rotateZ(4deg);
-    border: 1px solid #ccc;
-
-}
-
-.login-container::after{
-    top: 5px;
-    z-index: -2;
-    -webkit-transform: rotateZ(-2deg);
-     -moz-transform: rotateZ(-2deg);
-      -ms-transform: rotateZ(-2deg);
-
 }
 
 .form-box input[type="text"], input[type="password"]{
@@ -77,7 +30,6 @@ html,body{
 .form-box input[type="password"]{
     border-radius: 0 0 5px 5px;
     border-top: 0;
-
 }
 
 #filtersubmit {
@@ -88,48 +40,6 @@ html,body{
     color: #7B7B7B;
     cursor:pointer;
     width: 0;
-}
-
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(20px);
-    transform: translateY(20px);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(20px);
-    -ms-transform: translateY(20px);
-    transform: translateY(20px);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-
-.fadeInUp {
-  -webkit-animation-name: fadeInUp;
-  animation-name: fadeInUp;
 }
 
 .password{

@@ -7,7 +7,6 @@
 	<script src="Public/js/mysearch.js"></script>
 	<script src="Public/js/bootstrap-sortable.js"></script>
 	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
-	<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
 
 </head>
 
@@ -32,13 +31,13 @@
 			</div>
 			<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">	
 				<table class="table table-hover table-responsive sortable" id="myTable">
-					<thead class="indigo">
+					<thead class="color-primary-dark">
 						<tr class="text-white">
-							<th scope="col" style="width: 60%">Titre</th>
-							<th data-defaultsort="disabled" scope="col" style="width: 20%">Not&eacute; sur</th>
-							<th data-defaultsort="disabled" scope="col" style="width: 20%">Coef</th>
-							<th data-defaultsort="disabled" scope="col" style="width: 20%">Comp&eacute;tences</th>
-							<th data-defaultsort="disabled" scope="col" style="width: 25%">Modifier</th>
+							<th data-defaultsign="az" scope="col" style="width: 60%">Titre<span id="spanSort" class="spanaz"><i class="fa fa-fw fa-sort"></i></span></th>
+							<th class="middle" data-defaultsort="disabled" scope="col" style="width: 20%">Not&eacute; sur</th>
+							<th class="middle" data-defaultsort="disabled" scope="col" style="width: 20%">Coef</th>
+							<th class="middle" data-defaultsort="disabled" scope="col" style="width: 20%">Comp&eacute;tences</th>
+							<th class="middle" data-defaultsort="disabled" scope="col" style="width: 25%">Modifier</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,10 +45,10 @@
 							foreach ($grilles as $grille) : ?>
 						<tr>
 							<td><?php print htmlentities($grille['titre']); ?></td>
-							<td><?php print htmlentities($grille['note_sur']); ?></td>
-							<td><?php print htmlentities($grille['coef']); ?></td>
-							<td><?php echo '<a href="index.php?page=competence&grilleId='.htmlentities($grille['id']).'">';?><i class="fas fa-list"></i></a></td>
-							<td><button id="btnModifier" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($grille['id'])?>" type="button" class="btn btn-sm btn-info"><i class="far fa-edit"></i></button></td>
+							<td class="middle"><?php print htmlentities($grille['note_sur']); ?></td>
+							<td class="middle"><?php print htmlentities($grille['coef']); ?></td>
+							<td class="middle"><?php echo '<a href="index.php?page=competence&grilleId='.htmlentities($grille['id']).'">';?><i class="fas fa-list"></i></a></td>
+							<td class="middle"><a href="#" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($grille['id'])?>"><i class="far fa-edit"></i></a></td>
 						</tr>
 						<!-- Modal -->
 						<div class="modal fade" id="myModalModifier<?php print htmlentities($grille['id'])?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -76,10 +75,8 @@
 		                        </div>
 		                        
 		                        <div class="form-groupe">
-	                            	<div class="row">
-		                            	<input type="hidden" name="form-submitted" value="1" />
-		                            	<input type="submit" value="Valider" id="btnValider" class="btn" />
-		                            </div>
+	                            	<input type="hidden" name="form-submitted" value="1" />
+	                            	<input type="submit" value="Valider" id="btnValider" class="btn btn-info" />
 		                        </div>
 	                        </form>
 						</div>
@@ -111,6 +108,13 @@
 
 		?>
 	</div>
+<script>
+	$( document ).ready(function() {
+		$("th" ).click(function() {
+			$('#spanSort').hide();
+		});
+	});
+ </script>	
 </body>
 
 </html>

@@ -88,7 +88,7 @@
 	<div class="col-lg-12 col-md-12 col-sm-12">
 	 <h4>S&eacute;l&eacute;ctionnez un groupe d'&eacute;tudiant pour la notation :</h4>
     <table class="table table-responsive table-hover">
-      <thead class="indigo">
+      <thead class="color-primary-dark">
         <tr class="text-white">
           <th style="width : 30%">Groupes</th>
           <th style="width : 50%">Noms des &eacute;tudiants</th>

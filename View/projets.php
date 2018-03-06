@@ -7,7 +7,9 @@
 	<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
 	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
 	<script src="Public/js/bootstrap-sortable.js"></script>
-	<script src="Public/js/mysearch.js"></script>	
+	<script src="Public/js/mysearch.js"></script>
+
+
 </head>
 
 <body>
@@ -30,13 +32,13 @@
 			</div>
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 				<table id="myTable" class="table table-responsive table-hover sortable">
-					<thead class="indigo">
+					<thead class="color-primary-dark">
 						<tr class="text-white">
-							<th scope="col" style="width: 25%">Titre</th>
+							<th data-defaultsign="az" scope="col" style="width: 25%">Titre<span id="spanSort" class="spanaz"><i class="fa fa-fw fa-sort"></i></span></th>
 							<th data-defaultsort="disabled" scope="col" style="width: 50%">Description</th>
-							<th data-defaultsort="disabled" scope="col" style="width: 10%">Grilles</th>
-							<th data-defaultsort="disabled" scope="col" style="width: 10%">Enseignant</th>
-							<th data-defaultsort="disabled" scope="col" style="width: 10%">Modifier</th>
+							<th class="middle" data-defaultsort="disabled" scope="col" style="width: 10%">Grilles</th>
+							<th class="middle" data-defaultsort="disabled" scope="col" style="width: 10%">Enseignant</th>
+							<th class="middle" data-defaultsort="disabled" scope="col" style="width: 10%">Modifier</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,9 +47,9 @@
 						<tr>
 							<td><?php print htmlentities($projet['titre']); ?></td>
 							<td><?php print htmlentities($projet['description']); ?></td>
-							<td><?php echo '<a href="index.php?page=grille&projetId='.htmlentities($projet['id']).'"><i class="fas fa-list"></i></a>';?></td>
-							<td><?php echo '<a href="index.php?page=enseignant&op=add&projetId='.htmlentities($projet['id']).'"><i class="fas fa-plus"></i></a>';?></td>
-							<td><button id="btnModifier" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($projet['id'])?>" type="button" class="btn btn-sm btn-info"><i class="far fa-edit"></i></button></td>
+							<td class="middle"><?php echo '<a href="index.php?page=grille&projetId='.htmlentities($projet['id']).'"><i class="fas fa-list"></i></a>';?></td>
+							<td class="middle"><?php echo '<a href="index.php?page=enseignant&op=add&projetId='.htmlentities($projet['id']).'"><i class="fas fa-plus"></i></a>';?></td>
+							<td class="middle"><a href="#" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($projet['id'])?>"><i class="far fa-edit"></i></a></td>
 						</tr>
 						
 						<!-- Modal -->
@@ -72,7 +74,7 @@
 								</div>
 								<div class="form-groupe">
 									<input type="hidden" name="form-submitted" value="1" />
-									<input type="submit" value="Valider" id="btnValider" class="btn" />
+									<input type="submit" value="Valider" id="btnValider" class="btn btn-info" />
 								</div>
 							</form>
 						</div>
@@ -105,6 +107,13 @@
 
 		?>
 	</div>
+<script>
+	$( document ).ready(function() {
+		$("th" ).click(function() {
+			$('#spanSort').hide();
+		});
+	});
+ </script>	
 </body>
 
 </html>

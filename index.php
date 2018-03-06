@@ -10,6 +10,7 @@
 	<link href="Public/css/bootstrap.min.css" rel="stylesheet">
 	<link href="Public/css/style.css" rel="stylesheet">
 	<link href="Public/css/style-nav.css" rel="stylesheet">
+	<link href="Public/font-awesome/css/fontawesome-all.min.css" rel="stylesheet">
 	<script src="Public/js/jquery-3.2.1.min.js"></script>
     <script src="Public/js/bootstrap.min.js"></script>
 

@@ -4,6 +4,9 @@
   <title>
     <?php print htmlentities($title); ?>
   </title>
+
+  <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+  
 </head>
 
 <body>
@@ -117,7 +120,7 @@
           {
             print '<td class="bg-danger">'.$noteGroupe.'</td>';
           }
-          print '<td><a href="http://notation/index.php?page=etudiant&op=note&idgroupe='.$groupe['id'].'">+</a></td>';
+          print '<td><a href="http://notation/index.php?page=etudiant&op=note&idgroupe='.$groupe['id'].'"><i class="fas fa-plus"></i></a></td>';
           print '</tr>';
         endforeach;
       ?>

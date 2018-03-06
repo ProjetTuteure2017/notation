@@ -27,7 +27,7 @@
 		<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<table class="table table-responsive table-hover sortable">
-		    	<thead class="indigo">
+		    	<thead class="color-primary-dark">
 					<tr class="text-white">
 						<th scope="col" style="width: 20%">Theme</th>
 						<th data-defaultsort="disabled" scope="col" style="width: 45%">Intitule</th>

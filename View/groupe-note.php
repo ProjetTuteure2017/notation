@@ -20,7 +20,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<p>Note groupe : <?php print $groupe['noteGroupe'];?></p>
 			<table class="table table-responsive table-bordered">
-		    	<thead class="indigo">
+		    	<thead class="color-primary-dark">
 		      		<tr class="text-white">
 		        		<th style="width: 20%">Noms des &eacute;tudiants</th>
 		        		<th style="width: 20%">Pourcentage &eacute;tudiant</th>
@@ -66,6 +66,12 @@
 						print '</form>';
 						print '</tr>';
 						?>
+						<script>
+								/*Calculer la note*/
+								//var pourcentage = $('#pourcentage<?php echo $i?>').val();
+								//var noteFinale = <?php echo $groupe['noteGroupe'];?> * 2 * pourcentage / 100;
+								$('#note<?php echo $i ?>').val(<?php echo $groupe['noteGroupe'];?> * 2 * $('#pourcentage<?php echo $i?>').val() / 100);
+						</script>
 						<script type="text/javascript">
 								$('#btnModifier<?php echo $i?>').click(function(){
 							        $('#note<?php echo $i?>').prop('disabled', !$("#note<?php echo $i?>").attr('disabled'));

@@ -4,13 +4,11 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
-	<script src="../Public/js/myscripts.js"></script>	
-	<script src="../Public/js/search.js"></script>
-	<script src="../Public/js/etudiant.js"></script>
+
+	<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
 	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
 	<script src="Public/js/bootstrap-sortable.js"></script>
 	<script src="Public/js/mysearch.js"></script>	
-	<script src="Public/js/myscripts.js"></script>
 		
 </head>
 
@@ -24,9 +22,8 @@
 
 
     <div class="row">
-		<div class="col-sm-12 col-md-12 col-lg-12">
+		<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
 			<?php 
-				//$projetId = isset($_POST['selectProjet']) ? $_POST['selectProjet'] : NULL;
 				print '<a href="index.php?page=competence&op=new&grilleId='.$grilleId.'">Ajouter competence</a>';
 			?>
 		</div>
@@ -34,17 +31,17 @@
 
 	<hr>
 	<div class="row">
-		<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+		<div class="col-lg-6 col-md-12 col-sm-12 col-12">
 			<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
 		</div>
-		<div class="col-sm-12 col-md-12 col-lg-12">	
+		<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">	
 			<table id="myTable" class="table table-hover table-responsive sortable">
-				<thead class="indigo">
+				<thead class="color-primary-dark">
 					<tr class="text-white">
-						<th scope="col" style="width: 25%">Th&egrave;me</th>
+						<th data-defaultsign="az" scope="col" style="width: 25%">Th&egrave;me<span id="spanSort" class="spanaz"><i class="fa fa-fw fa-sort"></i></span></th>
 						<th data-defaultsort="disabled" scope="col" style="width: 50%">Intitule</th>
-						<th data-defaultsort="disabled" scope="col" style="width: 20%">Nombre du point</th>
-						<th data-defaultsort="disabled" scope="col" style="width: 20%"></th>
+						<th class="middle" data-defaultsort="disabled" scope="col" style="width: 20%">Nombre du point</th>
+						<th class="middle" data-defaultsort="disabled" scope="col" style="width: 20%">Modifier</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,8 +50,8 @@
 					<tr>
 						<td><?php print htmlentities($competence['theme']); ?></td>
 						<td><?php print htmlentities($competence['intitule']); ?></td>
-						<td><?php print htmlentities($competence['nombrePoint']); ?></td>
-						<td><button id="btnModifier" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($competence['id'])?>" type="button" class="btn btn-sm btn-info">Modifier</button></td>
+						<td class="middle"><?php print htmlentities($competence['nombrePoint']); ?></td>
+						<td class="middle"><a href="#" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($competence['id'])?>"><i class="far fa-edit"></i></a></td>
 					</tr>
 
 					<!-- Modal -->
@@ -116,6 +113,13 @@
 
 		?>
 	</div>
+<script>
+	$( document ).ready(function() {
+		$("th" ).click(function() {
+			$('#spanSort').hide();
+		});
+	});
+ </script>	
 </body>
 
 </html>

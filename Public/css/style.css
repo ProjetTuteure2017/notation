@@ -1,8 +1,8 @@
 html,
 body {
     height: 100%;
+    background-color: #f9f9f7;
 }
-
 body { padding-top: 70px; }
 
 footer {
@@ -14,8 +14,8 @@ footer p
   font-size: 12px;
 }
 
-.fa-list, .fa-plus {
-  color: #E040FB;
+.fa-list, .fa-plus, .fa-edit, .fa-cloud-upload-alt {
+  color: #03A4D1;
 }
 
 .hidden {
@@ -29,37 +29,6 @@ footer p
 	visibility: visible;
 }
 
-.btn-info {
-    color: #fff;
-    background-color: #E040FB;
-    border-color: #E040FB;
-}
-.btn-info:hover{
-    background-color: #cd30e8;
-    border-color: #cd30e8;
-}
-
-.btn-primary{
-    color : #fff;
-    background-color: #3F51B5;
-    border-color: #3F51B5;
-}
-.btn-primary:hover{
-    background-color: #293fb5;
-    border-color: #293fb5;
-}
-
-.btn-outline-primary {
-    color: #3F51B5;
-    background-color: transparent;
-    background-image: none;
-    border-color: #3F51B5;
-}
-.btn-outline-primary:hover{
-    background-color: #3F51B5;
-    border-color: #3F51B5;
-}
-
 #btnValider{
     margin-top: 5px;
     margin-bottom: 5px;
@@ -70,33 +39,104 @@ footer p
     left: 50%;
     width:30em;
     height:18em;
-    margin-top: -9em; /*set to a negative number 1/2 of your height*/
-    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    margin-top: -9em;
+    margin-left: -15em;
     position:fixed;
 }
 
 #myInput {
     background-image: url('../img/searchicon.png');
-    background-position: 10px 12px; /* Position the search icon */
-    background-repeat: no-repeat; /* Do not repeat the icon image */
-    width: 100%; /* Full-width */
-    font-size: 16px; /* Increase font-size */
-    padding: 12px 20px 12px 40px; /* Add some padding */
-    border: 1px solid #ddd; /* Add a grey border */
-    margin-bottom: 12px; /* Add some space below the input */
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
 }
 
-table { table-layout: fixed; }
+.navbar a{
+    font-size: 16px;
+}
+
+table { 
+    table-layout: fixed;
+}
 
 table th, table td 
 { 
     overflow: hidden; 
 }
 .table > tbody > tr > td {
-     vertical-align: middle;
+    vertical-align: middle;
+}
+td 
+{
+    height: 50px; 
+    width:50px;
+}
+table > tbody {
+ background-color: #fff;
+}
+.middle
+{
+    text-align:center; 
+    vertical-align:middle;
 }
 
-.indigo
-{
-  background-color : #303F9F;
+.color-primary { background-color: #03A4D1; }
+.color-primary-light { background-color: #12ABD7; }
+.color-primary-darker { background-color: #015971; }
+.color-primary-dark{ background-color: #027292; }
+
+.btn-info {
+    color: #fff;
+    background-color: #3EB5D7;
+    border-color: #3EB5D7;
+}
+.btn-info:hover{
+    background-color: #12ABD7;
+    border-color: #12ABD7;
+}
+
+.btn-primary{
+    color : #fff;
+    background-color: #027292;
+    border-color: #027292;
+}
+.btn-primary:hover{
+    background-color: #015971;
+    border-color: #015971;
+}
+
+.btn-outline-primary {
+    color: #027292;
+    background-color: transparent;
+    background-image: none;
+    border-color: #027292;
+}
+.btn-outline-primary:hover{
+    background-color: #015971;
+    border-color: #015971;
+}
+
+.spanaz {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    font-size: 12px;
+    margin-top: -10px;
+    color: #fff;
+}
+
+input[type="file"] {
+    display: none;
+}
+.upload {
+    border: 1px solid #027292;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
 }
