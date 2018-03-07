@@ -28,10 +28,10 @@ class EnseignantController{
                 $this->ResponsablePage();
             } else if($op == 'add') {
                 $this->AddEnseignantToProjet();
-            } else if($op == 'reg') {
+            } else if($op == 'register') {
                 $this->Register();
-            } else if($op == 'succes') {
-                $this->SuccessPage();
+            } else if($op == 'fail') {
+                $this->FailPage();
             } else{
                 $this->ShowError("Page not found", "Page for operation ".$op." was not found!");
             }
@@ -83,59 +83,55 @@ class EnseignantController{
         include 'View/enseignants.php';
     }
 
-    public function SuccessPage()
+    public function FailPage()
     {
-        $title = 'Registration succes';
+        $title = 'Registration';
 
-        include 'View/register_success.php';
+        include 'View/register_fail.php';
     }
 
     public function Register(){
 
         $title = 'Registration';
         $errors= array();
+        $projetId = isset($_GET['projetId']) ? $_GET['projetId'] : NULL;
 
-
-        if (isset($_POST['nom'],$_POST['prenom'],$_POST['username'], $_POST['email'], $_POST['p'])) {
+        if (isset($_POST['nom'],$_POST['prenom'], $_POST['email'], $_POST['p'])) {
             
             $nom = filter_input(INPUT_POST, 'nom');
             $prenom = filter_input(INPUT_POST, 'prenom');
-            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $email = filter_var($email, FILTER_VALIDATE_EMAIL);
             
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $errors = 'The email address you entered is not valid';
+                 array_push($errors, 'L\'adresse email n\'est pas valide!');
             }
          
             $password = filter_input(INPUT_POST, 'p', FILTER_SANITIZE_STRING);
             if (strlen($password) != 128) {
-                $errors = 'Invalid password configuration.';
+                array_push($errors, 'La confaiguration du mot de passe est invalide!');
             }
 
-            $result = $this->enseignantService->canRegister($email, $username);
+            $result = $this->enseignantService->canRegister($email);
             if($result == 1)
             {
-                print 'Email deja exist';
-            }
-            if($result == 2)
-            {
-                print 'User deja exist';
+                array_push($errors, 'L\'adresse email existe déja!');
             }
 
-            if (empty($error_msg)) {
+            if (empty($errors)) {
                 // Create hashed password using the password_hash function.
                 // This function salts it with a random salt and can be verified with
                 // the password_verify function.
                 $password = password_hash($password, PASSWORD_BCRYPT);
-                $insert_result = $this->enseignantService->IsRegister($nom, $prenom, $username, $email, $password);
-                // Insert the new user into the database 
+                $insert_result = $this->enseignantService->IsRegister($nom, $prenom, $email, $password);
+                
                 if($insert_result)
                 {
-                    $this->Redirect('index.php?page=responsable&op=succes');
+                    $this->Redirect('index.php?page=enseignant&op=add&projetId='.$projetId);
                 }
-                else if(!$insert_result){
-                    $this->Redirect('index.php?page=responsable&op=fail');
+                else if(!$insert_result)
+                {
+                    $this->Redirect('index.php?page=enseignant&op=fail');
                 }
             }
         }

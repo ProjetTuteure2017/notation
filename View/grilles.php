@@ -18,16 +18,24 @@
 				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 		?>
 		<div class="row">
-			<div class="col-sm-4 col-md-4 col-lg-4">
-				<?php 
-					print '<a href="index.php?page=grille&op=new&projetId='.$projetId.'">Ajouter grille</a>';
-				?>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
+					<li class="breadcrumb-item"><a href="index.php?page=projet">Projets</a></li>
+					<li class="breadcrumb-item active">Grilles</li>
+				</ol>
 			</div>
+			
 		</div>
 		<hr>
 		<div class="row">
-			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-					<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+				<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
+			</div>
+			<div class="col-12 col-sm-4 col-md-6 col-lg-6 text-right">
+				<?php 
+					print '<a href="index.php?page=grille&op=new&projetId='.$projetId.'" class="btn btn-primary"><i style="margin-right: 10px; color: #fff;" class="fas fa-plus"></i>Ajouter une grille</a>';
+				?>
 			</div>
 			<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">	
 				<table class="table table-hover table-responsive sortable" id="myTable">
@@ -47,7 +55,7 @@
 							<td><?php print htmlentities($grille['titre']); ?></td>
 							<td class="middle"><?php print htmlentities($grille['note_sur']); ?></td>
 							<td class="middle"><?php print htmlentities($grille['coef']); ?></td>
-							<td class="middle"><?php echo '<a href="index.php?page=competence&grilleId='.htmlentities($grille['id']).'">';?><i class="fas fa-list"></i></a></td>
+							<td class="middle"><?php echo '<a href="index.php?page=competence&projetId='.htmlentities($projetId).'&grilleId='.htmlentities($grille['id']).'">';?><i class="fas fa-list"></i></a></td>
 							<td class="middle"><a href="#" data-toggle="modal" data-target="#myModalModifier<?php print htmlentities($grille['id'])?>"><i class="far fa-edit"></i></a></td>
 						</tr>
 						<!-- Modal -->

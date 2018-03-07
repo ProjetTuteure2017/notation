@@ -82,18 +82,18 @@ class EnseignantService {
 		}
 	}
 
-	public function canRegister($email, $username) {
+	public function canRegister($email) {
 		try {
-			$result = $this->enseignantGateway->registerCheck($email, $username);
+			$result = $this->enseignantGateway->registerCheck($email);
 			return $result;
 		} catch (Exception $e) {
 			throw $e;
 		}
 	}
 
-	public function IsRegister($nom, $prenom, $username, $email, $password) {
+	public function IsRegister($nom, $prenom, $email, $password) {
 		try {
-			$result = $this->enseignantGateway->register($nom, $prenom, $username, $email, $password);
+			$result = $this->enseignantGateway->register($nom, $prenom, $email, $password);
 			return $result;
 		} catch (Exception $e) {
 			throw $e;

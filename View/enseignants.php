@@ -39,18 +39,23 @@
                 </script>
             </div>
         </div>
+        <div class="row" style="margin-top: 10px; margin-bottom: -10px;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <p>Cr&eacute;er le profil d'<a href="http://notation/index.php?page=enseignant&op=register&projetId=<?php echo $_GET['projetId']?>">un nouveau enseignant.</a></p>
+            </div>
+        </div>
         <hr>
         <div class="row">
             <div class="col-lg-12 col-sm-12">
                 <h4>Les enseignants dans ce projet : </h4>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12">
+            <div style="margin-top: 10px;" class="col-lg-12 col-md-12 col-sm-12">
                 <div class="list-group">
                     <?php 
                         foreach ($ensbyprojet as $value) {
-                            print '<p>';
+                            print '<ol>';
                             print $value['nom'];
-                            print '</p>';
+                            print '</ol>';
                         }
 
                     ?>

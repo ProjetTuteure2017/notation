@@ -4,7 +4,6 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
-	<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
 	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
 	<script src="Public/js/bootstrap-sortable.js"></script>
 	<script src="Public/js/mysearch.js"></script>
@@ -21,14 +20,20 @@
 				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 		?>
     	<div class="row">
-			<div class="col-md-4 col-lg-4">
-				<a href="index.php?page=projet&op=new">Ajouter projet</a>
+    		<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
+					<li class="breadcrumb-item active">Projets</li>
+				</ol>
 			</div>
 		</div>
 		<hr>
 		<div class="row">
-			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-lg-6 col-md-6 col-sm-8 col-12">
 				<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
+			</div>
+			<div class="col-12 col-sm-4 col-md-6 col-lg-6 text-right">
+				<a href="index.php?page=projet&op=new" class="btn btn-primary"><i style="margin-right: 10px; color: #fff;" class="fas fa-plus"></i>Ajouter un projet</a>
 			</div>
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 				<table id="myTable" class="table table-responsive table-hover sortable">

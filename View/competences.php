@@ -5,11 +5,9 @@
 		<?php print htmlentities($title); ?>
 	</title>
 
-	<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
 	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
 	<script src="Public/js/bootstrap-sortable.js"></script>
 	<script src="Public/js/mysearch.js"></script>	
-		
 </head>
 
 <body>
@@ -22,10 +20,13 @@
 
 
     <div class="row">
-		<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-			<?php 
-				print '<a href="index.php?page=competence&op=new&grilleId='.$grilleId.'">Ajouter competence</a>';
-			?>
+		<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
+				<li class="breadcrumb-item"><a href="index.php?page=projet">Projets</a></li>
+				<li class="breadcrumb-item"><a href="index.php?page=grille&projetId=<?php echo $_GET['projetId'];?>">Grilles</a></li>
+				<li class="breadcrumb-item active">Comp&eacute;tences</li>
+			</ol>
 		</div>
 	</div>
 
@@ -34,6 +35,11 @@
 		<div class="col-lg-6 col-md-12 col-sm-12 col-12">
 			<input type="text" class="form-control" id="myInput" onkeyup="mySearch()" placeholder="Recherche...">
 		</div>
+		<div class="col-12 col-sm-4 col-md-6 col-lg-6 text-right">
+				<?php 
+					print '<a href="index.php?page=competence&op=new&grilleId='.$grilleId.'" class="btn btn-primary"><i style="margin-right: 10px; color: #fff;" class="fas fa-plus"></i>Ajouter une comp&eacute;tence</a>';
+				?>
+			</div>
 		<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">	
 			<table id="myTable" class="table table-hover table-responsive sortable">
 				<thead class="color-primary-dark">

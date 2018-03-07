@@ -4,7 +4,6 @@ include_once 'Includes/functions.php';
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>
         <?php print htmlentities($title); ?>
         </title>
@@ -12,49 +11,40 @@ include_once 'Includes/functions.php';
         <script type="text/JavaScript" src="Public/js/forms.js"></script>
     </head>
     <body>
-        <?php
-        if ( $errors ) {
-            print '<ul class="errors">';
-            foreach ( $errors as $field => $error ) {
-                print '<li>'.htmlentities($error).'</li>';
-            }
-            print '</ul>';
-        }
-      ?>
-        <ul>
-            <li>Usernames may contain only digits, upper and lowercase letters and underscores</li>
-            <li>Emails must have a valid email format</li>
-            <li>Passwords must be at least 6 characters long</li>
-            <li>Passwords must contain
-                <ul>
-                    <li>At least one uppercase letter (A..Z)</li>
-                    <li>At least one lowercase letter (a..z)</li>
-                    <li>At least one number (0..9)</li>
-                </ul>
-            </li>
-            <li>Your password and confirmation must match exactly</li>
-        </ul>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <div id="mydiv">
                         <div class="panel panel-compte">
                             <div class="panel-heading">
                                 <h5>S'enregistrer</h5>
+                                <?php 
+                                if ( $errors ) {
+                                    print '<div class="row">';
+                                    print '<div class="col-lg-12 col-md-12 col-sm-12">';
+                                    print '<div class="alert alert-dismissible alert-danger">';
+                                    print '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                                    foreach ( $errors as $field => $error ) {
+                                        print '<strong>'.htmlentities($error).'</strong>';
+                                    }
+                                    print '</div>';
+                                    print '</div>';
+                                    print '</div>';
+                                }
+                                ?>
                                 <hr>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                                         <form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" name="registration_form" style="display: block;">
-                                            <div class="form-group">
-                                                <input type="text" name="nom" id="nom" placeholder="Nom" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="prenom" id="prenom" placeholder="Prenom" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" class="form-control">
+                                            <div class="row">
+                                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                    <input type="text" name="nom" id="nom" placeholder="Nom" class="form-control">
+                                                </div>
+                                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                    <input type="text" name="prenom" id="prenom" placeholder="Prenom" class="form-control">
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" name="email" id="email" placeholder="Email" class="form-control">
@@ -66,11 +56,17 @@ include_once 'Includes/functions.php';
                                                 <input type="password" name="confirmpwd" id="confirmpwd" placeholder="Confirmation mot de passe" class="form-control">
                                             </div>
                                             <div class="form-group">
+                                                <div class="alert alert-dismissible alert-warning">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <p class="mb-0"><i class="fas fa-exclamation-triangle" style="color: #fff; margin-right: 10px;"></i>Le mot de passe doit comporter au moins 6 caractères.</p>
+                                                    <p class="mb-0">Le mot de passe doit contenir au moins un chiffre, une minuscule et une majuscule.</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-12">
-                                                        <input type="submit" value="Register" 
+                                                        <input type="submit" class="form-control btn btn-primary" tabindex="4" value="Register" 
                                                            onclick="return regformhash(this.form, this.form.nom, this.form.prenom,
-                                                                           this.form.username,
                                                                            this.form.email,
                                                                            this.form.password,
                                                                            this.form.confirmpwd);" /> 

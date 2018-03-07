@@ -41,7 +41,7 @@
         <li class="dropdown">
         	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partie configuration</a>
         	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-    			<a class="dropdown-item" href="index.php?page=etudiant">&Eacute;tudiants</a>
+    			<a class="dropdown-item" href="index.php?page=etudiant">Ajouter groupes</a>
     			<a class="dropdown-item" href="index.php?page=projet">Projets</a>
     		</div>
     	</li>
@@ -51,8 +51,8 @@
     	<li class="dropdown">
         	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partie utilisation</a>
         	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-		    	<a class="dropdown-item" href="index.php?page=groupe">Groupes</a>
-				<a class="dropdown-item" href="index.php?page=noteCompetence">Note comp&eacute;tences</a>
+				<a class="dropdown-item" href="index.php?page=noteCompetence">Notes de comp&eacute;tences</a>
+		    	<a class="dropdown-item" href="index.php?page=groupe">Notes de groupes</a>
     		</div>
     	</li>
     	

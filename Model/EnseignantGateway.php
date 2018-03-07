@@ -37,15 +37,12 @@ class EnseignantGateway {
 		include '../notation/Includes/connect.php';
 
 	    // Using prepared statements means that SQL injection is not possible. 
-	    if ($stmt = $conn->prepare("SELECT id, nom, username, password 
-	        FROM personne
-	       WHERE email = :EMAIL
-	        LIMIT 1")) {
+	    if ($stmt = $conn->prepare("SELECT id, nom, password FROM personne WHERE email = :EMAIL LIMIT 1")) {
 	        $stmt->execute(array("EMAIL"=>$email));    // Execute the prepared query.
 	        $row = $stmt->fetch(PDO::FETCH_ASSOC); 
 	        // get variables from result.
 	        $user_id = $row['id'];
-	        $username = $row['username'];
+
 	        $nom = $row['nom'];
 	        $db_password = $row['password'];
 	 
@@ -68,10 +65,7 @@ class EnseignantGateway {
 	                    $user_id = preg_replace("/[^0-9]+/", "", $user_id);
 	                    $_SESSION['id'] = $user_id;
 	                    // XSS protection as we might print this value
-	                    $username = preg_replace("/[^a-zA-Z0-9_\-]+/", 
-	                                                                "", 
-	                                                                $username);
-	                    $_SESSION['username'] = $username;
+
 	                    $_SESSION['nom'] = $nom;
 	                    $_SESSION['login_string'] = hash('sha512', 
 	                              $db_password . $user_browser);
@@ -161,7 +155,7 @@ class EnseignantGateway {
 
 	}
 
-	public function registerCheck($email, $username) {
+	public function registerCheck($email) {
 
 		include '../notation/Includes/connect.php';
 
@@ -180,30 +174,20 @@ class EnseignantGateway {
 	        return;
 	    }
 	 
-	    if ($stmt = $conn->prepare("SELECT id FROM personne WHERE username = :USERNAME LIMIT 1")) {
-	        $stmt->execute(array("USERNAME"=>$username));
-	        if ($stmt->rowCount() == 1) {
-	            //$error_msg .= '<p class="error">A user with this username already exists</p>';
-	            $stmt->closeCursor();
-	            //Utilisateur avec le meme nom d'utilisateur
-	            return 2;
-	        }
-	    } else {
-	            //$error_msg .= '<p class="error">Database error line 55</p>';
-	            $stmt->closeCursor();
-	            return;
-	    }
 	}
 
-	public function register($nom, $prenom, $username, $email, $password){
+	public function register($nom, $prenom, $email, $password){
 		include '../notation/Includes/connect.php';
 
-		$insert_stmt = $conn->prepare("INSERT INTO personne (nom, prenom, username, email, password) VALUES (:NOM, :PRENOM, :USERNAME, :EMAIL, :PASSWORD)");
-		$result = $insert_stmt->execute(array("NOM"=>$nom, "PRENOM"=>$prenom, "USERNAME"=>$username, "EMAIL"=>$email, "PASSWORD"=>$password));
-        
+		$insert_stmt = $conn->prepare("INSERT INTO personne (nom, prenom, email, password) VALUES (:NOM, :PRENOM, :EMAIL, :PASSWORD)");
+		$result = $insert_stmt->execute(array("NOM"=>$nom, "PRENOM"=>$prenom, "EMAIL"=>$email, "PASSWORD"=>$password));
+        $last_id = $conn->lastInsertId();
+        $responsable = 0;
         if (! $result) {
         	return false;
         }
+        $stmt = $conn->prepare("INSERT INTO enseignant (personneId, responsable) VALUES (:PERSONNEID, :RESPONSABLE)");
+        $stmt->execute(array("PERSONNEID"=>$last_id, "RESPONSABLE"=>$responsable));
         
         return true;
         
