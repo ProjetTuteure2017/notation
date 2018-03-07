@@ -65,18 +65,14 @@ class EtudiantController
 		$idGroupe = isset($_GET['idgroupe']) ? $_GET['idgroupe'] : NULL;
 		$groupe = $this->groupeService->getNoteGroupe($idGroupe);
 
-		$result = $this->ModifierNoteEtudiant();
-		if($result)
-		{
-			$this->redirect("index.php?page=etudiant&op=note&idgroupe=".$idGroupe);
-		}
+		$this->ModifierNoteEtudiant();
 
         $check = login_check();
 
 		include 'View/groupe-note.php';
 	}
-	public function AddGroupe($etudiant, $idGroupe, $note, $idProjet){
-		$this->groupeService->AjouterGroupe($etudiant, $idGroupe, $note, $idProjet);
+	public function AddGroupe($etudiant, $idGroupe, $idProjet){
+		$this->groupeService->AjouterGroupe($etudiant, $idGroupe, $idProjet);
 		
 	}
 
@@ -93,14 +89,13 @@ class EtudiantController
 
 
 		if(isset($_POST['form-submitted'])){
-			$position = isset($_POST['position']) ? $_POST['position'] : NULL;
 			$nom = isset($_POST['nom']) ? $_POST['nom'] : NULL;
 			$note = isset($_POST['note']) ? $_POST['note'] : NULL;
 			$pourcentage = isset($_POST['pourcentage']) ? $_POST['pourcentage'] : NULL;
 			try {
-				$result = $this->groupeService->ModifyNoteEtudiant($idGroupe, $position, $nom, $note, $pourcentage);
-				//header("Refresh:0");
-				return $result;
+				$this->groupeService->ModifyNoteEtudiant($idGroupe, $nom, $note, $pourcentage);
+				header("Refresh:0");
+				return;
 			} catch (ValidationException $e) {
 				$errors = $e->getErrors();
 			}

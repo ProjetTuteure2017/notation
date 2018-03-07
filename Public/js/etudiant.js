@@ -34,3 +34,6 @@ function Verif_Selection_Comp(){
 	alert("Veuillez selectionner une grille");
 	return false;
 }
+
+//document.getElementById('fileLoader').
+//document.getElementById('selectProjet').options[0].selected

@@ -46,19 +46,19 @@ class GroupeService
 		}
 	}
 	
-	public function ModifyNoteEtudiant($idGroupe, $position, $nomEtudiant, $note, $pourcentage)
+	public function ModifyNoteEtudiant($idGroupe, $nomEtudiant, $note, $pourcentage)
 	{
 		try {
-			$res = $this->groupeGateway->ModifierNoteEtudiant($idGroupe, $position, $nomEtudiant, $note, $pourcentage);
+			$res = $this->groupeGateway->ModifierNoteEtudiant($idGroupe, $nomEtudiant, $note, $pourcentage);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;
 		}
 	}
 
-	public function AjouterGroupe($etudiant, $idGroupe, $note, $idProjet){
+	public function AjouterGroupe($etudiant, $idGroupe, $idProjet){
 		try {
-			$res = $this->groupeGateway->InsertGroupe($etudiant, $idGroupe, $note, $idProjet);
+			$res = $this->groupeGateway->InsertGroupe($etudiant, $idGroupe, $idProjet);
 			return $res;
 		} catch (Exception $e) {
 			throw $e;
