@@ -17,7 +17,7 @@ include_once 'Includes/functions.php';
                     <div id="mydiv">
                         <div class="panel panel-compte">
                             <div class="panel-heading">
-                                <h5>S'enregistrer</h5>
+                                <h5>Ajouter un enseignant</h5>
                                 <?php 
                                 if ( $errors ) {
                                     print '<div class="row">';
