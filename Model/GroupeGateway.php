@@ -37,27 +37,22 @@ class GroupeGateway
 	{
 		include '../notation/Includes/connect.php';
 
-		$stmt = $conn->prepare("SELECT id, nomGroupe, etudiant, noteGroupe
-								FROM groupe 
-								WHERE id = :IDGROUPE");
+		$stmt = $conn->prepare("SELECT id, nomGroupe, etudiant, noteGroupe FROM groupe WHERE id = :IDGROUPE");
 		$stmt->execute(array("IDGROUPE"=>$idGroupe));
 		$result = $stmt->fetch();
 
 		return $result;
 	}
 
-	public function ModifierNoteEtudiant($idGroupe, $nomEtudiant, $note, $pourcentage)
+	public function ModifierNoteEtudiant($idGroupe, $position, $nomEtudiant, $note, $pourcentage)
 	{
 		include '../notation/Includes/connect.php';
 
+		$stmt = $conn->prepare("UPDATE groupe SET etudiant= JSON_SET(etudiant,\"$[$position].note\", :NOTE, \"$[$position].pourcentage\", :POURCENTAGE) WHERE id = :IDGROUPE AND etudiant->\"$[$position].nom\" = :NOM");
 
-		/*$stmt = $conn->prepare("UPDATE groupe SET etudiant = [:ETUDIANT] WHERE id = :IDGROUPE");
+		$result = $stmt->execute(array("NOTE"=>$note, "POURCENTAGE"=>$pourcentage, "IDGROUPE"=>$idGroupe, "NOM"=>$nomEtudiant));
 
-	//Donner la poistion de chaque etudiant dans le groupe $[1].note:
-			//UPDATE groupe SET etudiant= JSON_SET(etudiant, '$.note', :NOTE, '$.pourcentage', :POURCENTAGE)
-			//					WHERE id = :IDGROUPE AND etudiant->'$.nom' = :NOM");
-		$etudiant = "{\"nom\" : \"".$nom."\",\"pourcentage\" : \"".$pourcentage."\",\"note\" : \"".$note."\"}";
-		$stmt->execute(array("NOTE"=>$note, "POURCENTAGE"=>$pourcentage,"IDGROUPE"=>$idGroupe, "NOM"=>$nomEtudiant));*/
+		return $result;
 	}
 
 	public function InsertGroupe($etudiant, $idGroupe, $idProjet){

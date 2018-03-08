@@ -37,7 +37,7 @@
 		</div>
 		<div class="col-12 col-sm-4 col-md-6 col-lg-6 text-right">
 				<?php 
-					print '<a href="index.php?page=competence&op=new&grilleId='.$grilleId.'" class="btn btn-primary"><i style="margin-right: 10px; color: #fff;" class="fas fa-plus"></i>Ajouter une comp&eacute;tence</a>';
+					print '<a href="index.php?page=competence&op=new&grilleId='.$grilleId.'&projetId='.$_GET['projetId'].'" class="btn btn-primary"><i style="margin-right: 10px; color: #fff;" class="fas fa-plus"></i>Ajouter une comp&eacute;tence</a>';
 				?>
 			</div>
 		<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">	
@@ -65,7 +65,7 @@
 					<div class="modal-dialog" role="document">
 					<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title">Modification du projet</h4>
+						<h4 class="modal-title">Modification de la comp&eacute;tence</h4>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 					<div class="modal-body">

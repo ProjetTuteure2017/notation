@@ -58,14 +58,13 @@ include_once 'Includes/functions.php';
                                             <div class="form-group">
                                                 <div class="alert alert-dismissible alert-warning">
                                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                    <p class="mb-0"><i class="fas fa-exclamation-triangle" style="color: #fff; margin-right: 10px;"></i>Le mot de passe doit comporter au moins 6 caractères.</p>
-                                                    <p class="mb-0">Le mot de passe doit contenir au moins un chiffre, une minuscule et une majuscule.</p>
+                                                    <p class="mb-0"><i class="fas fa-exclamation-triangle" style="color: #fff; margin-right: 10px;"></i>Le mot de passe doit comporter au moins 6 caractères( au moins : un chiffre, une lettre minuscule et une majuscule ).</p>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-12">
-                                                        <input type="submit" class="form-control btn btn-primary" tabindex="4" value="Register" 
+                                                        <input type="submit" class="form-control btn btn-primary" tabindex="4" value="Valider" 
                                                            onclick="return regformhash(this.form, this.form.nom, this.form.prenom,
                                                                            this.form.email,
                                                                            this.form.password,

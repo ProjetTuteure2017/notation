@@ -4,8 +4,6 @@
 	<title>
 		<?php print htmlentities($title); ?>
 	</title>
-	<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
-	
 </head>
 
 <body>
@@ -18,7 +16,7 @@
 
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<p class="font-weight-bold">La note de ce groupe : <?php print $groupe['noteGroupe'];?></p>
+			<p class="font-weight-bold">La note du <?php  print $groupe['nomGroupe']; print ' est : '.$groupe['noteGroupe'];?></p>
 			<table class="table table-responsive table-bordered">
 		    	<thead class="color-primary-dark">
 		      		<tr class="text-white">

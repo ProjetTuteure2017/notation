@@ -73,6 +73,7 @@ class CompetenceController
 		$intitule = '';
 		$nombrePoint = '';
 		$grilleId = '';
+		$projetId = isset($_GET['projetId']) ? $_GET['projetId'] : NULL;
 
 		$errors = array();
 
@@ -85,7 +86,7 @@ class CompetenceController
 			
 			try {
 				$this->competenceService->ajouterCompetence($theme, $intitule, $nombrePoint, $grilleId);
-				$this->redirect('index.php');
+				$this->redirect('index.php?page=competence&projetId='.$projetId.'&grilleId='.$grilleId);
 				return;
 			} catch (ValidationException $e) {
 				$errors = $e->getErrors();
@@ -117,7 +118,6 @@ class CompetenceController
 
 			try {
 				$this->competenceService->modifierCompetence($id, $theme, $intitule, $nombrePoint, $grilleId);
-				//header("Refresh:0");
 				return;
 			} catch (ValidationException $e) {
 				$errors = $e->getErrors();

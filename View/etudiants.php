@@ -65,7 +65,7 @@
       $tmp_file = $_FILES['import']['tmp_name'];
       if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
       {
-      exit("Impossible de copier le fichier dans $content_dir");
+        exit("Impossible de copier le fichier dans $content_dir");
       }
       echo "Le fichier a bien été uploadé";
       $fp = fopen($content_dir.$name_file, "r");
