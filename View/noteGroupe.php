@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>
-		<?php print htmlentities($title); ?>
+		La grille d'&eacute;valuation
 	</title>
 	<link href="Public/css/bootstrap-sortable.css" rel="stylesheet" type="text/css">
 	<script src="Public/js/verif_point.js" type="text/javascript"></script>
@@ -16,20 +16,28 @@
 			if($check == true) {
 				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 		?>
-
 		<div class="row">
-			<div class="col-lg-12 col-md-12 col-sm-12">
-				<a href="index.php?page=noteCompetence&selectProjet=<?php print (isset($_GET['projetId']) ? $_GET['projetId'] : NULL);?>">Retour</a>
-				<h4> Groupe: <?php print $groupeId;?></h4>
+    		<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.php?page=noteCompetence&selectProjet=<?php print (isset($_GET['projetId']) ? $_GET['projetId'] : NULL);?>">Groupes</a></li>
+					<li class="breadcrumb-item active">Grille d'&eacute;valuation</li>
+				</ol>
 			</div>
 		</div>
 		<hr>
 		<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-lg-6 col-md-6 col-sm-8 col-12">
+				<h4> Groupe: <?php print $groupeId;?></h4>
+			</div>
+			<div class="col-12 col-sm-4 col-md-6 col-lg-6 text-right">
+				<a href="iindex.php?page=competence&op=new&grilleId=<?php echo $grilleId; ?>" class="btn btn-primary"><i style="margin-right: 10px; color: #fff;" class="fas fa-plus"></i>Ajouter competence</a>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<br>
 			<table class="table table-responsive table-hover sortable">
 		    	<thead class="color-primary-dark">
 					<tr class="text-white">
-						<th scope="col" style="width: 20%">Theme</th>
+						<th data-defaultsign="az" scope="col" style="width: 20%">Th&egrave;me<span id="spanSort" class="spanaz"><i class="fa fa-fw fa-sort"></i></span></th>
 						<th data-defaultsort="disabled" scope="col" style="width: 45%">Intitule</th>
 						<th class="middle" data-defaultsort="disabled" scope="col" style="width: 10%">Points</th>
 						<th class="middle" data-defaultsort="disabled" scope="col" style="width: 10%">Note</th>
@@ -57,9 +65,6 @@
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-			<?php 
-				print '<a href="index.php?page=competence&op=new&grilleId='.$grilleId.'">Ajouter competence</a>';
-			?>	
 		</div>
 
 	</div>
@@ -80,6 +85,12 @@
 
 ?>
 	</div>
-	
+	<script>
+	$( document ).ready(function() {
+		$("th" ).click(function() {
+			$('#spanSort').hide();
+		});
+	});
+ </script>	
 </body>
 </html>
