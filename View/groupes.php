@@ -118,7 +118,7 @@
           print '<td class="middle"><a href="http://notation/index.php?page=etudiant&op=note&idgroupe='.$groupe['id'].'"><i class="fas fa-plus"></i></a></td>';
           print '</tr>';
 		  
-		  echo "la".$groupeId. " la ".$noteGroupe." et la".$projetId;
+		  //echo "la".$groupeId. " la ".$noteGroupe." et la".$projetId;
 		  $this->groupeService->MAJNoteGroupe($groupeId, $noteGroupe, $projetId);
 		  
         endforeach;

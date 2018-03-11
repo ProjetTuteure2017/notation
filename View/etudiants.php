@@ -58,7 +58,7 @@
 
     if(isset($_FILES['import']))
     {
-      echo '+++++'.$_FILES['import']['name'];
+      //echo '+++++'.$_FILES['import']['name'];
       
       $content_dir = 'C:\\wamp64\\www\\tmp\\';
       $name_file = $_FILES['import']['name'];
@@ -69,7 +69,7 @@
       }
       echo "Le fichier a bien été uploadé";
       $fp = fopen($content_dir.$name_file, "r");
-      echo 'Fichier en lecture<br>';
+      //echo 'Fichier en lecture<br>';
       
       //$i=0;
     $ligne = fgetcsv($fp);
@@ -101,7 +101,7 @@
       }
       
     }
-    echo var_dump($tabInsertion);
+    //echo var_dump($tabInsertion);
     foreach($tabInsertion as $res){
       $this->AddGroupe("[".$res['etudiant']."]", "Groupe ".$res["idGroupe"], $res['idProjet']);
     }
