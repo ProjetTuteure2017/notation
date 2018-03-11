@@ -109,15 +109,17 @@ class CompetenceController
 
 		$errors = array();
 
+		
 		if (isset($_POST['form-submitted'])) {
 			$id = isset($_POST['id']) ? $_POST['id'] : NULL;
 			$theme = isset($_POST['theme']) ? $_POST['theme'] : NULL;
 			$intitule = isset($_POST['intitule']) ? $_POST['intitule'] : NULL;
 			$nombrePoint = isset($_POST['nombrePoint']) ? $_POST['nombrePoint'] : NULL;
-			$grilleId = isset($_POST['grilleId']) ? $_POST['grilleId'] : NULL;
+			$grilleId = isset($_GET['grilleId']) ? $_GET['grilleId'] : NULL;
 
 			try {
-				$this->competenceService->modifierCompetence($id, $theme, $intitule, $nombrePoint, $grilleId);
+				$this->competenceService->modifyCompetence($id, $theme, $intitule, $nombrePoint, $grilleId);
+				header("Refresh:0");
 				return;
 			} catch (ValidationException $e) {
 				$errors = $e->getErrors();

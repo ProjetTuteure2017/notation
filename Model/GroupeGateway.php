@@ -54,6 +54,17 @@ class GroupeGateway
 
 		return $result;
 	}
+	
+	public function UpdateNoteGroupe($idGroupe, $note, $projetId)
+	{
+		include '../notation/Includes/connect.php';
+
+		$stmt = $conn->prepare("UPDATE groupe SET noteGroupe = :NOTE WHERE id = :IDGROUPE AND projetId = :PROJETID");
+
+		$result = $stmt->execute(array("NOTE"=>$note, "IDGROUPE"=>$idGroupe, "PROJETID"=>$projetId));
+
+		return $result;
+	}
 
 	public function InsertGroupe($etudiant, $idGroupe, $idProjet){
 		include '../notation/Includes/connect.php';

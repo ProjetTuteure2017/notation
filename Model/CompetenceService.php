@@ -35,7 +35,7 @@ class CompetenceService
 		}
 	}
 
-	public function modifierCompetence($id, $theme, $intitule, $nombrePoint, $grilleId)
+	public function modifyCompetence($id, $theme, $intitule, $nombrePoint, $grilleId)
 	{
 		try {
 			$res=$this->competenceGateway->Modifier($id, $theme, $intitule, $nombrePoint, $grilleId);

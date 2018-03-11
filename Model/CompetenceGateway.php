@@ -31,12 +31,12 @@ class CompetenceGateway
 	{
 		include '../notation/Includes/connect.php';
 
-		$id = isset($_POST['id']) ? $_POST['id'] : '';
-		$theme = isset($_POST['theme']) ? $_POST['theme'] : '';
-		$intitule = isset($_POST['intitule']) ? $_POST['intitule'] : '';
-		$nombrePoint = isset($_POST['nombrePoint']) ? $_POST['nombrePoint'] : '';
-		$grilleId = isset($_POST['grilleId']) ? $_POST['grilleId'] : '';
-
+		//$id = isset($_POST['id']) ? $_POST['id'] : '';
+		//$theme = isset($_POST['theme']) ? $_POST['theme'] : '';
+		//$intitule = isset($_POST['intitule']) ? $_POST['intitule'] : '';
+		//$nombrePoint = isset($_POST['nombrePoint']) ? $_POST['nombrePoint'] : '';
+		//$grilleId = isset($_POST['grilleId']) ? $_POST['grilleId'] : '';
+		
 		$stmt = $conn->prepare("UPDATE competence SET theme = :THEME, intitule = :INTITULE, nombrePoint = :NOMBREPOINT, grilleId = :GRILLEID WHERE id = :ID");
 		$stmt->execute(array("THEME" =>$theme , "INTITULE"=>$intitule ,"NOMBREPOINT" => $nombrePoint, "GRILLEID"=>$grilleId, "ID" => $id));
 

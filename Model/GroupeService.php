@@ -64,6 +64,17 @@ class GroupeService
 			throw $e;
 		}	
 	}
+	
+	public function MAJNoteGroupe($idGroupe, $note, $idProjet){
+		try {
+			$res = $this->groupeGateway->UpdateNoteGroupe($idGroupe , $note, $idProjet);
+			return $res;
+		} catch (Exception $e) {
+			throw $e;
+		}	
+	}
 }
+
+
 
 ?>
