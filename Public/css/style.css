@@ -43,6 +43,17 @@ footer p
     margin-left: -15em;
     position:fixed;
 }
+@media (max-width: 550px) {
+    #mydiv {
+        top: 20%;
+        left: 5%;
+        width:90%;
+        height:90%;
+        margin-top: auto;
+        margin-left: auto;
+        position:fixed;
+    }
+}
 
 #myInput {
     background-image: url('../img/searchicon.png');
