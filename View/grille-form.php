@@ -39,13 +39,13 @@
                                         
                                         <form role="form" method="POST" action="" style="display : block;">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="titre" value="<?php print htmlentities($titre) ?>" placeholder="Titre">
+                                                <input type="text" class="form-control" name="titre" value="<?php print htmlentities($titre) ?>" placeholder="Titre" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="note_sur" value="<?php print htmlentities($note_sur) ?>" placeholder="Not&eacute; sur">
+                                                <input type="text" class="form-control" name="note_sur" value="<?php print htmlentities($note_sur) ?>" placeholder="Not&eacute; sur" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="coef" value="<?php print htmlentities($coef) ?>" placeholder="Coefficient">
+                                                <input type="text" class="form-control" name="coef" value="<?php print htmlentities($coef) ?>" placeholder="Coefficient" required>
                                             </div>
                                             <div class="form-group">
                                                 <div class="row">

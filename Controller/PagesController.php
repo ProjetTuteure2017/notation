@@ -23,11 +23,9 @@ class PagesController
 	public function HandleRequest() {
 		$op = filter_input(INPUT_GET, 'op', FILTER_SANITIZE_URL);
 		try {
-		    if (!$op || $op == 'home') {
-                $this->Home();
-            } else if ($op == 'login'){
-		        $this->Login();
-		    } else if($op == 'logout') {
+		    if (!$op || $op == 'login') {
+                $this->Login();
+            } else if($op == 'logout') {
 		    	$this->Logout();
 		    } else {
 		        $this->showError("Page not found", "Page for operation ".$op." was not found!");
@@ -79,10 +77,10 @@ class PagesController
                         //row responsable true = 1
             			if($responsableLogged == 1)
             			{
-            				$this->Redirect('index.php?page=enseignant&op=resp');
+            				$this->Redirect('index.php?page=projet');
             			} else
             			{
-            				$this->Redirect('index.php?page=enseignant');
+            				$this->Redirect('index.php?page=projet');
             			}
             		} else
             		{

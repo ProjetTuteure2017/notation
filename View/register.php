@@ -40,17 +40,17 @@ include_once 'Includes/functions.php';
                                         <form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" name="registration_form" style="display: block;">
                                             <div class="row">
                                                 <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                    <input type="text" name="nom" id="nom" placeholder="Nom" class="form-control">
+                                                    <input type="text" name="nom" id="nom" placeholder="Nom" class="form-control" required>
                                                 </div>
                                                 <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                    <input type="text" name="prenom" id="prenom" placeholder="Prenom" class="form-control">
+                                                    <input type="text" name="prenom" id="prenom" placeholder="Prenom" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="email" id="email" placeholder="Email" class="form-control">
+                                                <input type="text" name="email" id="email" placeholder="Email" class="form-control" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" name="password" id="password" placeholder="Mot de passe" class="form-control">
+                                                <input type="password" name="password" id="password" placeholder="Mot de passe" class="form-control" required>
                                             </div>
                                             <div class="form-group">
                                                 <input type="password" name="confirmpwd" id="confirmpwd" placeholder="Confirmation mot de passe" class="form-control">

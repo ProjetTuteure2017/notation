@@ -36,13 +36,13 @@
                                 
                                 <form role="form" method="POST" action="" style="display : block;">
 									<div class="form-group">
-                                        <input type="text" class="form-control" name="theme" value="<?php print htmlentities($theme)?>" placeholder="Theme">
+                                        <input type="text" class="form-control" name="theme" value="<?php print htmlentities($theme)?>" placeholder="Theme" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="intitule" value="<?php print htmlentities($intitule)?>" placeholder="Intitule">
+                                        <input type="text" class="form-control" name="intitule" value="<?php print htmlentities($intitule)?>" placeholder="Intitule" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="nombrePoint" value="<?php print htmlentities($nombrePoint)?>" placeholder="Nombre des points">
+                                        <input type="text" class="form-control" name="nombrePoint" value="<?php print htmlentities($nombrePoint)?>" placeholder="Nombre des points" required>
                                     </div>
 									<input type="hidden" name="grilleId" value="<?php print (isset($_GET['grilleId'])? $_GET['grilleId'] : NULL);?>" /> 
                                     <div class="form-group">

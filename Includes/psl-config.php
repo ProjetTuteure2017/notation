@@ -9,7 +9,7 @@ define("CAN_REGISTER", "any");
 define("DEFAULT_ROLE", "member");
 
 /**
- * If you are using an HTTPS connection, change this to TRUE
+ * Pour HTTPS connection, change à TRUE
  */
 define("SECURE", FALSE);  
 ?>

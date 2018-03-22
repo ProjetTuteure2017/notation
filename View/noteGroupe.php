@@ -30,7 +30,7 @@
 				<h4> Groupe: <?php print $groupeId;?></h4>
 			</div>
 			<div class="col-12 col-sm-4 col-md-6 col-lg-6 text-right">
-				<a href="iindex.php?page=competence&op=new&grilleId=<?php echo $grilleId; ?>" class="btn btn-primary"><i style="margin-right: 10px; color: #fff;" class="fas fa-plus"></i>Ajouter competence</a>
+				<a href="index.php?page=competence&op=new&grilleId=<?php echo $grilleId; ?>" class="btn btn-primary"><i style="margin-right: 10px; color: #fff;" class="fas fa-plus"></i>Ajouter competence</a>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<br>
