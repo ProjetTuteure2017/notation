@@ -1,3 +1,6 @@
+<?php
+sec_session_start();
+?> 
 <!-- NOT USED ?-->
 <!DOCTYPE html>
 <html>
@@ -10,7 +13,6 @@
 <body>
 	<div class="container">
 		<?php 
-			sec_session_start();
 			if($check == true) {
 				$enseignantId = isset($_SESSION['id'])? $_SESSION['id']:NULL;
 		?>

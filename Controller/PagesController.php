@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Model/enseignantService.php';
+require_once 'Model/EnseignantService.php';
 require_once 'Includes/functions.php';
 require_once 'Includes/connect.php';
 

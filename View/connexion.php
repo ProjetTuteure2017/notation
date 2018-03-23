@@ -1,3 +1,6 @@
+<?php
+sec_session_start();
+?> 
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -17,8 +20,6 @@
  
       <?php
 
-
-      sec_session_start();
       if($check == true) {
         print '<div class="row">';
         print '<div class="col-lg-12 col-md-12 col-sm-12">';
